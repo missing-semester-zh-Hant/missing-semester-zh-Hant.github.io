@@ -11,6 +11,7 @@ text editor, use fancy features of version control systems, and much more! -->
 計算機專業的課程會教授你從操作系統到機器學習等許多高級課題。
 但有一重要主題卻甚少被講述，而時常被留給學生自己去學習：熟練使用工具。
 我們將會教授你如何精於命令行、使用強大的文本編輯器，使用版本控制系統的精妙功能，與許多其他技巧！
+
 <!-- Students spend hundreds of hours using these tools over the course of their
 education (and thousands over their career), so it makes sense to make the
 experience as fluid and frictionless as possible. Mastering these tools not

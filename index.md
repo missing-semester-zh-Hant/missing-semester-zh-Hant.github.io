@@ -68,6 +68,7 @@ YouTube](https://www.youtube.com/playlist?list=PLyzOVJj3bHQuloKGG59rS43e29ro7I57
 **Questions**: Email us at [missing-semester@mit.edu](mailto:missing-semester@mit.edu). -->
 
 **講師**: 此課程由 [Anish](https://www.anishathalye.com/), [Jon](https://thesquareplanet.com/), 與 [Jose](http://josejg.com/)共同講授.
+
 **若有疑問**: 請寄信至 [missing-semester@mit.edu](mailto:missing-semester@mit.edu).
 
 <!-- # Beyond MIT -->

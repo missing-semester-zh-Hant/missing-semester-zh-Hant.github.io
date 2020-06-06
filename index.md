@@ -8,9 +8,8 @@ to machine learning, but there’s one critical subject that’s rarely covered,
 and is instead left to students to figure out on their own: proficiency with
 their tools. We’ll teach you how to master the command-line, use a powerful
 text editor, use fancy features of version control systems, and much more! -->
-電腦專業的課程會教授你從操作系統到機器學習等許多高級課題。
-但有一重要主題卻甚少被講述，而時常被留給學生自己去學習：熟練使用工具。
-我們將會教授你如何精於命令行、使用強大的文本編輯器，使用版本控制系統的精妙功能，與許多其他技巧！
+傳統電腦專業課程着重解釋作業系統與機器學習等專業知識，而如何熟練使用工具這個重要課題卻常常需要學生自行理解。
+此課程將會教授你如何精於命令列、使用強大的文字編輯器，運用版本控制系統的精妙功能，與許多其他類似技巧！
 
 <!-- Students spend hundreds of hours using these tools over the course of their
 education (and thousands over their career), so it makes sense to make the
@@ -18,7 +17,7 @@ experience as fluid and frictionless as possible. Mastering these tools not
 only enables you to spend less time on figuring out how to bend your tools to
 your will, but it also lets you solve problems that would previously seem
 impossibly complex. -->
-在學生完成教育課程時，這些工具會陪伴他們數百小時（且工作中陪伴更久的時間）。
+在學生完成學業時，這些工具會陪伴他們數百小時（且在工作中陪伴更久的時間）。
 因此，流暢且無障礙地使用他們是很重要的。
 熟練使用工具不僅可以減少浪費在調試工具上的時間，也使我們更容易解決困難問題。
 

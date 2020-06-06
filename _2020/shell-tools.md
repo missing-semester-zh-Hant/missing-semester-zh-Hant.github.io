@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Shell Tools and Scripting"
+title: "Shell工具與手稿語言"
 date: 2019-01-14
 ready: true
 video:
@@ -8,25 +8,41 @@ video:
   id: kgII-YWo3Zw
 ---
 
-In this lecture, we will present some of the basics of using bash as a scripting language along with a number of shell tools that cover several of the most common tasks that you will be constantly performing in the command line.
+<!-- In this lecture, we will present some of the basics of using bash as a scripting language along with a number of shell tools that cover several of the most common tasks that you will be constantly performing in the command line. -->
+在本課中，我們會展示基於bash的手稿語言的一些基本操作，以及一些常用的 shell 工具。它們將解決我們在使用命令列時遇到的常見問題。
 
-# Shell Scripting
 
-So far we have seen how to execute commands in the shell and pipe them together.
-However, in many scenarios you will want to perform a series of commands and make use of control flow expressions like conditionals or loops.
+<!-- # Shell Scripting -->
+# Shell指令碼
 
-Shell scripts are the next step in complexity.
+<!-- So far we have seen how to execute commands in the shell and pipe them together.
+However, in many scenarios you will want to perform a series of commands and make use of control flow expressions like conditionals or loops. -->
+截至目前我們已經學習了如何在 shell 中執行指令， 並且用管道組合它們。
+但是，在許多場景下我們希望執行一系列指令，並且使用條件限制或迴環等控制流。
+
+<!-- Shell scripts are the next step in complexity.
 Most shells have their own scripting language with variables, control flow and its own syntax.
 What makes shell scripting different from other scripting programming language is that it is optimized for performing shell-related tasks.
 Thus, creating command pipelines, saving results into files, and reading from standard input are primitives in shell scripting, which makes it easier to use than general purpose scripting languages.
-For this section we will focus on bash scripting since it is the most common.
+For this section we will focus on bash scripting since it is the most common. -->
+Shell 指令碼是更加複雜的解決辦法。
+大部分 shell 都有自己的指令碼，包括變數，控制流與專屬自己的語法。
+shell 指令碼與其他手稿語言不同的是，它針對有關 shell 的任務進行最適化。
+因此，創建指令流程，將結果存儲至檔案，從標準輸入中獲取信息都是 shell 指令碼的內建能力，
+這使得它比普通手稿語言更加容易使用。
+因爲bash指令碼最普遍，此節我們會注重於它。
 
-To assign variables in bash, use the syntax `foo=bar` and access the value of the variable with `$foo`.
+<!-- To assign variables in bash, use the syntax `foo=bar` and access the value of the variable with `$foo`.
 Note that `foo = bar` will not work since it is interpreted as calling the `foo` program with arguments `=` and `bar`.
-In general, in shell scripts the space character will perform argument splitting. This behavior can be confusing to use at first, so always check for that.
+In general, in shell scripts the space character will perform argument splitting. This behavior can be confusing to use at first, so always check for that. -->
+在bash中，使用 `foo=bar` 爲變數賦值，使用 `$foo` 來取得變數的值。
+注意 `foo = bar` 並不會正常執行，因爲它將被解釋爲使用參數 `=` 和 `bar` 執行 `foo`。
+總之，在shell指令碼中空格會分隔參數。初次使用時可能會迷惑使用者，還請多多檢查。
 
-Strings in bash can be defined with `'` and `"` delimiters, but they are not equivalent.
-Strings delimited with `'` are literal strings and will not substitute variable values whereas `"` delimited strings will.
+<!-- Strings in bash can be defined with `'` and `"` delimiters, but they are not equivalent.
+Strings delimited with `'` are literal strings and will not substitute variable values whereas `"` delimited strings will. -->
+Bash 中的字串通過 `'` 與 `"` 定界字元來定義，它們含義並不相同。
+以 `'` 定界的字串中的變數僅代表其字元本身，而 `"` 中的變數會作爲變數對待。
 
 ```bash
 foo=bar
@@ -36,9 +52,10 @@ echo '$foo'
 # prints $foo
 ```
 
-As with most programming languages, bash supports control flow techniques including `if`, `case`, `while` and `for`.
-Similarly, `bash` has functions that take arguments and can operate with them. Here is an example of a function that creates a directory and `cd`s into it.
-
+<!-- As with most programming languages, bash supports control flow techniques including `if`, `case`, `while` and `for`.
+Similarly, `bash` has functions that take arguments and can operate with them. Here is an example of a function that creates a directory and `cd`s into it. -->
+如同大多數程式語言，bash支持包含`if`, `case`, `while` 與 `for`等的控制流。
+類似地，`bash` 也支持函式，其可以獲取參數並執行。以下是一個建立新檔案夾並 `cd` 進入其中的例子：
 
 ```bash
 mcd () {
@@ -47,7 +64,7 @@ mcd () {
 }
 ```
 
-Here `$1` is the first argument to the script/function.
+<!-- Here `$1` is the first argument to the script/function.
 Unlike other scripting languages, bash uses a variety of special variables to refer to arguments, error codes, and other relevant variables. Below is a list of some of them. A more comprehensive list can be found [here](https://www.tldp.org/LDP/abs/html/special-chars.html).
 - `$0` - Name of the script
 - `$1` to `$9` - Arguments to the script. `$1` is the first argument and so on.
@@ -56,15 +73,33 @@ Unlike other scripting languages, bash uses a variety of special variables to re
 - `$?` - Return code of the previous command
 - `$$` - Process identification number (PID) for the current script
 - `!!` - Entire last command, including arguments. A common pattern is to execute a command only for it to fail due to missing permissions; you can quickly re-execute the command with sudo by doing `sudo !!`
-- `$_` - Last argument from the last command. If you are in an interactive shell, you can also quickly get this value by typing `Esc` followed by `.`
+- `$_` - Last argument from the last command. If you are in an interactive shell, you can also quickly get this value by typing `Esc` followed by `.` -->
+此處 `$1`代表指令碼或函式獲取的第一個參數。
+與其他手稿語言不同，bash使用了大量特殊變數來表示參數，錯誤碼與其他相關變數。
+此處列舉了部分例子，更完整的列表可以參照[於此](https://www.tldp.org/LDP/abs/html/special-chars.html).
+- `$0` - 指令碼名字
+- `$1` to `$9` - 參數。 `$1` 是第一個參數，以此類推。
+- `$@` - 全部參數
+- `$#` - 參數數量
+- `$?` - 前一條指令的返回值
+- `$$` - 目前指令碼的行程ID (Process identification number, PID) 
+- `!!` - 完整的前一條指令，含有參數。一個常見情況是因爲權限錯誤導致指令失敗，此時可以使用 `sudo !!`
+- `$_` - 前一條指令的最後一個參數。如果你使用的是互動式shell，按下 `Esc` 後鍵入 `.` 可以獲取它。
 
-Commands will often return output using `STDOUT`, errors through `STDERR`, and a Return Code to report errors in a more script-friendly manner.
+<!-- Commands will often return output using `STDOUT`, errors through `STDERR`, and a Return Code to report errors in a more script-friendly manner.
 The return code or exit status is the way scripts/commands have to communicate how execution went.
-A value of 0 usually means everything went OK; anything different from 0 means an error occurred.
+A value of 0 usually means everything went OK; anything different from 0 means an error occurred. -->
+程式通常會使用 `STDOUT` 來返回輸出, 使用 `STDERR` 返回錯誤, 與一個返回值(Return Code)來更加友好地表示錯誤信息。
+指令碼或單獨指令利用返回值與退出狀態(exit status)進行交流。
+通常，返回值爲 0 表示一切正常，非0的返回值表示發生了某種錯誤。
 
-Exit codes can be used to conditionally execute commands using `&&` (and operator) and `||` (or operator), both of which are [short-circuiting](https://en.wikipedia.org/wiki/Short-circuit_evaluation) operators. Commands can also be separated within the same line using a semicolon `;`.
+<!-- Exit codes can be used to conditionally execute commands using `&&` (and operator) and `||` (or operator), both of which are [short-circuiting](https://en.wikipedia.org/wiki/Short-circuit_evaluation) operators. Commands can also be separated within the same line using a semicolon `;`.
 The `true` program will always have a 0 return code and the `false` command will always have a 1 return code.
-Let's see some examples
+Let's see some examples -->
+退出碼可以與 `&&` (and operator) 與 `||` (or operator)共同使用，它們都是[短路求值](https://en.wikipedia.org/wiki/Short-circuit_evaluation) 運算子。
+同一行內的多個指令可以使用 `;` 分隔。
+程式 `true` 的返回值永遠是0，`false`的返回值永遠是1.
+以下是一些例子：
 
 ```bash
 false || echo "Oops, fail"
@@ -86,6 +121,10 @@ false ; echo "This will always run"
 # This will always run
 ```
 
+<!-- Another common pattern is wanting to get the output of a command as a variable. This can be done with _command substitution_.
+Whenever you place `$( CMD )` it will execute `CMD`, get the output of the command and substitute it in place.
+For example, if you do `for file in $(ls)`, the shell will first call `ls` and then iterate over those values.
+A lesser known similar feature is _process substitution_, `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute the `<()` with that file's name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)` will show differences between files in dirs  `foo` and `bar`. -->
 Another common pattern is wanting to get the output of a command as a variable. This can be done with _command substitution_.
 Whenever you place `$( CMD )` it will execute `CMD`, get the output of the command and substitute it in place.
 For example, if you do `for file in $(ls)`, the shell will first call `ls` and then iterate over those values.

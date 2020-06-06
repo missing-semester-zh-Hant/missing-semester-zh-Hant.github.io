@@ -470,7 +470,7 @@ tasks using the shell and the many handy command-line programs out
 there. -->
 現在你已經可以使用 shell 完成一些基本任務了。
 你應該可以查找感興趣的檔案並使用大部分程式的基礎功能。
-在下一課中，我們將會談談如何使用 shell 與其他命令行工具完成並自動執行更複雜的任務。
+在下一課中，我們將會談談如何使用 shell 與其他命令列工具完成並自動執行更複雜的任務。
 
 
 # Exercises

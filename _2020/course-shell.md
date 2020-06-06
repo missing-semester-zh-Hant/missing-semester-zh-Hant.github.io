@@ -21,7 +21,7 @@ solve more complex problems when working on any computer-related
 problem. Yet many of us utilize only a small fraction of those tools; we
 only know enough magical incantations by rote to get by, and blindly
 copy-paste commands from the internet when we get stuck. -->
-作爲電腦科學家，我們熟知電腦善於解決重複工作。然而，我們時常忘記這對我們設計程式與使用電腦的方式如出一轍。
+作爲電腦科學家，我們熟知電腦善於解決重複工作。然而，我們時常忘記這對我們設計程式與 _使用_ 電腦的方式如出一轍。
 我們有許多易於擷取的工具幫助自己提升效率與解決更難問題。
 不過許多人只使用了這些工具很少一部分功能。我們僅背誦了許多奇妙咒語，或在工作卡住時在網上盲目剪貼指令。
 
@@ -110,7 +110,7 @@ Your device probably shipped with one installed, or you can install one
 fairly easily. -->
 在本課中，我們將會着重介紹Bourne Again SHell，簡稱 “bash”。
 這是使用最廣泛的shell之一，其語法與許多其他shell相似。
-打開shell的_命令提示字元_（可以鍵入指令的地方），需要先打開_終端_。
+打開shell的 _命令提示字元_（可以鍵入指令的地方），需要先打開 _終端_ 。
 你的設備通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
 
 
@@ -119,7 +119,7 @@ fairly easily. -->
 
 <!-- When you launch your terminal, you will see a _prompt_ that often looks
 a little like this: -->
-當你開始使用終端時，你會看到一個_提示字元_，它通常看起來像這樣：
+當你開始使用終端時，你會看到一個 _提示字元_，它通常看起來像這樣：
 
 ```console
 missing:~$ 
@@ -132,7 +132,7 @@ that you are not the root user (more on that later). At this prompt you
 can type a _command_, which will then be interpreted by the shell. The
 most basic command is to execute a program: -->
 這是shell的主要文本介面，它告訴你， 你的主機名稱是 `missing` 並且“目前的工作目錄”，或者說是你目前的位置，是 `~` (表示"home")。
-`$` 符號表示你現在不是 root 使用者 (稍後會介紹)。 在此提示字元中，你可以鍵入 _指令_, 指令會被shell解析。最簡單的指令就是執行程式：
+`$` 符號表示你現在不是 root 使用者 (稍後會介紹)。 在此提示字元中，你可以鍵入 _指令_ , 指令會被shell解析。最簡單的指令就是執行程式：
 
 ```console
 missing:~$ date
@@ -144,7 +144,7 @@ missing:~$
 prints the current date and time. The shell then asks us for another
 command to execute. We can also execute a command with _arguments_: -->
 在此，我們執行了 `date` 程式，它（不出所料的）印出了當前的日期與時間。
-然後，shell等待我們執行其他指令。我們可以執行含有_參數_的指令：
+然後，shell等待我們執行其他指令。我們可以執行含有 _參數_ 的指令：
 
 ```console
 missing:~$ echo hello
@@ -177,7 +177,7 @@ directories the shell should search for programs when it is given a
 command: -->
 但是shell如何知道怎樣找到 `date` 或 `echo` 程式？
 實際上，shell是一個開發環境，類似於 Python 或 Ruby，所以它具備變數，條件，迴圈，和函式（下一課講解）。
-當你在shell內執行指令時，你實際上在寫一段可以被shell解釋的程式碼。如果shell被要求去執行不是程式關鍵字的指令，它會去查詢_環境變數_ `$PATH`,
+當你在shell內執行指令時，你實際上在寫一段可以被shell解釋的程式碼。如果shell被要求去執行不是程式關鍵字的指令，它會去查詢 _環境變數_ `$PATH`,
 `$PATH` 會指出當shell收取某指令時，搜尋對應程式的路徑。
 
 ```console
@@ -197,9 +197,9 @@ find out which file is executed for a given program name using the
 `which` program. We can also bypass `$PATH` entirely by giving the
 _path_ to the file we want to execute. -->
 當我們執行 `echo` 指令時, shell會看到它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字搜尋由 `:` 分隔的一系列目錄。
-當shell找到程式時，shell會執行它（推定此文件是_可執行的_，之後會講解）。
+當shell找到程式時，shell會執行它（推定此文件是 _可執行的_ ，之後會講解）。
 我們可以使用 `which` 程式來找出給定程式名對應的是哪個文件。
-我們也可以通過直接指定程式的_路徑_來繞過 `$PATH`。
+我們也可以通過直接指定程式的 _路徑_ 來繞過 `$PATH`。
 
 <!-- ## Navigating in the shell -->
 ## 在shell中移動
@@ -217,7 +217,7 @@ directory, and `..` to its parent directory: -->
 shell中的路徑是一組被分隔的目錄。在 Linux 與 macOS 上由 `/` 劃分，在 Windows 上由 `\` 劃分。
 在 Linux 與 macOS 上，路徑 `/` 是根目錄，所有目錄與檔案位列於此。在 Windows 上則每個磁碟區內都有一個根目錄（例如 `C:\`）。
 我們默認你在此課程中使用Linux檔案系統。
-以 `/` 起始的路徑被稱爲_絕對路徑_，其他的路徑被稱爲_相對路徑_。
+以 `/` 起始的路徑被稱爲 _絕對路徑_，其他的路徑被稱爲 _相對路徑_ 。
 相對路徑是相對於當前工作目錄的路徑。我們可以使用 `pwd` 來查看當前工作目錄，並且可以使用 `cd` 來改變它。
 在路徑中，`.` 代表當前工作目錄，而 `..` 代表其上級目錄。
 
@@ -323,8 +323,8 @@ directory). -->
 outputs, or how it works in general, give the `man` program a try. It
 takes as an argument the name of a program, and shows you its _manual
 page_. Press `q` to exit. -->
-如果你想瞭解_更多_關於程式輸入輸出或參數的內容，嘗試使用 `man` 程式。
-它以一個程式名作爲參數，然後展示此程式的_操作手冊_，鍵入 `q` 退出。
+如果你想瞭解 _更多_ 關於程式輸入輸出或參數的內容，嘗試使用 `man` 程式。
+它以一個程式名作爲參數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
 
 ```console
 missing:~$ man ls
@@ -363,7 +363,7 @@ hello
 input/output redirection really shines is in the use of _pipes_. The `|`
 operator lets you "chain" programs such that the output of one is the
 input of another: -->
-你也可以使用 `>>` 來向檔案附加內容。這種重新導向的真正兩點在於使用_管道_。
+你也可以使用 `>>` 來向檔案附加內容。這種重新導向的真正兩點在於使用 _管道_ 。
 `|` 允許我們將一個程式的輸出 “連接” 另一程式的輸入：
 
 ```console
@@ -438,7 +438,7 @@ open the brightness file for writing, before setting that as `sudo
 echo`'s output, but is prevented from doing so since the shell does not
 run as root. Using this knowledge, we can work around this: -->
 我們已經使用了 `sudo` 來執行指令，卻還是遭遇了一個錯誤！
-關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是_被 shell 執行_的，而不是被獨立的程式。
+關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell 執行_ 的，而不是被獨立的程式。
 `echo` 等程式並不“知道”我們使用了 `|`。它們只是從輸入中獲取信息並將結果寫入到輸出中。
 在這種情況中，_shell_ （權限爲當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
 此時因爲不是以 root 使用者執行，我們的操作被拒絕了。
@@ -452,7 +452,7 @@ $ echo 3 | sudo tee brightness
 and _it_ is running as `root`, the permissions all work out. You can
 control all sorts of fun and useful things through `/sys`, such as the
 state of various system LEDs (your path might be different): -->
-因爲 `tee` 程式打開了 `/sys`，而且_它_正以 root 使用者執行，因此權限運作正常。
+因爲 `tee` 程式打開了 `/sys`，而且 _它_ 正以 root 使用者執行，因此權限運作正常。
 我們可以在 `/sys` 下做有趣又有用的事情了，例如改變系統 LED 的狀態（你的路徑可能會不一樣）：
 
 ```console

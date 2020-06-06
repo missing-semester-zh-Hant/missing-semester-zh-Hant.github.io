@@ -3,7 +3,9 @@
 此處是[The Missing Semester of Your CS Education](https://github.com/missing-semester) 的繁體中文譯文!
 
 英文原文[點此](https://missing.csail.mit.edu/)
+
 簡體中文譯文[點此](https://missing-semester-cn.github.io/)
+
 繁體中文譯文[點此](https://missing-semester-zh-hant.github.io/)
 
 繁體中文並非譯者的母語，如果您發現了任何遣詞不當，文理不通，或錯誤混用簡體與陸港澳台繁體及日文漢字字符等，或有任何優化改正，敬請提出issue，感謝您。

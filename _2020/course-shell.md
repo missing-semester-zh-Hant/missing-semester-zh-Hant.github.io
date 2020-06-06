@@ -375,7 +375,7 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
 
 <!-- We will go into a lot more detail about how to take advantage of pipes
 in the lecture on data wrangling. -->
-我們會在數據清理一課中講述更多利用管道優勢的細節。
+我們會在資料預處理一課中講述更多利用管道優勢的細節。
 
 <!-- ## A versatile and powerful tool -->
 ## 能力全面且力量強大的工具

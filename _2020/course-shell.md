@@ -216,7 +216,7 @@ change with the `cd` command. In a path, `.` refers to the current
 directory, and `..` to its parent directory: -->
 shell中的路徑是一組被分隔的目錄。在 Linux 與 macOS 上由 `/` 劃分，在 Windows 上由 `\` 劃分。
 在 Linux 與 macOS 上，路徑 `/` 是根目錄，所有目錄與檔案位列於此。在 Windows 上則每個磁碟區內都有一個根目錄（例如 `C:\`）。
-我們默認你在此課程中使用Linux檔案系統。
+我們預設你在此課程中使用Linux檔案系統。
 以 `/` 起始的路徑被稱爲 _絕對路徑_，其他的路徑被稱爲 _相對路徑_ 。
 相對路徑是相對於當前工作目錄的路徑。我們可以使用 `pwd` 來查看當前工作目錄，並且可以使用 `cd` 來改變它。
 在路徑中，`.` 代表當前工作目錄，而 `..` 代表其上級目錄。

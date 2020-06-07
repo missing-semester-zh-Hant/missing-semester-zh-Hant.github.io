@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Data Wrangling"
+title: "資料預處理"
 date: 2019-01-16
 ready: true
 video:
@@ -8,69 +8,92 @@ video:
   id: sz_dsktIjt4
 ---
 
-Have you ever wanted to take data in one format and turn it into a
+<!-- Have you ever wanted to take data in one format and turn it into a
 different format? Of course you have! That, in very general terms, is
 what this lecture is all about. Specifically, massaging data, whether in
-text or binary format, until you end up with exactly what you wanted.
+text or binary format, until you end up with exactly what you wanted. -->
+你是否有過變換資料形式的需求？當然有過！這也是此課會講授的內容。
+具體來說，我們需要對文本或二進制形式的數據不斷處理，直至獲得我們所需的內容。
 
-We've already seen some basic data wrangling in past lectures. Pretty
+<!-- We've already seen some basic data wrangling in past lectures. Pretty
 much any time you use the `|` operator, you are performing some kind of
 data wrangling. Consider a command like `journalctl | grep -i intel`. It
 finds all system log entries that mention Intel (case insensitive). You
 may not think of it as wrangling data, but it is going from one format
 (your entire system log) to a format that is more useful to you (just
 the intel log entries). Most data wrangling is about knowing what tools
-you have at your disposal, and how to combine them.
+you have at your disposal, and how to combine them. -->
+在之前部分的課程中，我們已經遇到過一些基礎的資料處理實例，比如當你使用 `|` 時，已經是在使用基本形式的資料處理了。
+考慮這樣一個指令 `journalctl | grep -i intel`。它會歲尋所有提到Intel（大小寫敏感）的系統日誌。
+你或許不認爲這是資料處理，但這將資料從一種形式（全部系統日誌）轉換成了另一種更有價值的形式（僅含intel的日誌）。
+大部分資料處理工作需要我們理解如何組合並使用工具來達成目的。
 
-Let's start from the beginning. To wrangle data, we need two things:
+<!-- Let's start from the beginning. To wrangle data, we need two things:
 data to wrangle, and something to do with it. Logs often make for a good
 use-case, because you often want to investigate things about them, and
 reading the whole thing isn't feasible. Let's figure out who's trying to
-log into my server by looking at my server's log:
+log into my server by looking at my server's log: -->
+讓我們從頭說起。實行資料處理，需要兩個條件：用來處理的數據，以及處理的情境。
+日誌處理是一個常見的情景，因爲我們常常需要在日誌中搜尋信息，此時閱讀所有日誌是不現實的。
+讓我們通過查看日誌來找出有誰曾試圖登入我們的服務器：
 
 ```bash
 ssh myserver journalctl
 ```
 
-That's far too much stuff. Let's limit it to ssh stuff:
+<!-- That's far too much stuff. Let's limit it to ssh stuff: -->
+內容太多了，讓我們只看與ssh相關的：
 
 ```bash
 ssh myserver journalctl | grep sshd
 ```
 
-Notice that we're using a pipe to stream a _remote_ file through `grep`
+<!-- Notice that we're using a pipe to stream a _remote_ file through `grep`
 on our local computer! `ssh` is magical, and we will talk more about it
 in the next lecture on the command-line environment. This is still way
 more stuff than we wanted though. And pretty hard to read. Let's do
-better:
+better: -->
+請注意我們在此處通過 `grep` 來使用管道，將 _遠端的_ 檔案傳送至近端電腦! 
+`ssh` 非常神奇，我們會在下一課的命令列環境中詳細講授。
+此時返回的內容依然有些多，並且難於閱讀。讓我們改善方法：
 
 ```bash
 ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' | less
 ```
 
-Why the additional quoting? Well, our logs may be quite large, and it's
+<!-- Why the additional quoting? Well, our logs may be quite large, and it's
 wasteful to stream it all to our computer and then do the filtering.
 Instead, we can do the filtering on the remote server, and then massage
 the data locally. `less` gives us a "pager" that allows us to scroll up
 and down through the long output. To save some additional traffic while
 we debug our command-line, we can even stick the current filtered logs
 into a file so that we don't have to access the network while
-developing:
+developing: -->
+爲什麼要使用雙層引用呢？
+我們查看的日誌非常多，從遠傳傳送至近端再濾掉有些浪費。
+作爲替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至近端。 
+`less` 建立了一個 "分頁機制" 來允許我們通過滾動頁面來閱讀長文字。
+如果想節約更多傳送流量，我們甚至可以將過濾後的日誌寫入文件，使得我們不需要再次通過網路傳送：
 
 ```console
 $ ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' > ssh.log
 $ less ssh.log
 ```
 
-There's still a lot of noise here. There are _a lot_ of ways to get rid
+<!-- There's still a lot of noise here. There are _a lot_ of ways to get rid
 of that, but let's look at one of the most powerful tools in your
-toolkit: `sed`.
+toolkit: `sed`. -->
+此時的結果依然有許多無用部分。 我們有 _很多_ 方法來更優化。首先讓我們熟悉一下最強的工具之一: `sed`.
 
-`sed` is a "stream editor" that builds on top of the old `ed` editor. In
+<!-- `sed` is a "stream editor" that builds on top of the old `ed` editor. In
 it, you basically give short commands for how to modify the file, rather
 than manipulate its contents directly (although you can do that too).
 There are tons of commands, but one of the most common ones is `s`:
-substitution. For example, we can write:
+substitution. For example, we can write: -->
+`sed` 是一個基於舊式 `ed` 文字編輯器的 "流編輯器" (stream editor)。
+在其中，我們可以使用簡短的指令來更改檔案，而非直接編輯檔案內容（雖然我們也可以這樣做）。
+指令有很多，但最常用的是 `s`: 替換。
+例如，我們可以：
 
 ```bash
 ssh myserver journalctl
@@ -79,38 +102,59 @@ ssh myserver journalctl
  | sed 's/.*Disconnected from //'
 ```
 
-What we just wrote was a simple _regular expression_; a powerful
+<!-- What we just wrote was a simple _regular expression_; a powerful
 construct that lets you match text against patterns. The `s` command is
 written on the form: `s/REGEX/SUBSTITUTION/`, where `REGEX` is the
 regular expression you want to search for, and `SUBSTITUTION` is the
-text you want to substitute matching text with.
+text you want to substitute matching text with. -->
+我們剛剛寫了一段 _正規表示式_ ; 正規表示式允許我們匹配符合特定句法的字串。 
+`s` 命令的使用方式是這樣： `s/REGEX/SUBSTITUTION/`, 其中 `REGEX` 是我們需要匹配的正規表示式， 
+`SUBSTITUTION` 是用於替代匹配結果的字串。
 
-## Regular expressions
+<!-- ## Regular expressions -->
+## 正規表示式
 
-Regular expressions are common and useful enough that it's worthwhile to
+<!-- Regular expressions are common and useful enough that it's worthwhile to
 take some time to understand how they work. Let's start by looking at
 the one we used above: `/.*Disconnected from /`. Regular expressions are
 usually (though not always) surrounded by `/`. Most ASCII characters
 just carry their normal meaning, but some characters have "special"
 matching behavior. Exactly which characters do what vary somewhat
 between different implementations of regular expressions, which is a
-source of great frustration. Very common patterns are:
+source of great frustration. Very common patterns are: -->
+正規表示式很常見也足夠有用，值得用些時間去理解它。
+讓我們從上面使用過的字串開始: `/.*Disconnected from /`. 
+正規表示式通常 (也有例外) 被 `/` 包圍。
+多數 ASCII 字元代表其自身的含義，有些則擁有"特別的"含義。
+由於正規表示式實現方法的不同，這些符號也常常有不同的含義，這讓我們有些挫敗感。
+常見的表示式有：
 
- - `.` means "any single character" except newline
+ <!-- - `.` means "any single character" except newline
  - `*` zero or more of the preceding match
  - `+` one or more of the preceding match
  - `[abc]` any one character of `a`, `b`, and `c`
  - `(RX1|RX2)` either something that matches `RX1` or `RX2`
  - `^` the start of the line
- - `$` the end of the line
+ - `$` the end of the line -->
+  - `.` 意爲除去換行符外的 "任意一個字元" 
+ - `*` 0或多個 `*` 前的字元
+ - `+` 1或更多個 `*` 前的字元
+ - `[abc]`  `a`, `b`, 與 `c` 中的任意一個
+ - `(RX1|RX2)` 能匹配 `RX1` 或 `RX2` 中的任意一個的字串
+ - `^` 行首
+ - `$` 行尾
 
-`sed`'s regular expressions are somewhat weird, and will require you to
-put a `\` before most of these to give them their special meaning. Or
-you can pass `-E`.
+`sed` 的正規表示式有些古怪，需要你在這些表示式前使用 `\` 來使它們擁有這些特殊含義。
+也可以使用 `-E` 達成同樣效果。
 
-So, looking back at `/.*Disconnected from /`, we see that it matches
+<!-- So, looking back at `/.*Disconnected from /`, we see that it matches
 any text that starts with any number of characters, followed by the
 literal string "Disconnected from &rdquo;. Which is what we wanted. But
+beware, regular expressions are trixy. What if someone tried to log in
+with the username "Disconnected from"? We'd have: -->
+讓我們重回 `/.*Disconnected from /`, 我們可以看出它會匹配以任意字元起始，緊接
+"Disconnected from " 的字串，這就是我們需要的。
+但要小心，正規表示式
 beware, regular expressions are trixy. What if someone tried to log in
 with the username "Disconnected from"? We'd have:
 

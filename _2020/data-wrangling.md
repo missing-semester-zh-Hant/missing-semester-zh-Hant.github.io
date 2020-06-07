@@ -373,6 +373,13 @@ single-use usernames that start with `c` and end with `e`: -->
  | awk '$1 == 1 && $2 ~ /^c[^ ]*e$/ { print $2 }' | wc -l
 ```
 
+<!-- There's a lot to unpack here. First, notice that we now have a pattern
+(the stuff that goes before `{...}`). The pattern says that the first
+field of the line should be equal to 1 (that's the count from `uniq
+-c`), and that the second field should match the given regular
+expression. And the block just says to print the username. We then count
+the number of lines in the output with `wc -l`. -->
+這裏有許多要講解。首先，請注意我們指定了表示式(也就是 `{...}` 前面的那些)
 There's a lot to unpack here. First, notice that we now have a pattern
 (the stuff that goes before `{...}`). The pattern says that the first
 field of the line should be equal to 1 (that's the count from `uniq

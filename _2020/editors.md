@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Editors (Vim)"
+title: "編輯器 (Vim)"
 date: 2019-01-15
 ready: true
 video:
@@ -8,21 +8,28 @@ video:
   id: a6Q8Na575qc
 ---
 
-Writing English words and writing code are very different activities. When
+<!-- Writing English words and writing code are very different activities. When
 programming, you spend more time switching files, reading, navigating, and
 editing code compared to writing a long stream. It makes sense that there are
 different types of programs for writing English words versus code (e.g.
-Microsoft Word versus Visual Studio Code).
+Microsoft Word versus Visual Studio Code). -->
+寫作和寫程式實際上差異很大。
+當我們寫程式的時候，會常常切換文件、閱讀、尋找與改正程式碼，而寫作時往往會連續鍵入文字。
+所以對於寫作和寫程式常常由不同種類的程式來處理（比如 Microsoft Word 和 Visual Studio Code）。
 
-As programmers, we spend most of our time editing code, so it's worth investing
+<!-- As programmers, we spend most of our time editing code, so it's worth investing
 time mastering an editor that fits your needs. Here's how you learn a new
-editor:
+editor: -->
+作爲程式設計師，我們會與編輯器共同度過許久，因此使用些時間熟練使用適合自己需求的編輯器是值得的。
 
-- Start with a tutorial (i.e. this lecture, plus resources that we point out)
+<!-- - Start with a tutorial (i.e. this lecture, plus resources that we point out)
 - Stick with using the editor for all your text editing needs (even if it slows
 you down initially)
 - Look things up as you go: if it seems like there should be a better way to do
-something, there probably is
+something, there probably is -->
+- 閱讀指導 （例如此課程與我們列出的資源）
+- 堅持使用它來完成所有文字輸入（即使在開始時速度很慢）
+- 隨時查閱：如果看起來可能有更好地辦法做某件事，通常確實會有
 
 If you follow the above method, fully committing to using the new program for
 all text editing purposes, the timeline for learning a sophisticated text

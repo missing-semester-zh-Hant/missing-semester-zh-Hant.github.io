@@ -178,7 +178,7 @@ command: -->
 但是shell如何知道怎樣找到 `date` 或 `echo` 程式？
 實際上，shell是一個開發環境，類似於 Python 或 Ruby，所以它具備變數，條件，迴圈，和函式（下一課講解）。
 當你在shell內執行指令時，你實際上在寫一段可以被shell解釋的程式碼。如果shell被要求去執行不是程式關鍵字的指令，它會去查詢 _環境變數_ `$PATH`,
-`$PATH` 會指出當shell收取某指令時，搜尋對應程式的路徑。
+`$PATH` 會指出當shell收取某指令時，尋找對應程式的路徑。
 
 ```console
 missing:~$ echo $PATH
@@ -196,7 +196,7 @@ runs it (assuming the file is _executable_; more on that later). We can
 find out which file is executed for a given program name using the
 `which` program. We can also bypass `$PATH` entirely by giving the
 _path_ to the file we want to execute. -->
-當我們執行 `echo` 指令時, shell會看到它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字搜尋由 `:` 分隔的一系列目錄。
+當我們執行 `echo` 指令時, shell會看到它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字尋找由 `:` 分隔的一系列目錄。
 當shell找到程式時，shell會執行它（推定此文件是 _可執行的_ ，之後會講解）。
 我們可以使用 `which` 程式來找出給定程式名對應的是哪個文件。
 我們也可以通過直接指定程式的 _路徑_ 來繞過 `$PATH`。
@@ -339,14 +339,14 @@ read input, it reads from the input stream, and when it prints
 something, it prints to its output stream. Normally, a program's input
 and output are both your terminal. That is, your keyboard as input and
 your screen as output. However, we can also rewire those streams! -->
-在shell中，程式擁有兩個主要“流”：輸入資料流與輸出資料流。
-當程序嘗試獲取信息時，它們會從輸入資料流中獲取，當程式印出結果時，會將信息輸出至輸出資料流。
+在shell中，程式擁有兩個主要“流”：輸入數據流與輸出數據流。
+當程序嘗試獲取信息時，它們會從輸入數據流中獲取，當程式印出結果時，會將信息輸出至輸出數據流。
 通常情況下，一個程式的輸入輸出流都是你的終端。
 或者說，你的鍵盤作爲輸入，你的熒幕作爲輸出。但是，我們可以重新導向這些流！
 
 <!-- The simplest form of redirection is `< file` and `> file`. These let you
 rewire the input and output streams of a program to a file respectively: -->
-最簡單的重新導向是 `< file` 與 `> file`。它們可以讓你分別重新導向輸入輸出資料流到檔案：
+最簡單的重新導向是 `< file` 與 `> file`。它們可以讓你分別重新導向輸入輸出數據流到檔案：
 
 ```console
 missing:~$ echo hello > hello.txt

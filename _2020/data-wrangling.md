@@ -13,7 +13,7 @@ different format? Of course you have! That, in very general terms, is
 what this lecture is all about. Specifically, massaging data, whether in
 text or binary format, until you end up with exactly what you wanted. -->
 你是否有過變換資料形式的需求？當然有過！這也是此課會講授的內容。
-具體來說，我們需要對文本或二進制形式的數據不斷處理，直至獲得我們所需的內容。
+具體來說，我們需要對文本或二進位形式的數據不斷處理，直至獲得我們所需的內容。
 
 <!-- We've already seen some basic data wrangling in past lectures. Pretty
 much any time you use the `|` operator, you are performing some kind of
@@ -34,7 +34,7 @@ use-case, because you often want to investigate things about them, and
 reading the whole thing isn't feasible. Let's figure out who's trying to
 log into my server by looking at my server's log: -->
 讓我們從頭說起。實行資料處理，需要兩個條件：用來處理的數據，以及處理的情境。
-日誌處理是一個常見的情景，因爲我們常常需要在日誌中搜尋信息，此時閱讀所有日誌是不現實的。
+日誌處理是一個常見的情景，因爲我們常常需要在日誌中尋找信息，此時閱讀所有日誌是不現實的。
 讓我們通過查看日誌來找出有誰曾試圖登入我們的服務器：
 
 ```bash
@@ -475,14 +475,14 @@ rustup toolchain list | grep nightly | grep -vE "nightly-x86" | sed 's/-x86.*//'
 ```
 
 <!-- ## Wrangling binary data -->
-## 處理二進制
+## 處理二進位
 
 <!-- So far, we have mostly talked about wrangling textual data, but pipes
 are just as useful for binary data. For example, we can use ffmpeg to
 capture an image from our camera, convert it to grayscale, compress it,
 send it to a remote machine over SSH, decompress it there, make a copy,
 and then display it. -->
-雖然截至目前我們都在處理文本，不過管道對於處理二進制資料也十分有效。
+雖然截至目前我們都在處理文本，不過管道對於處理二進位數據也十分有效。
 例如，我們可以使用ffmpeg來從相機中獲取圖像，轉換爲灰度，再進行壓縮，最後通過SSH發送至遠端，再在遠端解壓縮，建立複製並顯示。
 
 ```bash

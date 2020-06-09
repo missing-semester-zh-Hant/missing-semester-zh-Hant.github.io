@@ -8,7 +8,7 @@ to machine learning, but there’s one critical subject that’s rarely covered,
 and is instead left to students to figure out on their own: proficiency with
 their tools. We’ll teach you how to master the command-line, use a powerful
 text editor, use fancy features of version control systems, and much more! -->
-傳統電腦專業課程着重解釋作業系統與機器學習等專業知識，而如何熟練使用工具這個重要課題卻常常需要學生自行理解。
+傳統電腦專業課程着重解釋作業系統與機器學習等專業知識，而如何熟練運用工具這個重要課題卻常常需要學生自行理解。
 此課程將會教授你如何精於命令列、使用強大的文字編輯器，運用版本控制系統的精妙功能，與許多其他類似技巧！
 
 <!-- Students spend hundreds of hours using these tools over the course of their

@@ -51,7 +51,7 @@ lectures and posting the recordings online. -->
 
 此課程含有十一個一小時左右的授課，每一個講座都會注重在[特定主題](/2020/)上.
 儘管這些講座大體上是獨立的，但是我們推定你對之前課程的內容已經熟悉。
-我們提供在線的課程講義，但是許多內容僅有課上會涉及（比如演示demo）。
+我們提供線上的課程講義，但是許多內容僅有課上會涉及（比如演示demo）。
 我們將會錄製課程回放並可於線上觀看。
 
 
@@ -74,7 +74,7 @@ or topic, but if something particularly strikes your fancy, don't
 hesitate to reach out to us and ask for pointers! -->
 由於時間有限，我們將無法如同專門課程一樣涵蓋所有內容。
 我們會盡力介紹可以幫助你進一步探究工具或特定主題的資源。
-如果您有特別注重或感興趣的主題，請隨時與我們聯繫並尋求指導！
+如果您有特別注重或感興趣的主題，請隨時與我們聯絡並尋求指導！
 
 
 # Topic 1: The Shell
@@ -90,8 +90,8 @@ you cannot press a button that isn't there or give a voice command that
 hasn't been programmed. To take full advantage of the tools your
 computer provides, we have to go old-school and drop down to a textual
 interface: The Shell. -->
-如今，電腦具有各種接口來讓我們輸入指令；精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
-這些接口在80%的應用場景運作良好，但其從根本上限制了你能做的事情————你無法點按不存在的按鈕或者用語音輸入未錄入過的指令。
+如今，電腦具有各種介面來讓我們輸入指令；精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
+這些介面在80%的應用場景運作良好，但其從根本上限制了你能做的事情————你無法點按不存在的按鈕或者用語音輸入未錄入過的指令。
 為了充分利用電腦的功能，我們需要回到傳統方式，使用文字介面：Shell。
 
 <!-- Nearly all platforms you can get your hand on has a shell in one form or
@@ -99,8 +99,8 @@ another, and many of them have several shells for you to choose from.
 While they may vary in the details, at their core they are all roughly
 the same: they allow you to run programs, give them input, and inspect
 their output in a semi-structured way. -->
-近乎所有你能接觸到的平台都以某種形式支援shell，並且他們中的許多都提供了多種shell接口供你選擇。
-雖然細節上有所不同，但它們的核心幾乎都是相同的：它允許你運行程式，為它們提供輸入，並以半結構化的方式檢查輸出。
+近乎所有你能接觸到的平臺都以某種形式支援shell，並且他們中的許多都提供了多種shell介面供你選擇。
+雖然細節上有所不同，但它們的核心幾乎都是相同的：它允許你執行程式，為它們提供輸入，並以半結構化的方式檢查輸出。
 
 <!-- In this lecture, we will focus on the Bourne Again SHell, or "bash" for
 short. This is one of the most widely used shells, and its syntax is
@@ -110,8 +110,8 @@ Your device probably shipped with one installed, or you can install one
 fairly easily. -->
 在本課中，我們將會著重介紹Bourne Again SHell，簡稱 “bash”。
 這是使用最廣泛的shell之一，其語法與許多其他shell相似。
-打開shell的 _命令提示字元_（可以鍵入指令的地方），需要先打開 _終端_ 。
-你的設備通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
+開啟shell的 _命令提示字元_（可以鍵入指令的地方），需要先開啟 _終端_ 。
+你的裝置通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
 
 
 <!-- ## Using the shell -->
@@ -131,7 +131,7 @@ or where you currently are, is `~` (short for "home"). The `$` tells you
 that you are not the root user (more on that later). At this prompt you
 can type a _command_, which will then be interpreted by the shell. The
 most basic command is to execute a program: -->
-這是shell的主要文本介面，它告訴你， 你的主機名稱是 `missing` 並且“目前的工作目錄”，或者說是你目前的位置，是 `~` (表示"home")。
+這是shell的主要文字介面，它告訴你， 你的主機名稱是 `missing` 並且“目前的工作目錄”，或者說是你目前的位置，是 `~` (表示"home")。
 `$` 符號表示你現在不是 root 使用者 (稍後會介紹)。 在此提示字元中，你可以鍵入 _指令_ , 指令會被shell解析。最簡單的指令就是執行程式：
 
 ```console
@@ -144,7 +144,7 @@ missing:~$
 prints the current date and time. The shell then asks us for another
 command to execute. We can also execute a command with _arguments_: -->
 在此，我們執行了 `date` 程式，它（不出所料的）印出了當前的日期與時間。
-然後，shell等待我們執行其他指令。我們可以執行含有 _參數_ 的指令：
+然後，shell等待我們執行其他指令。我們可以執行含有 _引數_ 的指令：
 
 ```console
 missing:~$ echo hello
@@ -160,10 +160,10 @@ an argument that contains spaces or other special characters (e.g., a
 directory named "My Photos"), you can either quote the argument with `'`
 or `"` (`"My Photos"`), or escape just the relevant characters with `\`
 (`My\ Photos`). -->
-在本例中，我們告訴shell與參數 `hello` 一同執行 `echo`。
-`echo` 程式會將參數打印出來。
-shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的參數
-如果你希望傳入的參數中含有空格或者其他特殊字元（比如一個名為"My Photos"的檔案夾），你可以使用`'`
+在本例中，我們告訴shell與引數 `hello` 一同執行 `echo`。
+`echo` 程式會將引數打印出來。
+shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的引數
+如果你希望傳入的引數中含有空格或者其他特殊字元（比如一個名為"My Photos"的檔案夾），你可以使用`'`
 或 `"` 將其引用，或使用跳脫字元 `\` 來處理 (`My\ Photos`)。
 
 <!-- But how does the shell know how to find the `date` or `echo` programs?
@@ -197,9 +197,9 @@ find out which file is executed for a given program name using the
 `which` program. We can also bypass `$PATH` entirely by giving the
 _path_ to the file we want to execute. -->
 當我們執行 `echo` 指令時, shell會看到它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字尋找由 `:` 分隔的一系列目錄。
-當shell找到程式時，shell會執行它（推定此文件是 _可執行的_ ，之後會講解）。
-我們可以使用 `which` 程式來找出給定程式名對應的是哪個文件。
-我們也可以通過直接指定程式的 _路徑_ 來繞過 `$PATH`。
+當shell找到程式時，shell會執行它（推定此檔案是 _可執行的_ ，之後會講解）。
+我們可以使用 `which` 程式來找出給定程式名對應的是哪個檔案。
+我們也可以透過直接指定程式的 _路徑_ 來繞過 `$PATH`。
 
 <!-- ## Navigating in the shell -->
 ## 在shell中移動
@@ -218,7 +218,7 @@ shell中的路徑是一組被分隔的目錄。在 Linux 與 macOS 上由 `/` �
 在 Linux 與 macOS 上，路徑 `/` 是根目錄，所有目錄與檔案位列於此。在 Windows 上則每個磁碟區內都有一個根目錄（例如 `C:\`）。
 我們預設你在此課程中使用Linux檔案系統。
 以 `/` 起始的路徑被稱為 _絕對路徑_，其他的路徑被稱為 _相對路徑_ 。
-相對路徑是相對於當前工作目錄的路徑。我們可以使用 `pwd` 來查看當前工作目錄，並且可以使用 `cd` 來改變它。
+相對路徑是相對於當前工作目錄的路徑。我們可以使用 `pwd` 來檢視當前工作目錄，並且可以使用 `cd` 來改變它。
 在路徑中，`.` 代表當前工作目錄，而 `..` 代表其上級目錄。
 
 ```console
@@ -244,7 +244,7 @@ hello
 working directory was. You can configure your prompt to show you all
 sorts of useful information, which we will cover in a later lecture. -->
 可以注意到shell會一直提示我們當前工作目錄位置。
-你可以變更終端設定來顯示各種信息，我們下一課會詳細介紹。
+你可以變更終端設定來顯示各種資訊，我們下一課會詳細介紹。
 
 <!-- In general, when we run a program, it will operate in the current
 directory unless we tell it otherwise. For example, it will usually
@@ -253,7 +253,7 @@ search for files there, and create new files there if it needs to. -->
 例如，我們常常需要搜尋檔案，並且在需要時建立新檔案。
 
 <!-- To see what lives in a given directory, we use the `ls` command: -->
-我們可以使用 `ls` 來查看當前目錄下有哪些檔案：
+我們可以使用 `ls` 來檢視當前目錄下有哪些檔案：
 
 ```console
 missing:~$ ls
@@ -276,9 +276,9 @@ options (flags with values) that start with `-` to modify their
 behavior. Usually, running a program with the `-h` or `--help` flag
 (`/?` on Windows) will print some help text that tells you what flags
 and options are available. For example, `ls --help` tells us: -->
-除非我們在第一個參數指定目錄，`ls` 會印出當前目錄下的內容。
+除非我們在第一個引數指定目錄，`ls` 會印出當前目錄下的內容。
 許多指令接受旗標與選項（帶有值的旗標），旗標以 `-` 起始且可以改變指令的行為。
-通常，執行程式時使用 `-h` 或 `--help` 旗標（在Windows系統中使用 `/?`），會印出幫助文本，來告訴使用者有哪些旗標與選項可用。
+通常，執行程式時使用 `-h` 或 `--help` 旗標（在Windows系統中使用 `/?`），會印出幫助文字，來告訴使用者有哪些旗標與選項可用。
 例如，`ls --help` 會告訴我們：
 
 ```
@@ -304,12 +304,12 @@ contents, a user must have read (`r`) permissions on that directory. For
 files, the permissions are as you would expect. Notice that nearly all
 the files in `/bin` have the `x` permission set for the last group,
 "everyone else", so that anyone can execute those programs. -->
-它可以給出目錄與檔案更加詳細的信息。
+它可以給出目錄與檔案更加詳細的資訊。
 首先，`d` 表示 `missing` 是一個目錄。
 其後由三個字元 (`rwx`) 組成的三組字元組，分別表示了檔案擁有者(`missing`)，使用者群組(`users`)，與其他所有人所對其擁有的權限。
 `-` 代表該使用者未擁有相應權限。
-上面顯示的信息表示，只有擁有者對 `missing` 檔案夾有寫(`w`)的權限（例如增添與移除其中的檔案）。
-為了進入某個檔案夾，使用者必須對其本身與其上級文件夾擁有“搜尋”（表示為“可執行”：`x`）權限。
+上面顯示的資訊表示，只有擁有者對 `missing` 檔案夾有寫(`w`)的權限（例如增添與移除其中的檔案）。
+為了進入某個檔案夾，使用者必須對其本身與其上級檔案夾擁有“搜尋”（表示為“可執行”：`x`）權限。
 為了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
 對於檔案，權限是類似的。
 要注意近乎所有在 `/bin` 下的程式在最後一組都有 `x` 權限，意味著所有人都可以執行這些程式。
@@ -317,14 +317,14 @@ the files in `/bin` have the `x` permission set for the last group,
 <!-- Some other handy programs to know about at this point are `mv` (to
 rename/move a file), `cp` (to copy a file), and `mkdir` (to make a new
 directory). -->
-在此階段還有一些其他常見命令需要理解，如 `mv` (移動或更名檔案), `cp` (拷貝檔案), and `mkdir` (建立新檔案夾).
+在此階段還有一些其他常見命令需要理解，如 `mv` (移動或更名檔案), `cp` (複製檔案), and `mkdir` (建立新檔案夾).
 
 <!-- If you ever want _more_ information about a program's arguments, inputs,
 outputs, or how it works in general, give the `man` program a try. It
 takes as an argument the name of a program, and shows you its _manual
 page_. Press `q` to exit. -->
-如果你想瞭解 _更多_ 關於程式輸入輸出或參數的內容，嘗試使用 `man` 程式。
-它以一個程式名作為參數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
+如果你想瞭解 _更多_ 關於程式輸入輸出或引數的內容，嘗試使用 `man` 程式。
+它以一個程式名作為引數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
 
 ```console
 missing:~$ man ls
@@ -339,14 +339,14 @@ read input, it reads from the input stream, and when it prints
 something, it prints to its output stream. Normally, a program's input
 and output are both your terminal. That is, your keyboard as input and
 your screen as output. However, we can also rewire those streams! -->
-在shell中，程式擁有兩個主要“流”：輸入數據流與輸出數據流。
-當程序嘗試獲取信息時，它們會從輸入數據流中獲取，當程式印出結果時，會將信息輸出至輸出數據流。
+在shell中，程式擁有兩個主要“流”：輸入資料流與輸出資料流。
+當程式嘗試獲取資訊時，它們會從輸入資料流中獲取，當程式印出結果時，會將資訊輸出至輸出資料流。
 通常情況下，一個程式的輸入輸出流都是你的終端。
 或者說，你的鍵盤作為輸入，你的熒幕作為輸出。但是，我們可以重新導向這些流！
 
 <!-- The simplest form of redirection is `< file` and `> file`. These let you
 rewire the input and output streams of a program to a file respectively: -->
-最簡單的重新導向是 `< file` 與 `> file`。它們可以讓你分別重新導向輸入輸出數據流到檔案：
+最簡單的重新導向是 `< file` 與 `> file`。它們可以讓你分別重新導向輸入輸出資料流到檔案：
 
 ```console
 missing:~$ echo hello > hello.txt
@@ -397,7 +397,7 @@ root 使用者（幾乎）不受權限限制，可以建立，讀取，更新，
 我們通常使用 `sudo` 指令來替換它。
 如同它的名字一樣，它允許你用“su”（"super user", 或者說 "root"）身份來“做”事情。
 當遭遇沒有權限的錯誤時，我們通常需要以 root 身份來執行。
-但還請一定多加注意自己確實需要這麼做！
+但還請一定多加註意自己確實需要這麼做！
 
 <!-- One thing you need to be root in order to do is writing to the `sysfs` file
 system mounted under `/sys`. `sysfs` exposes a number of kernel parameters as
@@ -417,7 +417,7 @@ called `brightness` under -->
 
 <!-- By writing a value into that file, we can change the screen brightness.
 Your first instinct might be to do something like: -->
-通過對該檔案寫入鍵值，我們可以改變熒幕亮度。你的第一個想法可能是：
+透過對該檔案寫入鍵值，我們可以改變熒幕亮度。你的第一個想法可能是：
 
 ```console
 $ sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
@@ -439,7 +439,7 @@ echo`'s output, but is prevented from doing so since the shell does not
 run as root. Using this knowledge, we can work around this: -->
 我們已經使用了 `sudo` 來執行指令，卻還是遭遇了一個錯誤！
 關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell 執行_ 的，而不是被獨立的程式。
-`echo` 等程式並不“知道”我們使用了 `|`。它們只是從輸入中獲取信息並將結果寫入到輸出中。
+`echo` 等程式並不“知道”我們使用了 `|`。它們只是從輸入中獲取資訊並將結果寫入到輸出中。
 在這種情況中，_shell_ （權限為當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
 此時因為不是以 root 使用者執行，我們的操作被拒絕了。
 理解這一件事後，我們可以這樣執行：
@@ -452,7 +452,7 @@ $ echo 3 | sudo tee brightness
 and _it_ is running as `root`, the permissions all work out. You can
 control all sorts of fun and useful things through `/sys`, such as the
 state of various system LEDs (your path might be different): -->
-因為 `tee` 程式打開了 `/sys`，而且 _它_ 正以 root 使用者執行，因此權限運作正常。
+因為 `tee` 程式開啟了 `/sys`，而且 _它_ 正以 root 使用者執行，因此權限運作正常。
 我們可以在 `/sys` 下做有趣又有用的事情了，例如改變系統 LED 的狀態（你的路徑可能會不一樣）：
 
 ```console
@@ -469,7 +469,7 @@ lecture, we will talk about how to perform and automate more complex
 tasks using the shell and the many handy command-line programs out
 there. -->
 現在你已經可以使用 shell 完成一些基本任務了。
-你應該可以查找感興趣的檔案並使用大部分程式的基礎功能。
+你應該可以查詢感興趣的檔案並使用大部分程式的基礎功能。
 在下一課中，我們將會談談如何使用 shell 與其他命令列工具完成並自動執行更複雜的任務。
 
 

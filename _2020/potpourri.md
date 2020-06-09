@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "雜燴集錦 尚未翻譯"
+title: "雜燴集錦 （尚未翻譯）"
 date: 2019-01-29
 ready: true
 video:

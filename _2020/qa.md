@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Q&A 尚未翻譯"
+title: "Q&A （尚未翻譯）"
 date: 2019-01-30
 ready: true
 video:

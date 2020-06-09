@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Shell工具與手稿語言 尚未翻譯"
+title: "Shell工具與手稿語言 （尚未翻譯）"
 date: 2019-01-14
 ready: true
 video:

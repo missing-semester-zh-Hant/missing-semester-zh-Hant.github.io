@@ -21,7 +21,7 @@ solve more complex problems when working on any computer-related
 problem. Yet many of us utilize only a small fraction of those tools; we
 only know enough magical incantations by rote to get by, and blindly
 copy-paste commands from the internet when we get stuck. -->
-作爲電腦科學家，我們熟知電腦善於解決重複工作。然而，我們時常忘記這對我們設計程式與 _使用_ 電腦的方式如出一轍。
+作為電腦科學家，我們熟知電腦善於解決重複工作。然而，我們時常忘記這對我們設計程式與 _使用_ 電腦的方式如出一轍。
 我們有許多易於擷取的工具幫助自己提升效率與解決更難問題。
 不過許多人只使用了這些工具很少一部分功能。我們僅背誦了許多奇妙咒語，或在工作卡住時在網上盲目剪貼指令。
 
@@ -34,8 +34,8 @@ you new tools to add to your toolbox, and hopefully instill in you some
 excitement for exploring (and perhaps building) more tools on your own.
 This is what we believe to be the missing semester from most Computer
 Science curricula. -->
-我們將講授如何使用你熟知的工具的全部功能，爲你的工具箱展示全新的候選，並且希望能
-引起你探索（也許還有開發）更多工具。我們認爲這是如今電腦課程缺少的內容。
+我們將講授如何使用你熟知的工具的全部功能，為你的工具箱展示全新的候選，並且希望能
+引起你探索（也許還有開發）更多工具。我們認為這是如今電腦課程缺少的內容。
 
 <!-- # Class structure -->
 # 課程結構
@@ -64,7 +64,7 @@ help answer any questions you might have. If you are attending the class
 online, you can send us questions at
 [missing-semester@mit.edu](mailto:missing-semester@mit.edu). -->
 我們盡力在僅有十一小時的課程中講授許多領域的內容，所以講座內容會較密集。
-爲了讓你以自己適應的速度熟悉內容，每次講座都包含了一組練習來引導你掌握講座重點。
+為了讓你以自己適應的速度熟悉內容，每次講座都包含了一組練習來引導你掌握講座重點。
 每節課後，我們會安排時間回答問題。若你在線上參與課程，可以將問題發送至[missing-semester@mit.edu](mailto:missing-semester@mit.edu)。
 
 <!-- Due to the limited time we have, we won't be able to cover all the tools
@@ -92,7 +92,7 @@ computer provides, we have to go old-school and drop down to a textual
 interface: The Shell. -->
 如今，電腦具有各種接口來讓我們輸入指令；精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
 這些接口在80%的應用場景運作良好，但其從根本上限制了你能做的事情————你無法點按不存在的按鈕或者用語音輸入未錄入過的指令。
-爲了充分利用電腦的功能，我們需要回到傳統方式，使用文字介面：Shell。
+為了充分利用電腦的功能，我們需要回到傳統方式，使用文字介面：Shell。
 
 <!-- Nearly all platforms you can get your hand on has a shell in one form or
 another, and many of them have several shells for you to choose from.
@@ -100,7 +100,7 @@ While they may vary in the details, at their core they are all roughly
 the same: they allow you to run programs, give them input, and inspect
 their output in a semi-structured way. -->
 近乎所有你能接觸到的平台都以某種形式支援shell，並且他們中的許多都提供了多種shell接口供你選擇。
-雖然細節上有所不同，但它們的核心幾乎都是相同的：它允許你運行程式，爲它們提供輸入，並以半結構化的方式檢查輸出。
+雖然細節上有所不同，但它們的核心幾乎都是相同的：它允許你運行程式，為它們提供輸入，並以半結構化的方式檢查輸出。
 
 <!-- In this lecture, we will focus on the Bourne Again SHell, or "bash" for
 short. This is one of the most widely used shells, and its syntax is
@@ -108,7 +108,7 @@ similar to what you will see in many other shells. To open a shell
 _prompt_ (where you can type commands), you first need a _terminal_.
 Your device probably shipped with one installed, or you can install one
 fairly easily. -->
-在本課中，我們將會着重介紹Bourne Again SHell，簡稱 “bash”。
+在本課中，我們將會著重介紹Bourne Again SHell，簡稱 “bash”。
 這是使用最廣泛的shell之一，其語法與許多其他shell相似。
 打開shell的 _命令提示字元_（可以鍵入指令的地方），需要先打開 _終端_ 。
 你的設備通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
@@ -162,8 +162,8 @@ or `"` (`"My Photos"`), or escape just the relevant characters with `\`
 (`My\ Photos`). -->
 在本例中，我們告訴shell與參數 `hello` 一同執行 `echo`。
 `echo` 程式會將參數打印出來。
-shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作爲程式可以訪問的參數
-如果你希望傳入的參數中含有空格或者其他特殊字元（比如一個名爲"My Photos"的檔案夾），你可以使用`'`
+shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的參數
+如果你希望傳入的參數中含有空格或者其他特殊字元（比如一個名為"My Photos"的檔案夾），你可以使用`'`
 或 `"` 將其引用，或使用跳脫字元 `\` 來處理 (`My\ Photos`)。
 
 <!-- But how does the shell know how to find the `date` or `echo` programs?
@@ -217,7 +217,7 @@ directory, and `..` to its parent directory: -->
 shell中的路徑是一組被分隔的目錄。在 Linux 與 macOS 上由 `/` 劃分，在 Windows 上由 `\` 劃分。
 在 Linux 與 macOS 上，路徑 `/` 是根目錄，所有目錄與檔案位列於此。在 Windows 上則每個磁碟區內都有一個根目錄（例如 `C:\`）。
 我們預設你在此課程中使用Linux檔案系統。
-以 `/` 起始的路徑被稱爲 _絕對路徑_，其他的路徑被稱爲 _相對路徑_ 。
+以 `/` 起始的路徑被稱為 _絕對路徑_，其他的路徑被稱為 _相對路徑_ 。
 相對路徑是相對於當前工作目錄的路徑。我們可以使用 `pwd` 來查看當前工作目錄，並且可以使用 `cd` 來改變它。
 在路徑中，`.` 代表當前工作目錄，而 `..` 代表其上級目錄。
 
@@ -277,7 +277,7 @@ behavior. Usually, running a program with the `-h` or `--help` flag
 (`/?` on Windows) will print some help text that tells you what flags
 and options are available. For example, `ls --help` tells us: -->
 除非我們在第一個參數指定目錄，`ls` 會印出當前目錄下的內容。
-許多指令接受旗標與選項（帶有值的旗標），旗標以 `-` 起始且可以改變指令的行爲。
+許多指令接受旗標與選項（帶有值的旗標），旗標以 `-` 起始且可以改變指令的行為。
 通常，執行程式時使用 `-h` 或 `--help` 旗標（在Windows系統中使用 `/?`），會印出幫助文本，來告訴使用者有哪些旗標與選項可用。
 例如，`ls --help` 會告訴我們：
 
@@ -309,10 +309,10 @@ the files in `/bin` have the `x` permission set for the last group,
 其後由三個字元 (`rwx`) 組成的三組字元組，分別表示了檔案擁有者(`missing`)，使用者群組(`users`)，與其他所有人所對其擁有的權限。
 `-` 代表該使用者未擁有相應權限。
 上面顯示的信息表示，只有擁有者對 `missing` 檔案夾有寫(`w`)的權限（例如增添與移除其中的檔案）。
-爲了進入某個檔案夾，使用者必須對其本身與其上級文件夾擁有“搜尋”（表示爲“可執行”：`x`）權限。
-爲了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
+為了進入某個檔案夾，使用者必須對其本身與其上級文件夾擁有“搜尋”（表示為“可執行”：`x`）權限。
+為了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
 對於檔案，權限是類似的。
-要注意近乎所有在 `/bin` 下的程式在最後一組都有 `x` 權限，意味着所有人都可以執行這些程式。
+要注意近乎所有在 `/bin` 下的程式在最後一組都有 `x` 權限，意味著所有人都可以執行這些程式。
 
 <!-- Some other handy programs to know about at this point are `mv` (to
 rename/move a file), `cp` (to copy a file), and `mkdir` (to make a new
@@ -324,7 +324,7 @@ outputs, or how it works in general, give the `man` program a try. It
 takes as an argument the name of a program, and shows you its _manual
 page_. Press `q` to exit. -->
 如果你想瞭解 _更多_ 關於程式輸入輸出或參數的內容，嘗試使用 `man` 程式。
-它以一個程式名作爲參數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
+它以一個程式名作為參數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
 
 ```console
 missing:~$ man ls
@@ -342,7 +342,7 @@ your screen as output. However, we can also rewire those streams! -->
 在shell中，程式擁有兩個主要“流”：輸入數據流與輸出數據流。
 當程序嘗試獲取信息時，它們會從輸入數據流中獲取，當程式印出結果時，會將信息輸出至輸出數據流。
 通常情況下，一個程式的輸入輸出流都是你的終端。
-或者說，你的鍵盤作爲輸入，你的熒幕作爲輸出。但是，我們可以重新導向這些流！
+或者說，你的鍵盤作為輸入，你的熒幕作為輸出。但是，我們可以重新導向這些流！
 
 <!-- The simplest form of redirection is `< file` and `> file`. These let you
 rewire the input and output streams of a program to a file respectively: -->
@@ -393,7 +393,7 @@ really wanted to do it that way! -->
 在大部分類Unix系統中，有一個使用者非常特殊：“root”。
 你也許已經在上面的例子中見過了。
 root 使用者（幾乎）不受權限限制，可以建立，讀取，更新，和移除系統中的任何文件
-我們通常不需要以 root 使用者登入系統，因爲太容易失誤弄壞什麼。
+我們通常不需要以 root 使用者登入系統，因為太容易失誤弄壞什麼。
 我們通常使用 `sudo` 指令來替換它。
 如同它的名字一樣，它允許你用“su”（"super user", 或者說 "root"）身份來“做”事情。
 當遭遇沒有權限的錯誤時，我們通常需要以 root 身份來執行。
@@ -440,8 +440,8 @@ run as root. Using this knowledge, we can work around this: -->
 我們已經使用了 `sudo` 來執行指令，卻還是遭遇了一個錯誤！
 關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell 執行_ 的，而不是被獨立的程式。
 `echo` 等程式並不“知道”我們使用了 `|`。它們只是從輸入中獲取信息並將結果寫入到輸出中。
-在這種情況中，_shell_ （權限爲當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
-此時因爲不是以 root 使用者執行，我們的操作被拒絕了。
+在這種情況中，_shell_ （權限為當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
+此時因為不是以 root 使用者執行，我們的操作被拒絕了。
 理解這一件事後，我們可以這樣執行：
 
 ```console
@@ -452,7 +452,7 @@ $ echo 3 | sudo tee brightness
 and _it_ is running as `root`, the permissions all work out. You can
 control all sorts of fun and useful things through `/sys`, such as the
 state of various system LEDs (your path might be different): -->
-因爲 `tee` 程式打開了 `/sys`，而且 _它_ 正以 root 使用者執行，因此權限運作正常。
+因為 `tee` 程式打開了 `/sys`，而且 _它_ 正以 root 使用者執行，因此權限運作正常。
 我們可以在 `/sys` 下做有趣又有用的事情了，例如改變系統 LED 的狀態（你的路徑可能會不一樣）：
 
 ```console

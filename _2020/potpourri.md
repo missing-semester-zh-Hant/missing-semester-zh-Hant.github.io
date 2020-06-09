@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Potpourri"
+title: "雜燴集錦 尚未翻譯"
 date: 2019-01-29
 ready: true
 video:
@@ -8,9 +8,10 @@ video:
   id: JZDt-PRq0uo
 ---
 
-## Table of Contents
+<!-- ## Table of Contents -->
+## 內容清單
 
-- [Keyboard remapping](#keyboard-remapping)
+<!-- - [Keyboard remapping](#keyboard-remapping)
 - [Daemons](#daemons)
 - [FUSE](#fuse)
 - [Backups](#backups)
@@ -23,9 +24,25 @@ video:
 - [Booting + Live USBs](#booting--live-usbs)
 - [Docker, Vagrant, VMs, Cloud, OpenStack](#docker-vagrant-vms-cloud-openstack)
 - [Notebook programming](#notebook-programming)
+- [GitHub](#github) -->
+- [鍵盤重映射](#keyboard-remapping)
+- [Daemons](#daemons)
+- [FUSE](#fuse)
+- [備份](#backups)
+- [APIs](#apis)
+- [常用命令列指令](#common-command-line-flagspatterns)
+- [Window managers](#window-managers)
+- [VPNs](#vpns)
+- [Markdown](#markdown)
+- [Hammerspoon(desktop-automation-on-macOS)](#hammerspoon-desktop-automation-on-macos)
+- [Booting + Live USBs](#booting--live-usbs)
+- [Docker, Vagrant, VMs, Cloud, OpenStack](#docker-vagrant-vms-cloud-openstack)
+- [Notebook programming](#notebook-programming)
 - [GitHub](#github)
 
-## Keyboard remapping
+
+<!-- ## Keyboard remapping -->
+## 鍵盤重映射
 
 As a programmer, your keyboard is your main input method. As with pretty much anything in your computer, it is configurable (and worth configuring).
 

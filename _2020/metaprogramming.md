@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Metaprogramming"
+title: "Metaprogramming 尚未翻譯"
 details: build systems, dependency management, testing, CI
 date: 2019-01-27
 ready: true

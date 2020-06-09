@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Command-line Environment"
+title: "Command-line Environment 尚未翻譯"
 date: 2019-01-21
 ready: true
 video:

@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Version Control (Git)"
+title: "Version Control (Git) 尚未翻譯"
 date: 2019-01-22
 ready: true
 video:

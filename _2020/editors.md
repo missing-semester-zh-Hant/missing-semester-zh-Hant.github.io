@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "編輯器 (Vim)"
+title: "編輯器 (Vim) 尚未翻譯"
 date: 2019-01-15
 ready: true
 video:

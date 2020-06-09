@@ -380,15 +380,13 @@ field of the line should be equal to 1 (that's the count from `uniq
 expression. And the block just says to print the username. We then count
 the number of lines in the output with `wc -l`. -->
 這裏有許多要講解。首先，請注意我們指定了表示式(也就是 `{...}` 前面的那些)。
-這個表示式要求此列文字的第一部分必須是 1 (這部分是 `uniq -c` 取得的)
-There's a lot to unpack here. First, notice that we now have a pattern
-(the stuff that goes before `{...}`). The pattern says that the first
-field of the line should be equal to 1 (that's the count from `uniq
--c`), and that the second field should match the given regular
-expression. And the block just says to print the username. We then count
-the number of lines in the output with `wc -l`.
+這個表示式要求此列文字的第一部分必須是 1 (這部分是 `uniq -c` 取得的)，
+並且第二部分必須匹配給定的表示式。
+指令碼塊中的內容則表示印出使用者名。
+接下來我們使用 `wc -l` 統計輸出結果的列數。
 
-However, `awk` is a programming language, remember?
+<!-- However, `awk` is a programming language, remember? -->
+還記得嗎，`awk` 是一種程式語言：
 
 ```awk
 BEGIN { rows = 0 }
@@ -396,31 +394,41 @@ $1 == 1 && $2 ~ /^c[^ ]*e$/ { rows += $1 }
 END { print rows }
 ```
 
-`BEGIN` is a pattern that matches the start of the input (and `END`
+<!-- `BEGIN` is a pattern that matches the start of the input (and `END`
 matches the end). Now, the per-line block just adds the count from the
 first field (although it'll always be 1 in this case), and then we print
 it out at the end. In fact, we _could_ get rid of `grep` and `sed`
 entirely, because `awk` [can do it
 all](https://backreference.org/2010/02/10/idiomatic-awk/), but we'll
-leave that as an exercise to the reader.
+leave that as an exercise to the reader. -->
+`BEGIN` 是一種匹配起始輸入 (and `END` 匹配結尾)的表示式。
+然後，對每列第一部分相加（本例中此部分均爲 1 ），
+再印出最後結果。
+實際上，_無需_ `grep` 與 `sed`，因爲 `awk` [可以解決所有問題](https://backreference.org/2010/02/10/idiomatic-awk/)。
+至於如何做到，可以參考課後練習。
 
-## Analyzing data
+<!-- ## Analyzing data -->
+## 分析資料
 
-You can do math! For example, add the numbers on each line together:
+<!-- You can do math! For example, add the numbers on each line together: -->
+我們也可以做些算術！例如，將每列數字相加：
 
 ```bash
  | paste -sd+ | bc -l
 ```
 
-Or produce more elaborate expressions:
+<!-- Or produce more elaborate expressions: -->
+也可以使用更加複雜的方法：
 
 ```bash
 echo "2*($(data | paste -sd+))" | bc -l
 ```
 
-You can get stats in a variety of ways.
+<!-- You can get stats in a variety of ways.
 [`st`](https://github.com/nferraz/st) is pretty neat, but if you already
-have R:
+have R: -->
+我們可以從許多渠道獲取所需資料。
+[`st`](https://github.com/nferraz/st) 很不錯，不過如果你已經安裝了R：
 
 ```bash
 ssh myserver journalctl
@@ -431,13 +439,17 @@ ssh myserver journalctl
  | awk '{print $1}' | R --slave -e 'x <- scan(file="stdin", quiet=TRUE); summary(x)'
 ```
 
-R is another (weird) programming language that's great at data analysis
+<!-- R is another (weird) programming language that's great at data analysis
 and [plotting](https://ggplot2.tidyverse.org/). We won't go into too
 much detail, but suffice to say that `summary` prints summary statistics
 about a matrix, and we computed a matrix from the input stream of
-numbers, so R gives us the statistics we wanted!
+numbers, so R gives us the statistics we wanted! -->
+R 是一種 (古怪的) 程式語言，適合用來進行資料分析或[繪圖](https://ggplot2.tidyverse.org/)。
+我們不會介紹太多，只需知道 `summary` 會印出關於矩陣的關鍵摘要。
+我們從輸入的數字中計算出一個矩陣，R會給出分析結果。
 
-If you just want some simple plotting, `gnuplot` is your friend:
+<!-- If you just want some simple plotting, `gnuplot` is your friend: -->
+我們可以輕鬆藉助 `gnuplot` 來繪製圖表：
 
 ```bash
 ssh myserver journalctl
@@ -449,23 +461,29 @@ ssh myserver journalctl
  | gnuplot -p -e 'set boxwidth 0.5; plot "-" using 1:xtic(2) with boxes'
 ```
 
-## Data wrangling to make arguments
+<!-- ## Data wrangling to make arguments -->
+## 使用資料處理來獲取參數
 
-Sometimes you want to do data wrangling to find things to install or
+<!-- Sometimes you want to do data wrangling to find things to install or
 remove based on some longer list. The data wrangling we've talked about
-so far + `xargs` can be a powerful combo:
+so far + `xargs` can be a powerful combo: -->
+有時我們需要利用資處理來從一個長表中找出想要安裝或反安裝的東西，
+利用我們之前講授的知識與 `xargs` 可以輕鬆實現：
 
 ```bash
 rustup toolchain list | grep nightly | grep -vE "nightly-x86" | sed 's/-x86.*//' | xargs rustup toolchain uninstall
 ```
 
-## Wrangling binary data
+<!-- ## Wrangling binary data -->
+## 處理二進制
 
-So far, we have mostly talked about wrangling textual data, but pipes
+<!-- So far, we have mostly talked about wrangling textual data, but pipes
 are just as useful for binary data. For example, we can use ffmpeg to
 capture an image from our camera, convert it to grayscale, compress it,
 send it to a remote machine over SSH, decompress it there, make a copy,
-and then display it.
+and then display it. -->
+雖然截至目前我們都在處理文本，不過管道對於處理二進制資料也十分有效。
+例如，我們可以使用ffmpeg來從相機中獲取圖像，轉換爲灰度，再進行壓縮，最後通過SSH發送至遠端，再在遠端解壓縮，建立複製並顯示。
 
 ```bash
 ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 -

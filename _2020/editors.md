@@ -31,7 +31,7 @@ something, there probably is -->
 - 堅持使用它來完成所有文字輸入（即使在開始時速度很慢）
 - 隨時查閱：如果看起來可能有更好地辦法做某件事，通常確實會有
 
-If you follow the above method, fully committing to using the new program for
+<!-- If you follow the above method, fully committing to using the new program for
 all text editing purposes, the timeline for learning a sophisticated text
 editor looks like this. In an hour or two, you'll learn basic editor functions
 such as opening and editing files, save/quit, and navigating buffers. Once
@@ -39,46 +39,63 @@ you're 20 hours in, you should be as fast as you were with your old editor.
 After that, the benefits start: you will have enough knowledge and muscle
 memory that using the new editor saves you time. Modern text editors are fancy
 and powerful tools, so the learning never stops: you'll get even faster as you
-learn more.
+learn more. -->
+若我們可以遵循上述方法，並使用新編輯器完成所有文字處理工作，學習一個複雜的文字編輯器的時間線大概如此：
+在一兩小時之內，學習到基本操作，例如打開或編輯檔案、存儲與退出、瀏覽暫存區域。
+學習二十小時之後，我們可以達到與使用舊編輯器同樣的速度。
+在此之後，優勢盡顯：我們已經有了足夠的知識與肌肉記憶，使得我們可以使用新編輯器節省時間。
+現代文字編輯器都是奇妙且強大的工具，學習不止，學得越多，效率越高。
 
-# Which editor to learn?
+<!-- # Which editor to learn? -->
+# 應該選擇什麼編輯器？
 
-Programmers have [strong opinions](https://en.wikipedia.org/wiki/Editor_war)
-about their text editors.
+<!-- Programmers have [strong opinions](https://en.wikipedia.org/wiki/Editor_war)
+about their text editors. -->
+程式設計師往往對自己的文字編輯器有[很強的執着](https://en.wikipedia.org/wiki/Editor_war)
 
-Which editors are popular today? See this [Stack Overflow
-survey](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
-(there may be some bias because Stack Overflow users may not be representative
-of programmers as a whole). [Visual Studio
-Code](https://code.visualstudio.com/) is the most popular editor.
-[Vim](https://www.vim.org/) is the most popular command-line-based editor.
+現今最受歡迎的編輯器是什麼？ 這裏有一份[Stack Overflow 的調查](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
+(這個調查可能有偏見，因爲Stack Overflow的使用者不能代表所有程式設計師)。
+[Visual Studio Code](https://code.visualstudio.com/) 是最受歡迎的編輯器。
+[Vim](https://www.vim.org/)則是最受歡迎的命令列編輯器。
 
 ## Vim
 
-All the instructors of this class use Vim as their editor. Vim has a rich
+<!-- All the instructors of this class use Vim as their editor. Vim has a rich
 history; it originated from the Vi editor (1976), and it's still being
 developed today. Vim has some really neat ideas behind it, and for this reason,
 lots of tools support a Vim emulation mode (for example, 1.4 million people
 have installed [Vim emulation for VS code](https://github.com/VSCodeVim/Vim)).
 Vim is probably worth learning even if you finally end up switching to some
-other text editor.
+other text editor. -->
+此課程的所有講師都使用 Vim 作爲編輯器。
+Vim 歷史悠久，起源於 Vi 編輯器 (1976)，並且直至今日還在成長。
+Vim 有非常簡潔的行事理論，因此，許多工具支持類 Vim 的編輯模式（例如，140万人安裝了[Vim emulation for VS code](https://github.com/VSCodeVim/Vim)）。
+即使你決定使用其他編輯器，Vim依然是值得學習的。
 
-It's not possible to teach all of Vim's functionality in 50 minutes, so we're
+<!-- It's not possible to teach all of Vim's functionality in 50 minutes, so we're
 going to focus on explaining the philosophy of Vim, teaching you the basics,
 showing you some of the more advanced functionality, and giving you the
-resources to master the tool.
+resources to master the tool. -->
+在 50 分鐘之內教授完Vim的功能是不可能的，所以我們只會專注與介紹Vim的處世哲學，教授一點基礎知識，展示一些高級功能，並爲你提供掌握Vim的學習資源。
 
-# Philosophy of Vim
+<!-- # Philosophy of Vim -->
+# Vim之哲學
 
-When programming, you spend most of your time reading/editing, not writing. For
+<!-- When programming, you spend most of your time reading/editing, not writing. For
 this reason, Vim is a _modal_ editor: it has different modes for inserting text
 vs manipulating text. Vim is programmable (with Vimscript and also other
 languages like Python), and Vim's interface itself is a programming language:
 keystrokes (with mnemonic names) are commands, and these commands are
 composable. Vim avoids the use of the mouse, because it's too slow; Vim even
-avoids using the arrow keys because it requires too much movement.
+avoids using the arrow keys because it requires too much movement. -->
+寫程式時，我們的大部分時間都使用在閱讀/編輯而非寫本身。
+因此，Vim是 _模式化_ 編輯器：它具有鍵入文字和處理文字的不同模式。
+Vim是可程式化的（利用 Vimscript 以及 Python 等其他語言），並且 Vim 介面自身就是程式語言：
+鍵擊（使用助記符）是指令，並且這些指令可以相互組合。
+Vim 避免使用滑鼠，因爲滑鼠是低效率的；Vim甚至避免使用方向鍵，因爲需要太多次移動。
 
-The end result is an editor that can match the speed at which you think.
+<!-- The end result is an editor that can match the speed at which you think. -->
+最終的結果是，使用 Vim 編輯跟得上我們思考的速度。
 
 # Modal editing
 

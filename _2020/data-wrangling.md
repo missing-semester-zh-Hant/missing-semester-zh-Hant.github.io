@@ -13,7 +13,7 @@ different format? Of course you have! That, in very general terms, is
 what this lecture is all about. Specifically, massaging data, whether in
 text or binary format, until you end up with exactly what you wanted. -->
 你是否有過變換資料形式的需求？當然有過！這也是此課會講授的內容。
-具體來說，我們需要對文本或二進位形式的數據不斷處理，直至獲得我們所需的內容。
+具體來說，我們需要對文字或二進位形式的資料不斷處理，直至獲得我們所需的內容。
 
 <!-- We've already seen some basic data wrangling in past lectures. Pretty
 much any time you use the `|` operator, you are performing some kind of
@@ -23,9 +23,9 @@ may not think of it as wrangling data, but it is going from one format
 (your entire system log) to a format that is more useful to you (just
 the intel log entries). Most data wrangling is about knowing what tools
 you have at your disposal, and how to combine them. -->
-在之前部分的課程中，我們已經遇到過一些基礎的資料處理實例，比如當你使用 `|` 時，已經是在使用基本形式的資料處理了。
+在之前部分的課程中，我們已經遇到過一些基礎的資料處理例項，比如當你使用 `|` 時，已經是在使用基本形式的資料處理了。
 考慮這樣一個指令 `journalctl | grep -i intel`。它會歲尋所有提到Intel（大小寫敏感）的系統日誌。
-你或許不認爲這是資料處理，但這將資料從一種形式（全部系統日誌）轉換成了另一種更有價值的形式（僅含intel的日誌）。
+你或許不認為這是資料處理，但這將資料從一種形式（全部系統日誌）轉換成了另一種更有價值的形式（僅含intel的日誌）。
 大部分資料處理工作需要我們理解如何組合並使用工具來達成目的。
 
 <!-- Let's start from the beginning. To wrangle data, we need two things:
@@ -33,9 +33,9 @@ data to wrangle, and something to do with it. Logs often make for a good
 use-case, because you often want to investigate things about them, and
 reading the whole thing isn't feasible. Let's figure out who's trying to
 log into my server by looking at my server's log: -->
-讓我們從頭說起。實行資料處理，需要兩個條件：用來處理的數據，以及處理的情境。
-日誌處理是一個常見的情景，因爲我們常常需要在日誌中尋找信息，此時閱讀所有日誌是不現實的。
-讓我們通過查看日誌來找出有誰曾試圖登入我們的服務器：
+讓我們從頭說起。實行資料處理，需要兩個條件：用來處理的資料，以及處理的情境。
+日誌處理是一個常見的情景，因為我們常常需要在日誌中尋找資訊，此時閱讀所有日誌是不現實的。
+讓我們通過檢視日誌來找出有誰曾試圖登入我們的伺服器：
 
 ```bash
 ssh myserver journalctl
@@ -69,11 +69,11 @@ and down through the long output. To save some additional traffic while
 we debug our command-line, we can even stick the current filtered logs
 into a file so that we don't have to access the network while
 developing: -->
-爲什麼要使用雙層引用呢？
-我們查看的日誌非常多，從遠傳傳送至近端再濾掉有些浪費。
-作爲替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至近端。 
+為什麼要使用雙層引用呢？
+我們檢視的日誌非常多，從遠傳傳送至近端再濾掉有些浪費。
+作為替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至近端。 
 `less` 建立了一個 "分頁機制" 來允許我們通過滾動頁面來閱讀長文字。
-如果想節約更多傳送流量，我們甚至可以將過濾後的日誌寫入文件，使得我們不需要再次通過網路傳送：
+如果想節約更多傳送流量，我們甚至可以將過濾後的日誌寫入檔案，使得我們不需要再次通過網路傳送：
 
 ```console
 $ ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' > ssh.log
@@ -136,7 +136,7 @@ source of great frustration. Very common patterns are: -->
  - `(RX1|RX2)` either something that matches `RX1` or `RX2`
  - `^` the start of the line
  - `$` the end of the line -->
-  - `.` 意爲除去換行符外的 "任意一個字元" 
+  - `.` 意為除去換行符外的 "任意一個字元" 
  - `*` 0或多個 `*` 前的字元
  - `+` 1或更多個 `*` 前的字元
  - `[abc]`  `a`, `b`, 與 `c` 中的任意一個
@@ -156,7 +156,7 @@ with the username "Disconnected from"? We'd have: -->
 讓我們重回 `/.*Disconnected from /`, 可以看出它會匹配以任意字元起始，緊接
 "Disconnected from " 的字串，這就是我們需要的。
 但要小心，正規表示式時而有些棘手。
-試想某人嘗試使用 "Disconnected from" 作爲使用者名登入,我們將會有:
+試想某人嘗試使用 "Disconnected from" 作為使用者名登入,我們將會有:
 
 ```
 Jan 17 03:13:00 thesquareplanet.com sshd[2631]: Disconnected from invalid user Disconnected from 46.97.239.16 port 55920 [preauth]
@@ -176,8 +176,8 @@ with just -->
 implementations, you can just suffix `*` or `+` with a `?` to make them
 non-greedy, but sadly `sed` doesn't support that. We _could_ switch to
 perl's command-line mode though, which _does_ support that construct: -->
-這並不是我們需要的。在一些正規表示式的實現中，我們可以單純給`*` 與 `+` 加入 `?` 字尾使其轉變爲非貪婪模式。不過令人惋惜，`sed` 並不支援這種方式。
-我們 _可以_ 換用 perl 的命令列模式，它 _支持_ 這樣的結構：
+這並不是我們需要的。在一些正規表示式的實現中，我們可以單純給`*` 與 `+` 加入 `?` 字尾使其轉變為非貪婪模式。不過令人惋惜，`sed` 並不支援這種方式。
+我們 _可以_ 換用 perl 的命令列模式，它 _支援_ 這樣的結構：
 
 ```bash
 perl -pe 's/.*?Disconnected from //'
@@ -189,7 +189,7 @@ things like print lines following a given match, do multiple
 substitutions per invocation, search for things, etc. But we won't cover
 that too much here. `sed` is basically an entire topic in and of itself,
 but there are often better tools. -->
-我們會使用 `sed` 完成後續的工作，因爲它是最常見的工具。 
+我們會使用 `sed` 完成後續的工作，因為它是最常見的工具。 
 `sed` 也善於完成類似於印出匹配後的字串，一次使用就完成多次替換等工作。
 但是我們課中不會講解太多。 
 `sed` 比較萬能，但是對於特定細小功能往往有更優秀的工具。
@@ -215,8 +215,8 @@ characters where the username is. Then we're matching on any single word
 "port" followed by a sequence of digits. Then possibly the suffix
 `[preauth]`, and then the end of the line. -->
 讓我們用[regex debugger](https://regex101.com/r/qqbZqh/2)來看看會得出怎樣的結果。
-很棒，起始的部分和之前是一樣的。然後，我們匹配出所有類型的 "user" 變體(在日誌中有兩種不同前綴)。
-接下來我們匹配屬於用戶名的所有字元。
+很棒，起始的部分和之前是一樣的。然後，我們匹配出所有型別的 "user" 變體(在日誌中有兩種不同字首)。
+接下來我們匹配屬於使用者名稱的所有字元。
 再之後，匹配任意一個單詞(`[^ ]+`; 匹配由任意非空格組成的非空字串)。
 此時，再匹配 "port" 與接續的一串數字，和可能存在的字尾 `[preauth]`， 直至列尾。
 
@@ -232,8 +232,8 @@ in the substitution (and in some engines, even in the pattern itself!)
 as `\1`, `\2`, `\3`, etc. So: -->
 還剩下一個問題需要解決，就是日誌的全部內容都被替換成了空字串。
 我們希望能 _留下_ 匹配到的使用者名。
-爲了達成此目的，我們可以使用 "捕捉群"(capture groups)。
-被括號包圍的正規表示式會被按順序存入捕捉群，而捕捉群的內容可以在替換時取用(在有些正規表示式實現中，替換內容甚至支持正規表示式本身！)。
+為了達成此目的，我們可以使用 "捕捉群"(capture groups)。
+被括號包圍的正規表示式會被按順序存入捕捉群，而捕捉群的內容可以在替換時取用(在有些正規表示式實現中，替換內容甚至支援正規表示式本身！)。
 使用 `\1`, `\2`, `\3` 以此類推來取用其內容：
 
 ```bash
@@ -256,7 +256,7 @@ number](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-pr
 這實際上[很難](https://emailregex.com/)。
 人們對其進行了[很多討論](https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression/1917982)，
 還寫出了許多[測試用例](https://fightingforalostcause.net/content/misc/2006/compare-email-regex.php)，與[test matrices](https://mathiasbynens.be/demo/url-regex)。
-我們甚至還能用正規表示式判斷一個數是否爲[質數](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/)。
+我們甚至還能用正規表示式判斷一個數是否為[質數](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/)。
 
 <!-- Regular expressions are notoriously hard to get right, but they are also
 very handy to have in your toolbox! -->
@@ -279,7 +279,7 @@ ssh myserver journalctl
 (with the `i` command), explicitly printing lines (with the `p`
 command), selecting lines by index, and lots of other things. Check `man
 sed`! -->
-`sed` 還有能力做到許多有趣的事情，比如注入文字(使用 `i` )，印出指定列(使用 `p` )，或者利用index搜尋等。我們可以使用 `man sed` 查看更多能做的事情!
+`sed` 還有能力做到許多有趣的事情，比如注入文字(使用 `i` )，印出指定列(使用 `p` )，或者利用index搜尋等。我們可以使用 `man sed` 檢視更多能做的事情!
 
 <!-- Anyway. What we have now gives us a list of all the usernames that have
 attempted to log in. But this is pretty unhelpful. Let's look for common
@@ -318,7 +318,7 @@ wouldn't matter, but we're here to learn! -->
 `sort -n` 將會按照數字排序 (預設是按照字母順序) 。
  `-k1,1` 表示 "按照被空格分個的第一行排序"。 
 `,n`表示 "僅排序前 `n` 個部分" 預設是醬所有部分都排序。
-在這個 _典型的_ 例子中，排序所有部分沒有任何問題，我們只是爲了講授 `,n` 的用法才使用了這個！
+在這個 _典型的_ 例子中，排序所有部分沒有任何問題，我們只是為了講授 `,n` 的用法才使用了這個！
 
 <!-- If we wanted the _least_ common ones, we could use `head` instead of
 `tail`. There's also `sort -r`, which sorts in reverse order. -->
@@ -326,7 +326,7 @@ wouldn't matter, but we're here to learn! -->
 
 <!-- Okay, so that's pretty cool, but we'd sort of like to only give the
 usernames, and maybe not one per line? -->
-很棒，結果已經非常好了，但我們只想要用戶名，而且不要一列只寫一個。
+很棒，結果已經非常好了，但我們只想要使用者名稱，而且不要一列只寫一個。
 
 ```bash
 ssh myserver journalctl
@@ -379,7 +379,7 @@ field of the line should be equal to 1 (that's the count from `uniq
 -c`), and that the second field should match the given regular
 expression. And the block just says to print the username. We then count
 the number of lines in the output with `wc -l`. -->
-這裏有許多要講解。首先，請注意我們指定了表示式(也就是 `{...}` 前面的那些)。
+這裡有許多要講解。首先，請注意我們指定了表示式(也就是 `{...}` 前面的那些)。
 這個表示式要求此列文字的第一部分必須是 1 (這部分是 `uniq -c` 取得的)，
 並且第二部分必須匹配給定的表示式。
 指令碼塊中的內容則表示印出使用者名。
@@ -402,9 +402,9 @@ entirely, because `awk` [can do it
 all](https://backreference.org/2010/02/10/idiomatic-awk/), but we'll
 leave that as an exercise to the reader. -->
 `BEGIN` 是一種匹配起始輸入 (and `END` 匹配結尾)的表示式。
-然後，對每列第一部分相加（本例中此部分均爲 1 ），
+然後，對每列第一部分相加（本例中此部分均為 1 ），
 再印出最後結果。
-實際上，_無需_ `grep` 與 `sed`，因爲 `awk` [可以解決所有問題](https://backreference.org/2010/02/10/idiomatic-awk/)。
+實際上，_無需_ `grep` 與 `sed`，因為 `awk` [可以解決所有問題](https://backreference.org/2010/02/10/idiomatic-awk/)。
 至於如何做到，可以參考課後練習。
 
 <!-- ## Analyzing data -->
@@ -462,7 +462,7 @@ ssh myserver journalctl
 ```
 
 <!-- ## Data wrangling to make arguments -->
-## 使用資料處理來獲取參數
+## 使用資料處理來獲取引數
 
 <!-- Sometimes you want to do data wrangling to find things to install or
 remove based on some longer list. The data wrangling we've talked about
@@ -482,8 +482,8 @@ are just as useful for binary data. For example, we can use ffmpeg to
 capture an image from our camera, convert it to grayscale, compress it,
 send it to a remote machine over SSH, decompress it there, make a copy,
 and then display it. -->
-雖然截至目前我們都在處理文本，不過管道對於處理二進位數據也十分有效。
-例如，我們可以使用ffmpeg來從相機中獲取圖像，轉換爲灰度，再進行壓縮，最後通過SSH發送至遠端，再在遠端解壓縮，建立複製並顯示。
+雖然截至目前我們都在處理文字，不過管道對於處理二進位資料也十分有效。
+例如，我們可以使用ffmpeg來從相機中獲取影象，轉換為灰度，再進行壓縮，最後通過SSH傳送至遠端，再在遠端解壓縮，建立複製並顯示。
 
 ```bash
 ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 -

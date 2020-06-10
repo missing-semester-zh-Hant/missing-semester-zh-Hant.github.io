@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "爲什麼我們要開設此課程？"
+title: "為什麼我們要開設此課程？"
 ---
 
 <!-- During a traditional Computer Science education, chances are you will take
@@ -8,7 +8,7 @@ plenty of classes that teach you advanced topics within CS, everything from
 Operating Systems to Programming Languages to Machine Learning. But at many
 institutions there is one essential topic that is rarely covered and is instead
 left for students to pick up on their own: computing ecosystem literacy. -->
-傳統電腦專業課程着重解釋作業系統與機器學習等專業知識，而培養基本電腦素養這個重要課題卻常常需要學生自行探索。
+傳統電腦專業課程著重解釋作業系統與機器學習等專業知識，而培養基本電腦素養這個重要課題卻常常需要學生自行探索。
 
 <!-- Over the years, we have helped teach several classes at MIT, and over and over
 we have seen that many students have limited knowledge of the tools available
@@ -41,9 +41,9 @@ Activities Period" in January 2020 — a one-month semester that features shorte
 student-run classes. While the lectures themselves are only available to MIT
 students, we will provide all lecture materials along with video recordings of
 lectures to the public. -->
-爲了解決這個問題，我們執教了這門課程，涵蓋了所有我們認爲對成爲高效電腦科學家或者程式設計師而言重要的主題。
-該課程將十分實用，爲你提供對於工和相關技術的詳細講解，使您可以立即在多種情況下使用這些東西。
-此課程在 2020 年 1 月的 MIT "Independent Activities Period" 內舉行，這是爲期一個月的短學期，主要由學生開設。
+為了解決這個問題，我們執教了這門課程，涵蓋了所有我們認為對成為高效電腦科學家或者程式設計師而言重要的主題。
+該課程將十分實用，為你提供對於工和相關技術的詳細講解，使您可以立即在多種情況下使用這些東西。
+此課程在 2020 年 1 月的 MIT "Independent Activities Period" 內舉行，這是為期一個月的短學期，主要由學生開設。
 講座本身只適用於 MIT 學生，但是我們會公開所有講座材料和課程回放。
 
 <!-- If this sounds like it might be for you, here are some concrete
@@ -81,7 +81,7 @@ even teach you how to contribute to other people's projects with pull
 requests! -->
 如何 _正確地_ 使用版本控制，利用它從災難中挽回損失，與他人合作，與快速找到導致問題的部分。
 不要再 `rm -rf; git clone`，不要再製造合併衝突（呃，至少要少製造一點），不要再大量註釋程式碼，也不要再“靠北，我們是不是把有用的部分刪掉了”。
-我們甚至會教授你如何通過　`pull request` 來向他人的項目做貢獻。
+我們甚至會教授你如何通過　`pull request` 來向他人的專案做貢獻。
 
 <!-- In the example below we use `git bisect` to find which commit broke a unit test and then we fix it with `git revert`. -->
 在這個示例中，我們使用 `git bisect`來尋找哪個提交未通過單元測試，並透過 `git revert` 進行改正。
@@ -97,7 +97,7 @@ requests! -->
 remotely, and take advantage of advanced editor features. No more
 copying files back and forth. No more repetitive file editing. -->
 如何在近端與遠端使用命令列高效編輯檔案，並使用編輯器的進階功能。
-不要再來回拉取與複製文件，也不要再重複編輯檔案。
+不要再來回拉取與複製檔案，也不要再重複編輯檔案。
 
 <!-- Vim macros are one of its best features, in the example below we quickly convert an html table to csv format using a nested vim macro. -->
 Vim的巨集功能是它最好的功能之一，在下面這個示例中，我們使用 Vim 內嵌的巨集功能來快速講html表格轉換成了csv格式。
@@ -115,10 +115,10 @@ run two commands at once. No more typing your password every time you
 connect. No more losing everything just because your Internet
 disconnected or you had to reboot your laptop. -->
 在使用 SSH key 與終端多路復用操作遠端電腦時如何保持清醒。
-不要再爲了同時執行兩個指令打開多個終端，也不要在每次連接時鍵入密碼，更不要因爲網路斷開或者重啓手提時丟失所有資料。
+不要再為了同時執行兩個指令開啟多個終端，也不要在每次連線時鍵入密碼，更不要因為網路斷開或者重啟手提時丟失所有資料。
 
 <!-- In the example below we use `tmux` to keep sessions alive in remote servers and `mosh` to support network roaming and disconnection. -->
-在下面的示例中我們利用 `tmux` 使得會話在遠端伺服器保持活躍，並透過 `mosh` 使其支援網絡漫遊與斷開連接。
+在下面的示例中我們利用 `tmux` 使得會話在遠端伺服器保持活躍，並透過 `mosh` 使其支援網路漫遊與斷開連線。
 
 
 <video autoplay="autoplay" loop="loop" controls muted playsinline  oncontextmenu="return false;"  preload="auto"  class="demo">
@@ -126,15 +126,15 @@ disconnected or you had to reboot your laptop. -->
 </video>
 
 <!-- ## Finding files -->
-## 尋找文件
+## 尋找檔案
 
 <!-- How to quickly find files that you are looking for. No
 more clicking through files in your project until you find the one
 that has the code you want. -->
-如何快速尋找你需要的檔案，而非逐個打開所有檔案直至找到你需要的程式碼。
+如何快速尋找你需要的檔案，而非逐個開啟所有檔案直至找到你需要的程式碼。
 
 <!-- In the example below we quickly look for files with `fd` and for code snippets with `rg`. We also quickly `cd` and `vim` recent/frequent files/folder using `fasd`. -->
-在下面的示例中我們利用 `fd` 快速搜尋文件，並透過 `rg` 找到程式碼片段。我萌也用到了 `fasd` 來迅速 `cd` 與 `vim` 最近/常用的檔案/檔案夾。
+在下面的示例中我們利用 `fd` 快速搜尋檔案，並透過 `rg` 找到程式碼片段。我萌也用到了 `fasd` 來迅速 `cd` 與 `vim` 最近/常用的檔案/檔案夾。
 
 <video autoplay="autoplay" loop="loop" controls muted playsinline  oncontextmenu="return false;"  preload="auto"  class="demo">
   <source src="/static/media/demos/find.mp4" type="video/mp4">
@@ -147,8 +147,8 @@ that has the code you want. -->
 data and files directly from the command-line. No more copy pasting
 from log files. No more manually computing statistics over data. No
 more spreadsheet plotting. -->
-如何快速且易用地在命令列中對資料與檔案進行編輯，查看，分詞，繪圖與計算。
-不再從日誌中複製粘貼，不再手動統計資料，不再使用表格繪圖。
+如何快速且易用地在命令列中對資料與檔案進行編輯，檢視，分詞，繪圖與計算。
+不再從日誌中複製，不再手動統計資料，不再使用表格繪圖。
 
 
 <!-- ## Virtual machines -->
@@ -159,7 +159,7 @@ unrelated projects, and keep your main machine clean and tidy. No
 more accidentally corrupting your computer while doing a security
 lab. No more millions of randomly installed packages with differing
 versions. -->
-如何使用虛擬機嘗試全新作業系統，分隔不相關的工程，保持主系統整潔，不再因爲進行安全性實驗導致電腦受損，且不再隨意安裝不同版本的軟件套件。
+如何使用虛擬機器嘗試全新作業系統，分隔不相關的工程，保持主系統整潔，不再因為進行安全性實驗導致電腦受損，且不再隨意安裝不同版本的軟件套件。
 
 <!-- ## Security -->
 ## 安全性
@@ -168,7 +168,7 @@ versions. -->
 secrets to the world. No more coming up with passwords that match the
 insane criteria yourself. No more unsecured, open WiFi networks. No
 more unencrypted messaging. -->
-如何在不暴露隱私的情況下使用網路，不再爲相處符合自己詭異規則的密碼煩惱，不再連接不安全的WiFi，不再傳送未加密訊息。
+如何在不暴露隱私的情況下使用網路，不再為思考符合自己詭異規則的密碼煩惱，不再連線不安全的WiFi，不再傳送未加密訊息。
 
 <!-- # Conclusion -->
 # 結語

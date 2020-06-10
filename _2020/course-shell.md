@@ -108,7 +108,7 @@ similar to what you will see in many other shells. To open a shell
 _prompt_ (where you can type commands), you first need a _terminal_.
 Your device probably shipped with one installed, or you can install one
 fairly easily. -->
-在本課中，我們將會著重介紹Bourne Again SHell，簡稱 “bash”。
+在本課中，我們將會著重介紹Bourne Again SHell，簡稱 「bash」。
 這是使用最廣泛的shell之一，其語法與許多其他shell相似。
 開啟shell的 _命令提示字元_（可以鍵入指令的地方），需要先開啟 _終端_ 。
 你的裝置通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
@@ -131,7 +131,7 @@ or where you currently are, is `~` (short for "home"). The `$` tells you
 that you are not the root user (more on that later). At this prompt you
 can type a _command_, which will then be interpreted by the shell. The
 most basic command is to execute a program: -->
-這是shell的主要文字介面，它告訴你， 你的主機名稱是 `missing` 並且“目前的工作目錄”，或者說是你目前的位置，是 `~` (表示"home")。
+這是shell的主要文字介面，它告訴你， 你的主機名稱是 `missing` 並且「目前的工作目錄」，或者說是你目前的位置，是 `~` (表示「home」)。
 `$` 符號表示你現在不是 root 使用者 (稍後會介紹)。 在此提示字元中，你可以鍵入 _指令_ , 指令會被shell解析。最簡單的指令就是執行程式：
 
 ```console
@@ -163,7 +163,7 @@ or `"` (`"My Photos"`), or escape just the relevant characters with `\`
 在本例中，我們告訴shell與引數 `hello` 一同執行 `echo`。
 `echo` 程式會將引數打印出來。
 shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的引數
-如果你希望傳入的引數中含有空格或者其他特殊字元（比如一個名為"My Photos"的檔案夾），你可以使用`'`
+如果你希望傳入的引數中含有空格或者其他特殊字元（比如一個名為「My Photos」的檔案夾），你可以使用`'`
 或 `"` 將其引用，或使用跳脫字元 `\` 來處理 (`My\ Photos`)。
 
 <!-- But how does the shell know how to find the `date` or `echo` programs?
@@ -309,7 +309,7 @@ the files in `/bin` have the `x` permission set for the last group,
 其後由三個字元 (`rwx`) 組成的三組字元組，分別表示了檔案擁有者(`missing`)，使用者群組(`users`)，與其他所有人所對其擁有的權限。
 `-` 代表該使用者未擁有相應權限。
 上面顯示的資訊表示，只有擁有者對 `missing` 檔案夾有寫(`w`)的權限（例如增添與移除其中的檔案）。
-為了進入某個檔案夾，使用者必須對其本身與其上級檔案夾擁有“搜尋”（表示為“可執行”：`x`）權限。
+為了進入某個檔案夾，使用者必須對其本身與其上級檔案夾擁有「搜尋」（表示為「可執行」：`x`）權限。
 為了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
 對於檔案，權限是類似的。
 要注意近乎所有在 `/bin` 下的程式在最後一組都有 `x` 權限，意味著所有人都可以執行這些程式。
@@ -339,7 +339,7 @@ read input, it reads from the input stream, and when it prints
 something, it prints to its output stream. Normally, a program's input
 and output are both your terminal. That is, your keyboard as input and
 your screen as output. However, we can also rewire those streams! -->
-在shell中，程式擁有兩個主要“流”：輸入資料流與輸出資料流。
+在shell中，程式擁有兩個主要「流」：輸入資料流與輸出資料流。
 當程式嘗試獲取資訊時，它們會從輸入資料流中獲取，當程式印出結果時，會將資訊輸出至輸出資料流。
 通常情況下，一個程式的輸入輸出流都是你的終端。
 或者說，你的鍵盤作為輸入，你的熒幕作為輸出。但是，我們可以重新導向這些流！
@@ -364,7 +364,7 @@ input/output redirection really shines is in the use of _pipes_. The `|`
 operator lets you "chain" programs such that the output of one is the
 input of another: -->
 你也可以使用 `>>` 來向檔案附加內容。這種重新導向的真正兩點在於使用 _管道_ 。
-`|` 允許我們將一個程式的輸出 “連接” 另一程式的輸入：
+`|` 允許我們將一個程式的輸出 「連接」 另一程式的輸入：
 
 ```console
 missing:~$ ls -l / | tail -n1
@@ -390,12 +390,12 @@ lets you "do" something "as su" (short for "super user", or "root").
 When you get permission denied errors, it is usually because you need to
 do something as root. Though make sure you first double-check that you
 really wanted to do it that way! -->
-在大部分類Unix系統中，有一個使用者非常特殊：“root”。
+在大部分類Unix系統中，有一個使用者非常特殊：「root」。
 你也許已經在上面的例子中見過了。
 root 使用者（幾乎）不受權限限制，可以建立，讀取，更新，和移除系統中的任何文件
 我們通常不需要以 root 使用者登入系統，因為太容易失誤弄壞什麼。
 我們通常使用 `sudo` 指令來替換它。
-如同它的名字一樣，它允許你用“su”（"super user", 或者說 "root"）身份來“做”事情。
+如同它的名字一樣，它允許你用「su」（「super user」, 或者說 「root」）身份來「做」事情。
 當遭遇沒有權限的錯誤時，我們通常需要以 root 身份來執行。
 但還請一定多加註意自己確實需要這麼做！
 
@@ -439,7 +439,7 @@ echo`'s output, but is prevented from doing so since the shell does not
 run as root. Using this knowledge, we can work around this: -->
 我們已經使用了 `sudo` 來執行指令，卻還是遭遇了一個錯誤！
 關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell 執行_ 的，而不是被獨立的程式。
-`echo` 等程式並不“知道”我們使用了 `|`。它們只是從輸入中獲取資訊並將結果寫入到輸出中。
+`echo` 等程式並不「知道」我們使用了 `|`。它們只是從輸入中獲取資訊並將結果寫入到輸出中。
 在這種情況中，_shell_ （權限為當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
 此時因為不是以 root 使用者執行，我們的操作被拒絕了。
 理解這一件事後，我們可以這樣執行：

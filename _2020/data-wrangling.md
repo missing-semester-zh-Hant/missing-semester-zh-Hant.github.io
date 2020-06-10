@@ -72,7 +72,7 @@ developing: -->
 為什麼要使用雙層引用呢？
 我們檢視的日誌非常多，從遠傳傳送至近端再濾掉有些浪費。
 作為替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至近端。 
-`less` 建立了一個 "分頁機制" 來允許我們通過滾動頁面來閱讀長文字。
+`less` 建立了一個 「分頁機制」 來允許我們通過滾動頁面來閱讀長文字。
 如果想節約更多傳送流量，我們甚至可以將過濾後的日誌寫入檔案，使得我們不需要再次通過網路傳送：
 
 ```console
@@ -90,7 +90,7 @@ it, you basically give short commands for how to modify the file, rather
 than manipulate its contents directly (although you can do that too).
 There are tons of commands, but one of the most common ones is `s`:
 substitution. For example, we can write: -->
-`sed` 是一個基於舊式 `ed` 文字編輯器的 "流編輯器" (stream editor)。
+`sed` 是一個基於舊式 `ed` 文字編輯器的 「流編輯器」 (stream editor)。
 在其中，我們可以使用簡短的指令來更改檔案，而非直接編輯檔案內容（雖然我們也可以這樣做）。
 指令有很多，但最常用的是 `s`: 替換。
 例如，我們可以：
@@ -125,7 +125,7 @@ source of great frustration. Very common patterns are: -->
 正規表示式很常見也足夠有用，值得用些時間去理解它。
 讓我們從上面使用過的字串開始: `/.*Disconnected from /`. 
 正規表示式通常 (也有例外) 被 `/` 包圍。
-多數 ASCII 字元代表其自身的含義，有些則擁有"特別的"含義。
+多數 ASCII 字元代表其自身的含義，有些則擁有「特別的」含義。
 由於正規表示式實現方法的不同，這些符號也常常有不同的含義，這讓我們有些挫敗感。
 常見的表示式有：
 
@@ -136,7 +136,7 @@ source of great frustration. Very common patterns are: -->
  - `(RX1|RX2)` either something that matches `RX1` or `RX2`
  - `^` the start of the line
  - `$` the end of the line -->
-  - `.` 意為除去換行符外的 "任意一個字元" 
+  - `.` 意為除去換行符外的 「任意一個字元」 
  - `*` 0或多個 `*` 前的字元
  - `+` 1或更多個 `*` 前的字元
  - `[abc]`  `a`, `b`, 與 `c` 中的任意一個
@@ -154,7 +154,7 @@ literal string "Disconnected from &rdquo;. Which is what we wanted. But
 beware, regular expressions are trixy. What if someone tried to log in
 with the username "Disconnected from"? We'd have: -->
 讓我們重回 `/.*Disconnected from /`, 可以看出它會匹配以任意字元起始，緊接
-"Disconnected from " 的字串，這就是我們需要的。
+"Disconnected from" 的字串，這就是我們需要的。
 但要小心，正規表示式時而有些棘手。
 試想某人嘗試使用 "Disconnected from" 作為使用者名登入,我們將會有:
 
@@ -165,7 +165,7 @@ Jan 17 03:13:00 thesquareplanet.com sshd[2631]: Disconnected from invalid user D
 <!-- What would we end up with? Well, `*` and `+` are, by default, "greedy".
 They will match as much text as they can. So, in the above, we'd end up
 with just -->
-我們會得到怎樣的結果？實際上，`*` 與 `+` 預設是"貪婪的"。它們會匹配儘可能多的字元。
+我們會得到怎樣的結果？實際上，`*` 與 `+` 預設是「貪婪的」。它們會匹配儘可能多的字元。
 所以，上述字串會得出這樣的匹配結果：
 
 ```
@@ -215,14 +215,14 @@ characters where the username is. Then we're matching on any single word
 "port" followed by a sequence of digits. Then possibly the suffix
 `[preauth]`, and then the end of the line. -->
 讓我們用[regex debugger](https://regex101.com/r/qqbZqh/2)來看看會得出怎樣的結果。
-很棒，起始的部分和之前是一樣的。然後，我們匹配出所有型別的 "user" 變體(在日誌中有兩種不同字首)。
+很棒，起始的部分和之前是一樣的。然後，我們匹配出所有型別的 「user」 變體(在日誌中有兩種不同字首)。
 接下來我們匹配屬於使用者名稱的所有字元。
 再之後，匹配任意一個單詞(`[^ ]+`; 匹配由任意非空格組成的非空字串)。
-此時，再匹配 "port" 與接續的一串數字，和可能存在的字尾 `[preauth]`， 直至列尾。
+此時，再匹配 「port」 與接續的一串數字，和可能存在的字尾 `[preauth]`， 直至列尾。
 
 <!-- Notice that with this technique, as username of "Disconnected from"
 won't confuse us any more. Can you see why? -->
-採用這種方法，即使使用者名是 "Disconnected from"，我們也可以匹配正確內容，你能理解其原理嗎？
+採用這種方法，即使使用者名是 「Disconnected from」，我們也可以匹配正確內容，你能理解其原理嗎？
 
 <!-- There is one problem with this though, and that is that the entire log
 becomes empty. We want to _keep_ the username after all. For this, we
@@ -232,7 +232,7 @@ in the substitution (and in some engines, even in the pattern itself!)
 as `\1`, `\2`, `\3`, etc. So: -->
 還剩下一個問題需要解決，就是日誌的全部內容都被替換成了空字串。
 我們希望能 _留下_ 匹配到的使用者名。
-為了達成此目的，我們可以使用 "捕捉群"(capture groups)。
+為了達成此目的，我們可以使用 「捕捉群」(capture groups)。
 被括號包圍的正規表示式會被按順序存入捕捉群，而捕捉群的內容可以在替換時取用(在有些正規表示式實現中，替換內容甚至支援正規表示式本身！)。
 使用 `\1`, `\2`, `\3` 以此類推來取用其內容：
 
@@ -316,8 +316,8 @@ part says "sort until the `n`th field, where the default is the end of
 the line. In this _particular_ example, sorting by the whole line
 wouldn't matter, but we're here to learn! -->
 `sort -n` 將會按照數字排序 (預設是按照字母順序) 。
- `-k1,1` 表示 "按照被空格分個的第一行排序"。 
-`,n`表示 "僅排序前 `n` 個部分" 預設是醬所有部分都排序。
+ `-k1,1` 表示 「按照被空格分個的第一行排序」。 
+`,n`表示 「僅排序前 `n` 個部分」 預設是醬所有部分都排序。
 在這個 _典型的_ 例子中，排序所有部分沒有任何問題，我們只是為了講授 `,n` 的用法才使用了這個！
 
 <!-- If we wanted the _least_ common ones, we could use `head` instead of

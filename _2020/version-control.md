@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Version Control (Git) （尚未翻譯）"
+title: "版本控制 (Git) （尚未翻譯）"
 date: 2019-01-22
 ready: true
 video:
@@ -8,61 +8,87 @@ video:
   id: 2sjqTHE0zok
 ---
 
-Version control systems (VCSs) are tools used to track changes to source code
+<!-- Version control systems (VCSs) are tools used to track changes to source code
 (or other collections of files and folders). As the name implies, these tools
 help maintain a history of changes; furthermore, they facilitate collaboration.
 VCSs track changes to a folder and its contents in a series of snapshots, where
 each snapshot encapsulates the entire state of files/folders within a top-level
 directory. VCSs also maintain metadata like who created each snapshot, messages
-associated with each snapshot, and so on.
+associated with each snapshot, and so on. -->
+版本控制系統 (VCSs) 是用來追蹤程式原始碼（或者檔案與檔案夾）內在改動的工具。
+如同名字一樣，這些工具將會幫助我們管理程式碼的修改歷史記錄；更進一步，它也促進了合作。
+VCS透過一系列快照將檔案夾與其內容保存起來，每個快照都包含了檔案夾或者檔案的完整訊息。
+同時它還維護類似於快照創建者以及每個快照的相關信息等元數據。
 
-Why is version control useful? Even when you're working by yourself, it can let
+<!-- Why is version control useful? Even when you're working by yourself, it can let
 you look at old snapshots of a project, keep a log of why certain changes were
 made, work on parallel branches of development, and much more. When working
 with others, it's an invaluable tool for seeing what other people have changed,
-as well as resolving conflicts in concurrent development.
+as well as resolving conflicts in concurrent development. -->
+爲什麼版本控制系統十分有用？即使我們一個人進行工作，它也可以提供讓我們閱讀專案舊快照的能力，
+記錄每次編輯的目的，以及基於多個分支並行開發。
+與別人協同開發時，它展現了檢視別人對程式碼修改的能力，同時可以解決憂鬱並行開發引起的衝突。
 
-Modern VCSs also let you easily (and often automatically) answer questions
-like:
+<!-- Modern VCSs also let you easily (and often automatically) answer questions
+like: -->
+現代的版本控制系統可以幫助我們輕鬆（經常是全自動）地回答以下問題：
 
-- Who wrote this module?
+<!-- - Who wrote this module?
 - When was this particular line of this particular file edited? By whom? Why
   was it edited?
 - Over the last 1000 revisions, when/why did a particular unit test stop
-working?
+working? -->
+- 誰建立了這個模塊？
+- 檔案的這一部分是什麼時候被編輯的？是誰做出的編輯？目的是什麼？
+- 最近的 1000 個版本中，什麼時候/什麼原因導致單元測試失敗了？
 
-While other VCSs exist, **Git** is the de facto standard for version control.
-This [XKCD comic](https://xkcd.com/1597/) captures Git's reputation:
+<!-- While other VCSs exist, **Git** is the de facto standard for version control.
+This [XKCD 漫畫](https://xkcd.tw/1597) captures Git's reputation: -->
+版本控制系統有很多，但是 **Git** 是所有版本控制系統的標準。
+這篇 [XKCD 漫畫](https://xkcd.tw/1597) 展現了Git的聲望：
 
-![xkcd 1597](https://imgs.xkcd.com/comics/git.png)
+![xkcd 1597](https://xkcd.tw/strip/1597.jpg)
 
-Because Git's interface is a leaky abstraction, learning Git top-down (starting
+<!-- Because Git's interface is a leaky abstraction, learning Git top-down (starting
 with its interface / command-line interface) can lead to a lot of confusion.
 It's possible to memorize a handful of commands and think of them as magic
 incantations, and follow the approach in the comic above whenever anything goes
-wrong.
+wrong. -->
+因爲 Git 的抽象泄漏（leaky abstraction）問題，從總體到細節的方式（從介面開始）的學習方式會令人感到非常困惑。
+很多時候我們只能記住一些指令，然後如同詠唱魔法一般地使用他們。一旦出現問題，就只能如同上篇的漫畫一樣處理了。
 
-While Git admittedly has an ugly interface, its underlying design and ideas are
+<!-- While Git admittedly has an ugly interface, its underlying design and ideas are
 beautiful. While an ugly interface has to be _memorized_, a beautiful design
 can be _understood_. For this reason, we give a bottom-up explanation of Git,
 starting with its data model and later covering the command-line interface.
 Once the data model is understood, the commands can be better understood, in
-terms of how they manipulate the underlying data model.
+terms of how they manipulate the underlying data model. -->
+Git 的介面非常醜陋，但他有優雅的底層設計與思考方式。
+醜陋的介面只能被背誦，而優雅的底層會非常容易被理解。
+所以，我們將從底層到介面的方式介紹Git。
+從資料模型開始，最後再學習介面。
+一旦我們理解了Git的資料模型，學習介面並理解介面是如何操作底層資料將會非常容易。
 
-# Git's data model
+<!-- # Git's data model -->
+# Git 的資料模型
 
-There are many ad-hoc approaches you could take to version control. Git has a
+<!-- There are many ad-hoc approaches you could take to version control. Git has a
 well thought-out model that enables all the nice features of version control,
-like maintaining history, supporting branches, and enabling collaboration.
+like maintaining history, supporting branches, and enabling collaboration. -->.
+有許多方式可以做到版本控制。
+Git 使用良好設計的模型，來支援版本控制所需要的所有功能，例如維護歷史記錄，記錄分支與合作支援。
 
-## Snapshots
+<!-- ## Snapshots -->
+## 快照
 
-Git models the history of a collection of files and folders within some
+<!-- Git models the history of a collection of files and folders within some
 top-level directory as a series of snapshots. In Git terminology, a file is
 called a "blob", and it's just a bunch of bytes. A directory is called a
 "tree", and it maps names to blobs or trees (so directories can contain other
 directories). A snapshot is the top-level tree that is being tracked. For
-example, we might have a tree as follows:
+example, we might have a tree as follows: -->
+Git 將頂級目錄中檔案與檔案夾的集合的歷史記錄建立爲一系列快照。
+在 Git 內，檔案被稱爲「blob」，只是一堆字元。目錄被成爲「樹」，並且它將名稱映射到Blob或樹（因此目錄可以包含其他目錄）。快照是被追蹤的頂級樹。例如，我們可能有如下的一棵樹：
 
 ```
 <root> (tree)
@@ -74,24 +100,32 @@ example, we might have a tree as follows:
 +- baz.txt (blob, contents = "git is wonderful")
 ```
 
-The top-level tree contains two elements, a tree "foo" (that itself contains
-one element, a blob "bar.txt"), and a blob "baz.txt".
+<!-- The top-level tree contains two elements, a tree "foo" (that itself contains
+one element, a blob "bar.txt"), and a blob "baz.txt". -->
+頂級樹包含兩個元素，一棵樹「foo」（本身包含一個元素，即blob 「bar.txt」），和一個blob 「baz.txt」。
 
-## Modeling history: relating snapshots
+<!-- ## Modeling history: relating snapshots -->
+## 建模歷史：相關快照
 
-How should a version control system relate snapshots? One simple model would be
+<!-- How should a version control system relate snapshots? One simple model would be
 to have a linear history. A history would be a list of snapshots in time-order.
-For many reasons, Git doesn't use a simple model like this.
+For many reasons, Git doesn't use a simple model like this. -->
+版本控制系統應該如何關聯快照？一種簡單的模型是建立線性歷史記錄。歷史記錄將是按照時間順序排列的快照列表。
+出於許多原因，Git沒有使用這樣的簡單模型。
 
-In Git, a history is a directed acyclic graph (DAG) of snapshots. That may
+<!-- In Git, a history is a directed acyclic graph (DAG) of snapshots. That may
 sound like a fancy math word, but don't be intimidated. All this means is that
 each snapshot in Git refers to a set of "parents", the snapshots that preceded
 it. It's a set of parents rather than a single parent (as would be the case in
 a linear history) because a snapshot might descend from multiple parents, for
-example due to combining (merging) two parallel branches of development.
+example due to combining (merging) two parallel branches of development. -->
+在 Git 中，歷史記錄是快照的有向無環圖 (DAG)。這聽起來像個花哨的數學詞，不要被嚇到。
+這意味着 Git 中的每一個快照都引用一組「母對象」，即之前的快照。
+他是一組母節點集合而非單個母節點，因爲他可能從多個母節點中繼承，例如合併後的兩條分支。
 
-Git calls these snapshots "commit"s. Visualizing a commit history might look
-something like this:
+<!-- Git calls these snapshots "commit"s. Visualizing a commit history might look
+something like this: -->
+Git 將這些快照稱作 「提交」(commit)。將其可視化後大概像這樣：
 
 ```
 o <-- o <-- o <-- o
@@ -100,14 +134,19 @@ o <-- o <-- o <-- o
               --- o <-- o
 ```
 
-In the ASCII art above, the `o`s correspond to individual commits (snapshots).
+<!-- In the ASCII art above, the `o`s correspond to individual commits (snapshots).
 The arrows point to the parent of each commit (it's a "comes before" relation,
 not "comes after"). After the third commit, the history branches into two
 separate branches. This might correspond to, for example, two separate features
 being developed in parallel, independently from each other. In the future,
 these branches may be merged to create a new snapshot that incorporates both of
 the features, producing a new history that looks like this, with the newly
-created merge commit shown in bold:
+created merge commit shown in bold: -->
+在上圖中，其中的 `o` 代表一次提交。
+箭頭指出的是當前的母節點。（注意是「在自己之前」的節點，而非「之後」）。
+在第三次提交之後，歷史記錄將分為兩個單獨的分支。 
+例如，這可能對應於兩個單獨的功能，他們彼此獨立，並行開發。
+將來，這些分支可能會合併以建立一個融合了這兩個功能的新快照，從而生成看起來像下圖這樣的新歷史記錄，新創建的合併提交以粗體顯示：
 
 <pre>
 o <-- o <-- o <-- o <---- <strong>o</strong>
@@ -116,14 +155,19 @@ o <-- o <-- o <-- o <---- <strong>o</strong>
               --- o <-- o
 </pre>
 
-Commits in Git are immutable. This doesn't mean that mistakes can't be
+<!-- Commits in Git are immutable. This doesn't mean that mistakes can't be
 corrected, however; it's just that "edits" to the commit history are actually
 creating entirely new commits, and references (see below) are updated to point
-to the new ones.
+to the new ones. -->
+Git中的提交是不可更改的。 
+但這並不意味著不能糾正錯誤。 
+只是對提交歷史記錄的“編輯”實際上是建立全新的提交，並且引用（參見下文）也已更新為指向新的提交。
 
-## Data model, as pseudocode
+<!-- ## Data model, as pseudocode -->
+## 以假碼表示的資料模型
 
-It may be instructive to see Git's data model written down in pseudocode:
+<!-- It may be instructive to see Git's data model written down in pseudocode: -->
+假碼記錄下來的Git數據模型可能更易於理解：
 
 ```
 // a file is a bunch of bytes
@@ -141,18 +185,22 @@ type commit = struct {
 }
 ```
 
-It's a clean, simple model of history.
+<!-- It's a clean, simple model of history. -->
+這是一個簡單整潔的歷史模型。
 
-## Objects and content-addressing
+<!-- ## Objects and content-addressing -->
+## 對象與內容定位
 
-An "object" is a blob, tree, or commit:
+<!-- An "object" is a blob, tree, or commit: -->
+一個「對象」是一個blob，樹或者提交：
 
 ```
 type object = blob | tree | commit
 ```
 
-In Git data store, all objects are content-addressed by their [SHA-1
-hash](https://en.wikipedia.org/wiki/SHA-1).
+<!-- In Git data store, all objects are content-addressed by their [SHA-1
+hash](https://en.wikipedia.org/wiki/SHA-1). -->
+Git在存儲資料時，所有對象都被記錄[SHA-1 hash](https://en.wikipedia.org/wiki/SHA-1)以供定位。
 
 ```
 objects = map<string, object>
@@ -165,9 +213,11 @@ def load(id):
     return objects[id]
 ```
 
-Blobs, trees, and commits are unified in this way: they are all objects. When
+<!-- Blobs, trees, and commits are unified in this way: they are all objects. When
 they reference other objects, they don't actually _contain_ them in their
-on-disk representation, but have a reference to them by their hash.
+on-disk representation, but have a reference to them by their hash. -->
+Blob，樹和提交以這種方式統一：它們都是對象。 
+當他們引用其他對象時，它們實際上並沒有真正被 _寫入_ 硬碟，而是通過哈希值對其進行引用。
 
 For example, the tree for the example directory structure [above](#snapshots)
 (visualized using `git cat-file -p 698281bc680d1995c5f4caaf3359721a5a58d48d`),

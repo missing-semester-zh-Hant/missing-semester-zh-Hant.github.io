@@ -59,7 +59,7 @@ document. No more "run these 15 commands one after the other". No
 more "you forgot to run this thing" or "you forgot to pass this
 argument". -->
 如何使用別名、手稿語言與如何建立系統。
-不要再“依次執行這 15 個指令”，不要再“你忘記執行這個了”，不要再“你忘記鍵入引數了”。
+不要再「依次執行這 15 個指令」，不要再「你忘記執行這個了」，不要再「你忘記鍵入引數了」。
 
 <!-- For example, searching through your history quickly can be a huge time saver. In the example below we show several tricks related to navigating your shell history for `convert` commands. -->
 例如，快速搜尋歷史記錄可以節約你大量的時間。下面這個示例展示了利用 `convert` 來在shell中跳轉的幾個小技巧。
@@ -80,7 +80,7 @@ your code. No more "oh no, did we delete the working code?!". We'll
 even teach you how to contribute to other people's projects with pull
 requests! -->
 如何 _正確地_ 使用版本控制，利用它從災難中挽回損失，與他人合作，與快速找到導致問題的部分。
-不要再 `rm -rf; git clone`，不要再製造合併衝突（呃，至少要少製造一點），不要再大量註釋程式碼，也不要再“靠北，我們是不是把有用的部分刪掉了”。
+不要再 `rm -rf; git clone`，不要再製造合併衝突（呃，至少要少製造一點），不要再大量註釋程式碼，也不要再「靠北，我們是不是把有用的部分刪掉了」。
 我們甚至會教授你如何通過　`pull request` 來向他人的專案做貢獻。
 
 <!-- In the example below we use `git bisect` to find which commit broke a unit test and then we fix it with `git revert`. -->
@@ -159,7 +159,7 @@ unrelated projects, and keep your main machine clean and tidy. No
 more accidentally corrupting your computer while doing a security
 lab. No more millions of randomly installed packages with differing
 versions. -->
-如何使用虛擬機器嘗試全新作業系統，分隔不相關的工程，保持主系統整潔，不再因為進行安全性實驗導致電腦受損，且不再隨意安裝不同版本的軟件套件。
+如何使用虛擬機器嘗試全新作業系統，分隔不相關的專案，保持主系統整潔，不再因為進行安全性實驗導致電腦受損，且不再隨意安裝不同版本的軟件套件。
 
 <!-- ## Security -->
 ## 安全性

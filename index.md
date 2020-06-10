@@ -117,7 +117,7 @@ AeroAstro](https://aeroastro.mit.edu/) 提供的影像設施; 以及 Brandi Adam
 ---
 
 <div class="small center">
-<p><a href="https://github.com/missing-semester/missing-semester">Source code</a>.</p>
+<p><a href="https://github.com/missing-semester-zh-Hant/missing-semester-zh-Hant.github.io">Source code</a>.</p>
 <p>Licensed under CC BY-NC-SA.</p>
 <p>See <a href="/license/">here</a> for contribution &amp; translation guidelines.</p>
 </div>

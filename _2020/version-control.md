@@ -506,7 +506,7 @@ index 94bab17..f0013b2 100644
 
 {% endcomment %}
 
-- `git help <command>`: get help for a git command
+<!-- - `git help <command>`: get help for a git command
 - `git init`: creates a new git repo, with data stored in the `.git` directory
 - `git status`: tells you what's going on
 - `git add <filename>`: adds files to staging area
@@ -517,9 +517,23 @@ index 94bab17..f0013b2 100644
 - `git log --all --graph --decorate`: visualizes history as a DAG
 - `git diff <filename>`: show differences since the last commit
 - `git diff <revision> <filename>`: shows differences in a file between snapshots
-- `git checkout <revision>`: updates HEAD and current branch
+- `git checkout <revision>`: updates HEAD and current branch -->
+- `git help <command>`: 獲取幫助
+- `git init`: 建立新的倉儲，相關資料會寫入 `.git` 檔案夾
+- `git status`: 顯示當前倉儲狀態
+- `git add <filename>`: 添加到暫存區域
+- `git commit`: 建立新提交
+    - 寫入 [優秀的提交信息](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)!
+    - 透過更多方式寫入 [優秀的提交信息](https://chris.beams.io/posts/git-commit/)!
+- `git log`: 以詳細信息顯示歷史日誌
+- `git log --all --graph --decorate`: 以 DAG 方式顯示歷史日誌
+- `git diff <filename>`: 展示與上一次提交時的差異
+- `git diff <revision> <filename>`: 展示某檔案與上一次提交時的差異
+- `git checkout <revision>`: 更新 HEAD 與當前分支
 
-## Branching and merging
+
+<!-- ## Branching and merging -->
+## 分支與合併
 
 {% comment %}
 
@@ -534,44 +548,70 @@ command is used for merging.
 
 {% endcomment %}
 
-- `git branch`: shows branches
+<!-- - `git branch`: shows branches
 - `git branch <name>`: creates a branch
 - `git checkout -b <name>`: creates a branch and switches to it
     - same as `git branch <name>; git checkout <name>`
 - `git merge <revision>`: merges into current branch
 - `git mergetool`: use a fancy tool to help resolve merge conflicts
+- `git rebase`: rebase set of patches onto a new base -->
+- `git branch`: 顯示分支
+- `git branch <name>`: 建立分支
+- `git checkout -b <name>`: 建立分支並切換至該分支
+    - 等同於 `git branch <name>; git checkout <name>`
+- `git merge <revision>`: 合併到當前分支
+- `git mergetool`: 使用神奇工具處理合併衝突
 - `git rebase`: rebase set of patches onto a new base
 
-## Remotes
+<!-- ## Remotes -->
+## 遠端
 
-- `git remote`: list remotes
+<!-- - `git remote`: list remotes
 - `git remote add <name> <url>`: add a remote
 - `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
 - `git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch
 - `git fetch`: retrieve objects/references from a remote
 - `git pull`: same as `git fetch; git merge`
-- `git clone`: download repository from remote
+- `git clone`: download repository from remote -->
+- `git remote`: 列出遠端
+- `git remote add <name> <url>`: 添加遠端
+- `git push <remote> <local branch>:<remote branch>`: 將物件推送至遠端，並且更新遠端參考
+- `git branch --set-upstream-to=<remote>/<remote branch>`: 建立本地分支與遠端分支的關聯
+- `git fetch`: 從遠端擷取物件/參考
+- `git pull`: 等同於 `git fetch; git merge`
+- `git clone`: 從遠端下載倉儲
 
-## Undo
+<!-- ## Undo -->
+## 回滾
 
-- `git commit --amend`: edit a commit's contents/message
-- `git reset HEAD <file>`: unstage a file
-- `git checkout -- <file>`: discard changes
+- `git commit --amend`: 編輯提交的內容或信息
+- `git reset HEAD <file>`: 取消暫存檔案
+- `git checkout -- <file>`: 回滾更改
 
-# Advanced Git
+<!-- # Advanced Git -->
+# 高級技巧
 
-- `git config`: Git is [highly customizable](https://git-scm.com/docs/git-config)
+<!-- - `git config`: Git is [highly customizable](https://git-scm.com/docs/git-config)
 - `git clone --depth=1`: shallow clone, without entire version history
 - `git add -p`: interactive staging
 - `git rebase -i`: interactive rebasing
 - `git blame`: show who last edited which line
 - `git stash`: temporarily remove modifications to working directory
 - `git bisect`: binary search history (e.g. for regressions)
-- `.gitignore`: [specify](https://git-scm.com/docs/gitignore) intentionally untracked files to ignore
+- `.gitignore`: [specify](https://git-scm.com/docs/gitignore) intentionally untracked files to ignore -->
+- `git config`: Git 是 [高度可自訂的](https://git-scm.com/docs/git-config)
+- `git clone --depth=1`: 下載倉儲，但不下載歷史記錄
+- `git add -p`: 交互暫存
+- `git rebase -i`: 交互rebasing
+- `git blame`: 查看最後修改某列的使用者
+- `git stash`: 暫時移除工作目錄下的更改
+- `git bisect`: 透過二分搜尋來搜尋歷史記錄（比如回歸）
+- `.gitignore`: [指定](https://git-scm.com/docs/gitignore) 忽視且不會再追蹤的檔案
 
-# Miscellaneous
+<!-- # Miscellaneous -->
+# 雜項
 
-- **GUIs**: there are many [GUI clients](https://git-scm.com/downloads/guis)
+<!-- - **GUIs**: there are many [GUI clients](https://git-scm.com/downloads/guis)
 out there for Git. We personally don't use them and use the command-line
 interface instead.
 - **Shell integration**: it's super handy to have a Git status as part of your
@@ -591,11 +631,27 @@ to other projects, called [pull
 requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 - **Other Git providers**: GitHub is not special: there are many Git repository
 hosts, like [GitLab](https://about.gitlab.com/) and
-[BitBucket](https://bitbucket.org/).
+[BitBucket](https://bitbucket.org/). -->
+- **圖形介面**: Git 有許多 [圖形介面](https://git-scm.com/downloads/guis)
+不過我們使用命令列。
+- **Shell 集成**: 將 Git 集成/一體化到 shell 中會非常合適。
+([zsh](https://github.com/olivierverdier/zsh-git-prompt),
+[bash](https://github.com/magicmonty/bash-git-prompt)). [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) 這類框架中經常已經含有 Git 。
+- **編輯器集成**: 與上相似，將 Git 集成至編輯器中也很合適。 [fugitive.vim](https://github.com/tpope/vim-fugitive) 是一個基本的Vim插件。
+- **工作流**: 我們已經講解了資料模型與一些常見指令，但是還沒有討論在大型專案內工作時一些慣例。
+(並且這裏有 [非常多](https://nvie.com/posts/a-successful-git-branching-model/)
+[不同的](https://www.endoflineblog.com/gitflow-considered-harmful)
+[處理方式](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)).
+- **GitHub**: Git 不是 GitHub. GitHub 需要使用 [pull
+requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)來爲他人的專案貢獻程式碼。
+- **其他 Git 提供者**: GitHub 不是唯一的，有許多類似於 [GitLab](https://about.gitlab.com/) 與
+[BitBucket](https://bitbucket.org/)的倉儲商。
 
-# Resources
 
-- [Pro Git](https://git-scm.com/book/en/v2) is **highly recommended reading**.
+<!-- # Resources -->
+# 資源
+
+<!-- - [Pro Git](https://git-scm.com/book/en/v2) is **highly recommended reading**.
 Going through Chapters 1--5 should teach you most of what you need to use Git
 proficiently, now that you understand the data model. The later chapters have
 some interesting, advanced material.
@@ -611,7 +667,19 @@ model, for the curious.
 - [How to explain git in simple
 words](https://smusamashah.github.io/blog/2017/10/14/explain-git-in-simple-words)
 - [Learn Git Branching](https://learngitbranching.js.org/) is a browser-based
-game that teaches you Git.
+game that teaches you Git. -->
+- [Pro Git](https://git-scm.com/book/en/v2) 是 **非常值得閱讀的**.
+閱讀1-5章節可以教會你使流暢使用 Git 的大多數技巧，因爲你已經理解了 Git 的資料模型。
+後面的章節提供了很多有取得高級主題。
+- [Oh Shit, Git!?!](https://ohshitgit.com/) 是一個簡單的手冊來指引你如何從錯誤中恢復。
+- [Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/) 
+簡短介紹了 Git 的資料模型，與本文相比包含少量的假碼，但是增添了大量的精妙圖像。
+- [Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+詳細介紹了 Git 的實現細節，不僅限於資料模型。適合好奇心強烈的同學。
+- [How to explain git in simple
+words](https://smusamashah.github.io/blog/2017/10/14/explain-git-in-simple-words)
+- [Learn Git Branching](https://learngitbranching.js.org/) 透過小遊戲來學習 Git 。
+
 
 # Exercises
 

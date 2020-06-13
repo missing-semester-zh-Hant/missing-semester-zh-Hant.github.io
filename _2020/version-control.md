@@ -120,7 +120,7 @@ it. It's a set of parents rather than a single parent (as would be the case in
 a linear history) because a snapshot might descend from multiple parents, for
 example due to combining (merging) two parallel branches of development. -->
 在 Git 中，歷史記錄是快照的有向無環圖 (DAG)。這聽起來像個花哨的數學詞，不要被嚇到。
-這意味着 Git 中的每一個快照都引用一組「母對象」，即之前的快照。
+這意味着 Git 中的每一個快照都參考一組「母對象」，即之前的快照。
 他是一組母節點集合而非單個母節點，因爲他可能從多個母節點中繼承，例如合併後的兩條分支。
 
 <!-- Git calls these snapshots "commit"s. Visualizing a commit history might look
@@ -161,7 +161,7 @@ creating entirely new commits, and references (see below) are updated to point
 to the new ones. -->
 Git中的提交是不可更改的。 
 但這並不意味著不能糾正錯誤。 
-只是對提交歷史記錄的“編輯”實際上是建立全新的提交，並且引用（參見下文）也已更新為指向新的提交。
+只是對提交歷史記錄的“編輯”實際上是建立全新的提交，並且參考（參見下文）也已更新為指向新的提交。
 
 <!-- ## Data model, as pseudocode -->
 ## 以假碼表示的資料模型
@@ -217,36 +217,46 @@ def load(id):
 they reference other objects, they don't actually _contain_ them in their
 on-disk representation, but have a reference to them by their hash. -->
 Blob，樹和提交以這種方式統一：它們都是對象。 
-當他們引用其他對象時，它們實際上並沒有真正被 _寫入_ 硬碟，而是通過哈希值對其進行引用。
+當他們參考其他對象時，它們實際上並沒有真正被 _寫入_ 硬碟，而是通過哈希值對其進行引用。
 
-For example, the tree for the example directory structure [above](#snapshots)
+<!-- For example, the tree for the example directory structure [above](#snapshots)
 (visualized using `git cat-file -p 698281bc680d1995c5f4caaf3359721a5a58d48d`),
-looks like this:
+looks like this: -->
+例如，示例目錄[above](#snapshots)中的樹（使用 `git cat-file -p 698281bc680d1995c5f4caaf3359721a5a58d48d` 來顯示）看起來像這樣：
 
 ```
 100644 blob 4448adbf7ecd394f42ae135bbeed9676e894af85    baz.txt
 040000 tree c68d233a33c5c06e0340e4c224f0afca87c8ce87    foo
 ```
 
-The tree itself contains pointers to its contents, `baz.txt` (a blob) and `foo`
+<!-- The tree itself contains pointers to its contents, `baz.txt` (a blob) and `foo`
 (a tree). If we look at the contents addressed by the hash corresponding to
 baz.txt with `git cat-file -p 4448adbf7ecd394f42ae135bbeed9676e894af85`, we get
-the following:
+the following: -->
+樹本身會包含指向其他內容的指標，例如 `baz.txt` （一個 blob ）與 `foo` （一棵樹）。
+如果我們使用 `git cat-file -p 4448adbf7ecd394f42ae135bbeed9676e894af85` 來透過hash查看 `baz.txt` 的內容，
+我們會得到這種結果：
 
 ```
 git is wonderful
 ```
 
-## References
+<!-- ## References -->
+## 參考
 
-Now, all snapshots can be identified by their SHA-1 hash. That's inconvenient,
-because humans aren't good at remembering strings of 40 hexadecimal characters.
+<!-- Now, all snapshots can be identified by their SHA-1 hash. That's inconvenient,
+because humans aren't good at remembering strings of 40 hexadecimal characters. -->
+現在，所有的快照都通過其SHA-1值識別，這對於人類來說太不方便了，我們不善於記憶長達40個16進位的字串。
 
-Git's solution to this problem is human-readable names for SHA-1 hashes, called
+<!-- Git's solution to this problem is human-readable names for SHA-1 hashes, called
 "references". References are pointers to commits. Unlike objects, which are
 immutable, references are mutable (can be updated to point to a new commit).
 For example, the `master` reference usually points to the latest commit in the
-main branch of development.
+main branch of development. -->
+Git解決此問題的方法是爲SHA-1值提供易於理解的名稱，稱爲"參考"。
+參考是指向提交的指標。
+與不可變的對象不同，參考是可變的（可以更新以指向新的提交）。
+例如，`master` 通常指向主分支的最新提交。
 
 ```
 references = map<string, string>
@@ -264,36 +274,51 @@ def load_reference(name_or_id):
         return load(name_or_id)
 ```
 
-With this, Git can use human-readable names like "master" to refer to a
-particular snapshot in the history, instead of a long hexadecimal string.
+<!-- With this, Git can use human-readable names like "master" to refer to a
+particular snapshot in the history, instead of a long hexadecimal string. -->
+這樣，Git可以使用人類可以理解的名稱，例如 "master" 來參考歷史記錄中的特定快照，而非使用16進位字串。
 
-One detail is that we often want a notion of "where we currently are" in the
+<!-- One detail is that we often want a notion of "where we currently are" in the
 history, so that when we take a new snapshot, we know what it is relative to
 (how we set the `parents` field of the commit). In Git, that "where we
-currently are" is a special reference called "HEAD".
+currently are" is a special reference called "HEAD". -->
 
-## Repositories
+我們需要注意一個細節，就是我們常常會需要知道在全部歷史記錄中 "我們目前的位置"，
+以便在建立新快照時，我們知道快照的相對於誰（提交中的 `parents`， 即母節點）。
+"我們目前的位置" 是一個特別的參考，稱作 "HEAD"。
 
-Finally, we can define what (roughly) is a Git _repository_: it is the data
-`objects` and `references`.
+<!-- ## Repositories -->
+## 倉儲
 
-On disk, all Git stores are objects and references: that's all there is to Git's
+<!-- Finally, we can define what (roughly) is a Git _repository_: it is the data
+`objects` and `references`. -->
+終於，我們可以大致定義Git _倉儲_ 是什麼了：是資料物件 `objects` 與其參考 `references`。
+
+<!-- On disk, all Git stores are objects and references: that's all there is to Git's
 data model. All `git` commands map to some manipulation of the commit DAG by
-adding objects and adding/updating references.
+adding objects and adding/updating references. -->
+在硬碟上，所有 Git 存儲都是物件與參考。
+所有的 `git` 指令都對應某種建立對象，增添或刪除參考的操作。
 
-Whenever you're typing in any command, think about what manipulation the
+<!-- Whenever you're typing in any command, think about what manipulation the
 command is making to the underlying graph data structure. Conversely, if you're
 trying to make a particular kind of change to the commit DAG, e.g. "discard
 uncommitted changes and make the 'master' ref point to commit `5d83f9e`", there's
 probably a command to do it (e.g. in this case, `git checkout master; git reset
---hard 5d83f9e`).
+--hard 5d83f9e`). -->
+當我們輸入指令時，想一想這個指令對基礎的圖數據結構進行了什麼操作。
+如果要對提交DAG進行特定類型的編輯，例如 "扔掉未提交的編輯與更改 'master' 參考至 `5d83f9e`"時，
+有什麼指令可以執行此編輯。
+（此例中，我們可以使用 `git checkout master; git reset --hard 5d83f9e`）
 
-# Staging area
+<!-- # Staging area -->
+# 暫存區域 （"staging area"）
 
-This is another concept that's orthogonal to the data model, but it's a part of
-the interface to create commits.
+<!-- This is another concept that's orthogonal to the data model, but it's a part of
+the interface to create commits. -->
+這是一個與資料模型無關的概念，但他是建立提交的介面的一部分。
 
-One way you might imagine implementing snapshotting as described above is to have
+<!-- One way you might imagine implementing snapshotting as described above is to have
 a "create snapshot" command that creates a new snapshot based on the _current
 state_ of the working directory. Some version control tools work like this, but
 not Git. We want clean snapshots, and it might not always be ideal to make a
@@ -302,19 +327,31 @@ implemented two separate features, and you want to create two separate commits,
 where the first introduces the first feature, and the next introduces the
 second feature. Or imagine a scenario where you have debugging print statements
 added all over your code, along with a bugfix; you want to commit the bugfix
-while discarding all the print statements.
+while discarding all the print statements. -->
+在我們之前介紹的快照機制中，也許你想實現一個 "建立快照" 的指令，此指令可以基於工作目錄的 _目前狀態_ 建立新的快照。
+有些版本控制系統的工作方式與此類似，但是 Git 不是。
+我們希望快照簡潔乾淨，從當前狀態建立快照可能不是個好選擇。
+例如，考慮這個場景：
+我們實現了兩個單獨的功能，並且想要建立兩個獨立的提交，體一個提交僅含有第一個功能，第二個提交了另一個功能。
+或者，設想另一種場景：
+我們向代碼中添加了許多打印語句以及錯誤修正，而我們希望放棄所有打印語句的同時提交錯誤修正。
 
-Git accommodates such scenarios by allowing you to specify which modifications
+<!-- Git accommodates such scenarios by allowing you to specify which modifications
 should be included in the next snapshot through a mechanism called the "staging
-area".
+area". -->
+Git透過 "暫存區域" 來允許我們指定下次快照中要包含哪些改動。
 
-# Git command-line interface
+<!-- # Git command-line interface -->
+# Git 的命令列介面
 
-To avoid duplicating information, we're not going to explain the commands below
+<!-- To avoid duplicating information, we're not going to explain the commands below
 in detail. See the highly recommended [Pro Git](https://git-scm.com/book/en/v2)
-for more information, or watch the lecture video.
+for more information, or watch the lecture video. -->
+爲了避免信息重複，我們不會詳細解釋。
+十分建議閱讀 [Pro Git](https://git-scm.com/book/en/v2) 或者觀看課程回放來學習。
 
-## Basics
+<!-- ## Basics -->
+## 基礎
 
 {% comment %}
 

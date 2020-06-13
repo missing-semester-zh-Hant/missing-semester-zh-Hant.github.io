@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "版本控制 (Git) （尚未翻譯）"
+title: "版本控制 (Git)"
 date: 2019-01-22
 ready: true
 video:

@@ -140,8 +140,8 @@ echo "Starting program at $(date)" # Date will be substituted
 
 echo "Running program $0 with $# arguments with pid $$"
 
-for file in $@; do
-    grep foobar $file > /dev/null 2> /dev/null
+for file in "$@"; do
+    grep foobar "$file" > /dev/null 2> /dev/null
     # When pattern is not found, grep has exit status 1
     # We redirect STDOUT and STDERR to a null register since we do not care about them
     if [[ $? -ne 0 ]]; then
@@ -237,7 +237,7 @@ All UNIX-like systems come packaged with [`find`](https://www.man7.org/linux/man
 # Find all directories named src
 find . -name src -type d
 # Find all python files that have a folder named test in their path
-find . -path '**/test/**/*.py' -type f
+find . -path '*/test/*.py' -type f
 # Find all files modified in the last day
 find . -mtime -1
 # Find all zip files with size in range 500k to 10M
@@ -249,7 +249,7 @@ This property can be incredibly helpful to simplify what could be fairly monoton
 # Delete all files with .tmp extension
 find . -name '*.tmp' -exec rm {} \;
 # Find all PNG files and convert them to JPG
-find . -name '*.png' -exec convert {} {.}.jpg \;
+find . -name '*.png' -exec convert {} {}.jpg \;
 ```
 
 Despite `find`'s ubiquitousness, its syntax can sometimes be tricky to remember.

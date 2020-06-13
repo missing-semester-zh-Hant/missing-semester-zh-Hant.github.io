@@ -21,9 +21,9 @@ solve more complex problems when working on any computer-related
 problem. Yet many of us utilize only a small fraction of those tools; we
 only know enough magical incantations by rote to get by, and blindly
 copy-paste commands from the internet when we get stuck. -->
-作為電腦科學家，我們熟知電腦善於解決重複工作。然而，我們時常忘記這對我們設計程式與 _使用_ 電腦的方式如出一轍。
-我們有許多易於擷取的工具幫助自己提升效率與解決更難問題。
-不過許多人只使用了這些工具很少一部分功能。我們僅背誦了許多奇妙咒語，或在工作卡住時在網上盲目剪貼指令。
+作爲電腦科學家，我們清楚電腦是處理重複作業的好工具，然而我們常常忘記，這不止是指使用程式計算，_使用_ 電腦本身也是如此。
+處理電腦問題的時候，我們有許多易於獲取的工具來提升效率與解決更複雜的問題，
+但是往往只用到了它們的一小部分功能：我們僅僅記住了一些小技巧，或者在遇到困難的時候隨意在網路上抄寫指令。
 
 
 <!-- This class is an attempt to address this. -->
@@ -34,8 +34,8 @@ you new tools to add to your toolbox, and hopefully instill in you some
 excitement for exploring (and perhaps building) more tools on your own.
 This is what we believe to be the missing semester from most Computer
 Science curricula. -->
-我們將講授如何使用你熟知的工具的全部功能，為你的工具箱展示全新的候選，並且希望能
-引起你探索（也許還有開發）更多工具。我們認為這是如今電腦課程缺少的內容。
+我們將講授如何使用你熟知的工具的全部功能，或為你提供全新的選擇，並且希望能
+引起你探索（也許還有開發）更多工具的興趣。我們認為這是如今電腦課程缺少的內容。
 
 <!-- # Class structure -->
 # 課程結構
@@ -49,10 +49,10 @@ online, but there will be a lot of content covered in class (e.g. in the
 form of demos) that may not be in the notes. We will be recording
 lectures and posting the recordings online. -->
 
-此課程含有十一個一小時左右的授課，每一個講座都會注重在[特定主題](/2020/)上.
+此課程含有十一節一小時左右的課程，每一個講座都會注重在[特定主題](/2020/)上.
 儘管這些講座大體上是獨立的，但是我們推定你對之前課程的內容已經熟悉。
-我們提供線上的課程講義，但是許多內容僅有課上會涉及（比如演示demo）。
-我們將會錄製課程回放並可於線上觀看。
+我們提供線上的課程講義，但是許多內容僅有課上會涉及（比如demo）。
+我們將會提供線上課程回放。
 
 
 <!-- We are trying to cover a lot of ground over the course of just 11 1-hour
@@ -90,7 +90,7 @@ you cannot press a button that isn't there or give a voice command that
 hasn't been programmed. To take full advantage of the tools your
 computer provides, we have to go old-school and drop down to a textual
 interface: The Shell. -->
-如今，電腦具有各種介面來讓我們輸入指令；精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
+如今，電腦具有各種介面來讓我們輸入指令：精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
 這些介面在80%的應用場景運作良好，但其從根本上限制了你能做的事情————你無法點按不存在的按鈕或者用語音輸入未錄入過的指令。
 為了充分利用電腦的功能，我們需要回到傳統方式，使用文字介面：Shell。
 
@@ -161,7 +161,7 @@ directory named "My Photos"), you can either quote the argument with `'`
 or `"` (`"My Photos"`), or escape just the relevant characters with `\`
 (`My\ Photos`). -->
 在本例中，我們告訴shell與引數 `hello` 一同執行 `echo`。
-`echo` 程式會將引數打印出來。
+`echo` 程式會將引數列印出來。
 shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的引數
 如果你希望傳入的引數中含有空格或者其他特殊字元（比如一個名為「My Photos」的檔案夾），你可以使用`'`
 或 `"` 將其引用，或使用跳脫字元 `\` 來處理 (`My\ Photos`)。

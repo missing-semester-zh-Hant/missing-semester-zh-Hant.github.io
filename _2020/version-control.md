@@ -88,7 +88,7 @@ called a "blob", and it's just a bunch of bytes. A directory is called a
 directories). A snapshot is the top-level tree that is being tracked. For
 example, we might have a tree as follows: -->
 Git 將頂級目錄中檔案與檔案夾的集合的歷史記錄建立為一系列快照。
-在 Git 內，檔案被稱為「blob」，只是一堆字元。目錄被成為「樹」，並且它將名稱對映到Blob或樹（因此目錄可以包含其他目錄）。快照是被追蹤的頂級樹。例如，我們可能有如下的一棵樹：
+在 Git 內，檔案被稱為「blob」，只是一堆字元。目錄被稱爲「樹」，並且它將名稱對映到Blob或樹（因此目錄可以包含其他目錄）。快照是被追蹤的頂級樹。例如，我們可能有如下的一棵樹：
 
 ```
 <root> (tree)

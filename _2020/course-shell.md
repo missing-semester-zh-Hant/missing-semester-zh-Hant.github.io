@@ -23,7 +23,7 @@ only know enough magical incantations by rote to get by, and blindly
 copy-paste commands from the internet when we get stuck. -->
 作爲電腦科學家，我們清楚電腦是處理重複作業的好工具，然而我們常常忘記，這不止是指使用程式計算，_使用_ 電腦本身也是如此。
 處理電腦問題的時候，我們有許多易於獲取的工具來提升效率與解決更複雜的問題，
-但是往往只用到了它們的一小部分功能：我們僅僅記住了一些小技巧，或者在遇到困難的時候隨意在網路上抄寫指令。
+但是往往只用到了它們的一小部分功能：我們僅僅記住了一些小技巧，或者在遇到困難時隨意在網路上抄寫指令。
 
 
 <!-- This class is an attempt to address this. -->
@@ -35,7 +35,7 @@ excitement for exploring (and perhaps building) more tools on your own.
 This is what we believe to be the missing semester from most Computer
 Science curricula. -->
 我們將講授如何使用你熟知的工具的全部功能，或為你提供全新的選擇，並且希望能
-引起你探索（也許還有開發）更多工具的興趣。我們認為這是如今電腦課程缺少的內容。
+引起你探索（也許還有開發）更多工具的興趣。我們認為這正是如今電腦課程所缺少的內容。
 
 <!-- # Class structure -->
 # 課程結構
@@ -49,7 +49,7 @@ online, but there will be a lot of content covered in class (e.g. in the
 form of demos) that may not be in the notes. We will be recording
 lectures and posting the recordings online. -->
 
-此課程含有十一節一小時左右的課程，每一個講座都會注重在[特定主題](/2020/)上.
+此課程含有十一節約一小時的課程，每一個講座都會注重在[特定主題](/2020/)上。
 儘管這些講座大體上是獨立的，但是我們推定你對之前課程的內容已經熟悉。
 我們提供線上的課程講義，但是許多內容僅有課上會涉及（比如demo）。
 我們將會提供線上課程回放。
@@ -63,8 +63,8 @@ each lecture, we are hosting office hours where we will be present to
 help answer any questions you might have. If you are attending the class
 online, you can send us questions at
 [missing-semester@mit.edu](mailto:missing-semester@mit.edu). -->
-我們盡力在僅有十一小時的課程中講授許多領域的內容，所以講座內容會較密集。
-為了讓你以自己適應的速度熟悉內容，每次講座都包含了一組練習來引導你掌握講座重點。
+我們盡力在僅有十一小時的課程中講授許多不同領域的內容，所以講座內容會較緊湊。
+為了讓你可以以自己適應的速度熟悉內容，每次講座都包含了一組練習來引導你掌握講座重點。
 每節課後，我們會安排時間回答問題。若你在線上參與課程，可以將問題發送至[missing-semester@mit.edu](mailto:missing-semester@mit.edu)。
 
 <!-- Due to the limited time we have, we won't be able to cover all the tools
@@ -72,7 +72,7 @@ in the same level of detail a full-scale class might. Where possible, we
 will try to point you towards resources for digging further into a tool
 or topic, but if something particularly strikes your fancy, don't
 hesitate to reach out to us and ask for pointers! -->
-由於時間有限，我們將無法如同專門課程一樣涵蓋所有內容。
+由於時間有限，我們無法如同專門課程一樣涵蓋所有內容。
 我們會盡力介紹可以幫助你進一步探究工具或特定主題的資源。
 如果您有特別注重或感興趣的主題，請隨時與我們聯絡並尋求指導！
 
@@ -90,8 +90,8 @@ you cannot press a button that isn't there or give a voice command that
 hasn't been programmed. To take full advantage of the tools your
 computer provides, we have to go old-school and drop down to a textual
 interface: The Shell. -->
-如今，電腦具有各種介面來讓我們輸入指令：精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
-這些介面在80%的應用場景運作良好，但其從根本上限制了你能做的事情————你無法點按不存在的按鈕或者用語音輸入未錄入過的指令。
+如今，電腦有各種介面來讓我們輸入指令：精美的圖形介面，語音聽寫輸入，甚至是AR/VR介面已經無處不在。
+這些介面在80%的應用場景運作良好，但從根本上限制了你能做的事情————你無法點選不存在的按鈕或者用語音輸入從未錄入的指令。
 為了充分利用電腦的功能，我們需要回到傳統方式，使用文字介面：Shell。
 
 <!-- Nearly all platforms you can get your hand on has a shell in one form or
@@ -111,7 +111,7 @@ fairly easily. -->
 在本課中，我們將會著重介紹Bourne Again SHell，簡稱 「bash」。
 這是使用最廣泛的shell之一，其語法與許多其他shell相似。
 開啟shell的 _命令提示字元_（可以鍵入指令的地方），需要先開啟 _終端_ 。
-你的裝置通常已經安裝了終端，或者也可以自己安裝一個，非常容易。
+你的裝置通常已經安裝了終端，或者你也可以選擇自己安裝一個，非常容易。
 
 
 <!-- ## Using the shell -->
@@ -144,7 +144,7 @@ missing:~$
 prints the current date and time. The shell then asks us for another
 command to execute. We can also execute a command with _arguments_: -->
 在此，我們執行了 `date` 程式，它（不出所料的）印出了當前的日期與時間。
-然後，shell等待我們執行其他指令。我們可以執行含有 _引數_ 的指令：
+然後，shell將會等待我們執行其他指令。我們可以執行含有 _引數_ 的指令：
 
 ```console
 missing:~$ echo hello
@@ -162,7 +162,7 @@ or `"` (`"My Photos"`), or escape just the relevant characters with `\`
 (`My\ Photos`). -->
 在本例中，我們告訴shell與引數 `hello` 一同執行 `echo`。
 `echo` 程式會將引數列印出來。
-shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的引數
+shell基於空格對指令進行分詞，然後執行第一個詞指代的程式，同時將後續的詞作為程式可以訪問的引數。
 如果你希望傳入的引數中含有空格或者其他特殊字元（比如一個名為「My Photos」的檔案夾），你可以使用`'`
 或 `"` 將其引用，或使用跳脫字元 `\` 來處理 (`My\ Photos`)。
 
@@ -196,8 +196,8 @@ runs it (assuming the file is _executable_; more on that later). We can
 find out which file is executed for a given program name using the
 `which` program. We can also bypass `$PATH` entirely by giving the
 _path_ to the file we want to execute. -->
-當我們執行 `echo` 指令時, shell會看到它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字尋找由 `:` 分隔的一系列目錄。
-當shell找到程式時，shell會執行它（推定此檔案是 _可執行的_ ，之後會講解）。
+當我們執行 `echo` 指令時, shell會明白它應該執行 `echo`， 然後它會在 `$PATH` 中基於名字尋找由 `:` 分隔的一系列目錄。
+當shell找到程式時，shell會執行它（暫且推定此檔案是 _可執行的_ ，之後會講解）。
 我們可以使用 `which` 程式來找出給定程式名對應的是哪個檔案。
 我們也可以透過直接指定程式的 _路徑_ 來繞過 `$PATH`。
 
@@ -244,13 +244,13 @@ hello
 working directory was. You can configure your prompt to show you all
 sorts of useful information, which we will cover in a later lecture. -->
 可以注意到shell會一直提示我們當前工作目錄位置。
-你可以變更終端設定來顯示各種資訊，我們下一課會詳細介紹。
+你可以變更終端設定來顯示各種資訊，我們將會在下一課詳細介紹。
 
 <!-- In general, when we run a program, it will operate in the current
 directory unless we tell it otherwise. For example, it will usually
 search for files there, and create new files there if it needs to. -->
 通常來說，當我們執行程式時，它會在當前目錄執行，除非我們指定了其他目錄。
-例如，我們常常需要搜尋檔案，並且在需要時建立新檔案。
+例如，程式通常會在當前位置搜尋檔案，並且在需要的時候在當前位置建立新檔案。
 
 <!-- To see what lives in a given directory, we use the `ls` command: -->
 我們可以使用 `ls` 來檢視當前目錄下有哪些檔案：
@@ -278,7 +278,7 @@ behavior. Usually, running a program with the `-h` or `--help` flag
 and options are available. For example, `ls --help` tells us: -->
 除非我們在第一個引數指定目錄，`ls` 會印出當前目錄下的內容。
 許多指令接受旗標與選項（帶有值的旗標），旗標以 `-` 起始且可以改變指令的行為。
-通常，執行程式時使用 `-h` 或 `--help` 旗標（在Windows系統中使用 `/?`），會印出幫助文字，來告訴使用者有哪些旗標與選項可用。
+通常，執行程式時使用 `-h` 或 `--help` 旗標（在Windows系統中使用 `/?`），會印出說明文字，來告訴使用者有哪些旗標與選項可用。
 例如，`ls --help` 會告訴我們：
 
 ```
@@ -310,21 +310,21 @@ the files in `/bin` have the `x` permission set for the last group,
 `-` 代表該使用者未擁有相應權限。
 上面顯示的資訊表示，只有擁有者對 `missing` 檔案夾有寫(`w`)的權限（例如增添與移除其中的檔案）。
 為了進入某個檔案夾，使用者必須對其本身與其上級檔案夾擁有「搜尋」（表示為「可執行」：`x`）權限。
-為了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
+而為了列出其所有內容，使用者必須對其擁有讀(`r`)權限。
 對於檔案，權限是類似的。
 要注意近乎所有在 `/bin` 下的程式在最後一組都有 `x` 權限，意味著所有人都可以執行這些程式。
 
 <!-- Some other handy programs to know about at this point are `mv` (to
 rename/move a file), `cp` (to copy a file), and `mkdir` (to make a new
 directory). -->
-在此階段還有一些其他常見命令需要理解，如 `mv` (移動或更名檔案), `cp` (複製檔案), and `mkdir` (建立新檔案夾).
+在此階段還有一些其他常見命令需要理解，如 `mv` (移動或更名檔案), `cp` (複製檔案), 和 `mkdir` (建立新檔案夾).
 
 <!-- If you ever want _more_ information about a program's arguments, inputs,
 outputs, or how it works in general, give the `man` program a try. It
 takes as an argument the name of a program, and shows you its _manual
 page_. Press `q` to exit. -->
 如果你想瞭解 _更多_ 關於程式輸入輸出或引數的內容，嘗試使用 `man` 程式。
-它以一個程式名作為引數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 退出。
+它以一個程式名作為引數，然後展示此程式的 _操作手冊_ ，鍵入 `q` 以退出此操作手冊。
 
 ```console
 missing:~$ man ls
@@ -375,7 +375,7 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
 
 <!-- We will go into a lot more detail about how to take advantage of pipes
 in the lecture on data wrangling. -->
-我們會在資料預處理一課中講述更多利用管道優勢的細節。
+我們會在資料預處理一課中講述更多如何利用管道的優勢。
 
 <!-- ## A versatile and powerful tool -->
 ## 能力全面且力量強大的工具
@@ -392,12 +392,12 @@ do something as root. Though make sure you first double-check that you
 really wanted to do it that way! -->
 在大部分類Unix系統中，有一個使用者非常特殊：「root」。
 你也許已經在上面的例子中見過了。
-root 使用者（幾乎）不受權限限制，可以建立，讀取，更新，和移除系統中的任何文件
+root 使用者（幾乎）不受權限限制，可以建立，讀取，更新，和移除系統中的任何文件。
 我們通常不需要以 root 使用者登入系統，因為太容易失誤弄壞什麼。
 我們通常使用 `sudo` 指令來替換它。
 如同它的名字一樣，它允許你用「su」（「super user」, 或者說 「root」）身份來「做」事情。
 當遭遇沒有權限的錯誤時，我們通常需要以 root 身份來執行。
-但還請一定多加註意自己確實需要這麼做！
+但還請一定多加注意自己確實需要這麼做！
 
 <!-- One thing you need to be root in order to do is writing to the `sysfs` file
 system mounted under `/sys`. `sysfs` exposes a number of kernel parameters as
@@ -405,7 +405,7 @@ files, so that you can easily reconfigure the kernel on the fly without
 specialized tools. **Note that sysfs does not exist on Windows or macOS.** -->
 有一件事情是只有 root 使用者才可以做，就是向掛載在 `/sys` 下的 `sysfs` 檔案系統寫入內容。
 `sysfs` 以檔案形式展示了許多內核參數(kernel parameters)，所以你可以在系統運行時不藉助工具輕鬆改變系統內核。 
-**Windows 與 macOS 沒有這個檔案**
+**請注意在 Windows 與 macOS 中沒有這個檔案**
 
 <!-- For example, the brightness of your laptop's screen is exposed through a file
 called `brightness` under -->
@@ -438,7 +438,7 @@ open the brightness file for writing, before setting that as `sudo
 echo`'s output, but is prevented from doing so since the shell does not
 run as root. Using this knowledge, we can work around this: -->
 我們已經使用了 `sudo` 來執行指令，卻還是遭遇了一個錯誤！
-關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell 執行_ 的，而不是被獨立的程式。
+關於shell，我們需要瞭解一件重要的事：`|`, `>`, 與 `<` 等是 _被 shell_ ，而不是被獨立的程式 _執行_ 的。
 `echo` 等程式並不「知道」我們使用了 `|`。它們只是從輸入中獲取資訊並將結果寫入到輸出中。
 在這種情況中，_shell_ （權限為當前使用者）在執行 `sudo echo` 前就嘗試打開 brightness 檔案並且寫入。
 此時因為不是以 root 使用者執行，我們的操作被拒絕了。
@@ -469,7 +469,7 @@ lecture, we will talk about how to perform and automate more complex
 tasks using the shell and the many handy command-line programs out
 there. -->
 現在你已經可以使用 shell 完成一些基本任務了。
-你應該可以查詢感興趣的檔案並使用大部分程式的基礎功能。
+你應該可以透過shell查詢感興趣的檔案並使用大部分程式的基礎功能。
 在下一課中，我們將會談談如何使用 shell 與其他命令列工具完成並自動執行更複雜的任務。
 
 

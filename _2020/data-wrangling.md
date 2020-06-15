@@ -24,7 +24,7 @@ may not think of it as wrangling data, but it is going from one format
 the intel log entries). Most data wrangling is about knowing what tools
 you have at your disposal, and how to combine them. -->
 在之前部分的課程中，我們已經遇到過一些基礎的資料處理例項，比如當你使用 `|` 時，已經是在使用基本形式的資料處理了。
-考慮這樣一個指令 `journalctl | grep -i intel`。它會歲尋所有提到Intel（大小寫敏感）的系統日誌。
+考慮這樣一個指令 `journalctl | grep -i intel`。它會搜尋所有提到Intel（大小寫敏感）的系統日誌。
 你或許不認為這是資料處理，但這將資料從一種形式（全部系統日誌）轉換成了另一種更有價值的形式（僅含intel的日誌）。
 大部分資料處理工作需要我們理解如何組合並使用工具來達成目的。
 

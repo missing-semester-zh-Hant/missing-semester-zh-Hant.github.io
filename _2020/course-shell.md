@@ -363,7 +363,7 @@ hello
 input/output redirection really shines is in the use of _pipes_. The `|`
 operator lets you "chain" programs such that the output of one is the
 input of another: -->
-你也可以使用 `>>` 來向檔案附加內容。這種重新導向的真正兩點在於使用 _管道_ 。
+你也可以使用 `>>` 來向檔案附加內容。這種重新導向的真正亮點在於使用 _管道_ 。
 `|` 允許我們將一個程式的輸出 「連接」 另一程式的輸入：
 
 ```console

@@ -27,7 +27,7 @@ copy-paste commands from the internet when we get stuck. -->
 
 
 <!-- This class is an attempt to address this. -->
-此課程意圖解決這些問題。
+希望此課程可以協助你解決以上所提及的問題。
 
 <!-- We want to teach you how to make the most of the tools you know, show
 you new tools to add to your toolbox, and hopefully instill in you some

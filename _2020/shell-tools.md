@@ -125,6 +125,9 @@ false ; echo "This will always run"
 Whenever you place `$( CMD )` it will execute `CMD`, get the output of the command and substitute it in place.
 For example, if you do `for file in $(ls)`, the shell will first call `ls` and then iterate over those values.
 A lesser known similar feature is _process substitution_, `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute the `<()` with that file's name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)` will show differences between files in dirs  `foo` and `bar`. -->
+另一種常見的情況是以變數的形式獲取一個指令的輸出。我們可以透過 _指令替換(command substitution)_ 來做這件事。
+當我們使用 `$( CMD )` 時， `CMD` 會被執行，然後用它的執行結果替換掉 `$( CMD )` 。
+例如
 Another common pattern is wanting to get the output of a command as a variable. This can be done with _command substitution_.
 Whenever you place `$( CMD )` it will execute `CMD`, get the output of the command and substitute it in place.
 For example, if you do `for file in $(ls)`, the shell will first call `ls` and then iterate over those values.

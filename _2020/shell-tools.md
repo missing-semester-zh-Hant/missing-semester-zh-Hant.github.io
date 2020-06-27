@@ -127,25 +127,25 @@ For example, if you do `for file in $(ls)`, the shell will first call `ls` and t
 A lesser known similar feature is _process substitution_, `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute the `<()` with that file's name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)` will show differences between files in dirs  `foo` and `bar`. -->
 另一種常見的情況是以變數的形式獲取一個指令的輸出。我們可以透過 _指令替換(command substitution)_ 來做這件事。
 當我們使用 `$( CMD )` 時， `CMD` 會被執行，然後用它的執行結果替換掉 `$( CMD )` 。
-例如
-Another common pattern is wanting to get the output of a command as a variable. This can be done with _command substitution_.
-Whenever you place `$( CMD )` it will execute `CMD`, get the output of the command and substitute it in place.
-For example, if you do `for file in $(ls)`, the shell will first call `ls` and then iterate over those values.
-A lesser known similar feature is _process substitution_, `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute the `<()` with that file's name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)` will show differences between files in dirs  `foo` and `bar`.
+例如，如果你執行 `for file in $(ls)` ，shell會首先執行 `ls` 然後遍歷其返回值。
+另一個不太常見的特性是 _進程替代 (process substitution)_， `<( CMD )` 將會執行 `CMD` 並且將結果存入臨時檔案中，並將 `<()` 替換成臨時檔案名稱。
+這在我們希望返回值通過檔案而非 STDIN 傳送時非常有用。
+例如， `diff <(ls foo) <(ls bar)` 將會顯示檔案夾 `foo` 與 `bar` 中的內容.
 
-
-Since that was a huge information dump, let's see an example that showcases some of these features. It will iterate through the arguments we provide, `grep` for the string `foobar`, and append it to the file as a comment if it's not found.
+<!-- Since that was a huge information dump, let's see an example that showcases some of these features. It will iterate through the arguments we provide, `grep` for the string `foobar`, and append it to the file as a comment if it's not found. -->
+既然我們已經講了這麼多，是時候看看這些特性的示例了。
+這個例子將會使用 `grep` 檢索 `foobar`，如果沒有找到，就將其作爲註釋加入到檔案中。
 
 ```bash
 #!/bin/bash
 
-echo "Starting program at $(date)" # Date will be substituted
+echo "Starting program at $(date)" # date將會被替代
 
 echo "Running program $0 with $# arguments with pid $$"
 
 for file in "$@"; do
     grep foobar "$file" > /dev/null 2> /dev/null
-    # When pattern is not found, grep has exit status 1
+    # 當字串沒有被找到，grep將會退出並返回狀態碼 1
     # We redirect STDOUT and STDERR to a null register since we do not care about them
     if [[ $? -ne 0 ]]; then
         echo "File $file does not have any foobar, adding one"

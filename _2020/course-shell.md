@@ -428,4 +428,4 @@ there. -->
  7. 查看 `chmod` 的手冊 (例如，使用 `man chmod` 命令)。
  8. 使用 `chmod` 讓 `./semester` 指令可直接執行而不是輸入 `sh semester`。如何讓你的shell知道該程式應該透過 `sh` 直譯? 查看[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))來了解其用途。
  9. 使用 `|` 和 `>` ，將 `semester` 文件輸出的最後更改日期資訊，寫入根目錄下的 `last-modified.txt` 的文件中。
- 10. 寫一段指令來從 `/sys` 中獲取筆記型電腦的電量資訊，或者桌上型電腦的CPU溫度。注意：macOS並沒有sysfs，所以mac用戶可以跳過這一題。W
+ 10. 寫一段指令來從 `/sys` 中獲取筆記型電腦的電量資訊，或者桌上型電腦的CPU溫度。注意：macOS並沒有sysfs，所以mac用戶可以跳過這一題。

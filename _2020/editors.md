@@ -14,13 +14,13 @@ editing code compared to writing a long stream. It makes sense that there are
 different types of programs for writing English words versus code (e.g.
 Microsoft Word versus Visual Studio Code). -->
 寫作和寫程式實際上差異很大。
-當我們寫程式的時候，會常常切換文件、閱讀、尋找與改正程式碼，而寫作時往往會連續鍵入文字。
+當我們寫程式的時候，會常常切換檔案、閱讀、尋找與改正程式碼，而寫作時往往會連續鍵入文字。
 所以對於寫作和寫程式常常由不同種類的程式來處理（比如 Microsoft Word 和 Visual Studio Code）。
 
 <!-- As programmers, we spend most of our time editing code, so it's worth investing
 time mastering an editor that fits your needs. Here's how you learn a new
 editor: -->
-作爲程式設計師，我們會與編輯器共同度過許久，因此使用些時間熟練使用適合自己需求的編輯器是值得的。
+作為程式設計師，我們會與編輯器共同度過許久，因此使用些時間熟練使用適合自己需求的編輯器是值得的。
 
 <!-- - Start with a tutorial (i.e. this lecture, plus resources that we point out)
 - Stick with using the editor for all your text editing needs (even if it slows
@@ -40,8 +40,8 @@ After that, the benefits start: you will have enough knowledge and muscle
 memory that using the new editor saves you time. Modern text editors are fancy
 and powerful tools, so the learning never stops: you'll get even faster as you
 learn more. -->
-若我們可以遵循上述方法，並使用新編輯器完成所有文字處理工作，學習一個複雜的文字編輯器的時間線大概如此：
-在一兩小時之內，學習到基本操作，例如打開或編輯檔案、存儲與退出、瀏覽暫存區域。
+若我們可以遵循上述方法，並使用新編輯器完成所有文書處理工作，學習一個複雜的文字編輯器的時間線大概如此：
+在一兩小時之內，學習到基本操作，例如開啟或編輯檔案、儲存與退出、瀏覽暫存區域。
 學習二十小時之後，我們可以達到與使用舊編輯器同樣的速度。
 在此之後，優勢盡顯：我們已經有了足夠的知識與肌肉記憶，使得我們可以使用新編輯器節省時間。
 現代文字編輯器都是奇妙且強大的工具，學習不止，學得越多，效率越高。
@@ -51,10 +51,10 @@ learn more. -->
 
 <!-- Programmers have [strong opinions](https://en.wikipedia.org/wiki/Editor_war)
 about their text editors. -->
-程式設計師往往對自己的文字編輯器有[很強的執着](https://en.wikipedia.org/wiki/Editor_war)
+程式設計師往往對自己的文字編輯器有[很強的執著](https://en.wikipedia.org/wiki/Editor_war)
 
-現今最受歡迎的編輯器是什麼？ 這裏有一份[Stack Overflow 的調查](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
-(這個調查可能有偏見，因爲Stack Overflow的使用者不能代表所有程式設計師)。
+現今最受歡迎的編輯器是什麼？ 這裡有一份[Stack Overflow 的調查](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
+(這個調查可能有偏見，因為Stack Overflow的使用者不能代表所有程式設計師)。
 [Visual Studio Code](https://code.visualstudio.com/) 是最受歡迎的編輯器。
 [Vim](https://www.vim.org/)則是最受歡迎的命令列編輯器。
 
@@ -67,16 +67,16 @@ lots of tools support a Vim emulation mode (for example, 1.4 million people
 have installed [Vim emulation for VS code](https://github.com/VSCodeVim/Vim)).
 Vim is probably worth learning even if you finally end up switching to some
 other text editor. -->
-此課程的所有講師都使用 Vim 作爲編輯器。
+此課程的所有講師都使用 Vim 作為編輯器。
 Vim 歷史悠久，起源於 Vi 編輯器 (1976)，並且直至今日還在成長。
-Vim 有非常簡潔的行事理論，因此，許多工具支持類 Vim 的編輯模式（例如，140万人安裝了[Vim emulation for VS code](https://github.com/VSCodeVim/Vim)）。
+Vim 有非常簡潔的行事理論，因此，許多工具支援類 Vim 的編輯模式（例如，140萬人安裝了[Vim emulation for VS code](https://github.com/VSCodeVim/Vim)）。
 即使你決定使用其他編輯器，Vim依然是值得學習的。
 
 <!-- It's not possible to teach all of Vim's functionality in 50 minutes, so we're
 going to focus on explaining the philosophy of Vim, teaching you the basics,
 showing you some of the more advanced functionality, and giving you the
 resources to master the tool. -->
-在 50 分鐘之內教授完Vim的功能是不可能的，所以我們只會專注與介紹Vim的處世哲學，教授一點基礎知識，展示一些高級功能，並爲你提供掌握Vim的學習資源。
+在 50 分鐘之內教授完Vim的功能是不可能的，所以我們只會專注與介紹Vim的處世哲學，教授一點基礎知識，展示一些高階功能，並為你提供掌握Vim的學習資源。
 
 <!-- # Philosophy of Vim -->
 # Vim之哲學
@@ -92,7 +92,7 @@ avoids using the arrow keys because it requires too much movement. -->
 因此，Vim是 _模式化_ 編輯器：它具有鍵入文字和處理文字的不同模式。
 Vim是可程式化的（利用 Vimscript 以及 Python 等其他語言），並且 Vim 介面自身就是程式語言：
 鍵擊（使用助記符）是指令，並且這些指令可以相互組合。
-Vim 避免使用滑鼠，因爲滑鼠是低效率的；Vim甚至避免使用方向鍵，因爲需要太多次移動。
+Vim 避免使用滑鼠，因為滑鼠是低效率的；Vim甚至避免使用方向鍵，因為需要太多次移動。
 
 <!-- The end result is an editor that can match the speed at which you think. -->
 最終的結果是，使用 Vim 編輯跟得上我們思考的速度。
@@ -104,17 +104,17 @@ Vim 避免使用滑鼠，因爲滑鼠是低效率的；Vim甚至避免使用方�
 reading, navigating, and making small edits, as opposed to writing long streams
 of text. For this reason, Vim has multiple operating modes. -->
 Vim 設計基於使用者花費大量時間進行閱讀，瀏覽與小修改，
-而不是編寫長文本。因此，Vim 擁有多種模式：
+而不是編寫長文字。因此，Vim 擁有多種模式：
 
 <!-- - **Normal**: for moving around a file and making edits
 - **Insert**: for inserting text
 - **Replace**: for replacing text
 - **Visual** (plain, line, or block): for selecting blocks of text
 - **Command-line**: for running a command -->
-- **標準(Normal)**: 在檔案中移動並更正文本
-- **插入(Insert)**: 插入文本
-- **替換(Replace)**: 替換文本
-- **可視化(Visual)** (以字元，列， 或文字塊): 選中文本
+- **標準(Normal)**: 在檔案中移動並更正文字
+- **插入(Insert)**: 插入文字
+- **替換(Replace)**: 替換文字
+- **視覺化(Visual)** (以字元，列， 或文字塊): 選中文字
 - **命令列(Command-line)**: 執行指令
 
 <!-- Keystrokes have different meanings in different operating modes. For example,
@@ -122,20 +122,20 @@ the letter `x` in Insert mode will just insert a literal character 'x', but in
 Normal mode, it will delete the character under the cursor, and in Visual mode,
 it will delete the selection. -->
 在不同的模式下鍵擊的作用也不同。例如，`x` 在插入模式下會鍵入 'x'，但在標準模式下
-會刪除當前光標下的字元，若在可視模式下會刪除選中的文本。
+會刪除當前游標下的字元，若在可視模式下會刪除選中的文字。
 
 <!-- In its default configuration, Vim shows the current mode in the bottom left.
 The initial/default mode is Normal mode. You'll generally spend most of your
 time between Normal mode and Insert mode. -->
-在默認配置下，Vim會在底部左端顯示當前的模式。
-Vim 的默認模式是標準模式。 通常我們會將大部分時間用在標準與插入模式上。
+在預設配置下，Vim會在底部左端顯示當前的模式。
+Vim 的預設模式是標準模式。 通常我們會將大部分時間用在標準與插入模式上。
 
 <!-- You change modes by pressing `<ESC>` (the escape key) to switch from any mode
 back to Normal mode. From Normal mode, enter Insert mode with `i`, Replace mode
 with `R`, Visual mode with `v`, Visual Line mode with `V`, Visual Block mode
 with `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with
 `:`. -->
-我們可以按下 `<ESC>` 來從任意模式轉換爲標準模式。
+我們可以按下 `<ESC>` 來從任意模式轉換為標準模式。
 在標準模式中，使用 `i` 進入插入模式，使用 `R` 進入替換模式，使用 `v` 進入可視模式，
 使用 `V` 進入可視(列)模式，使用 `<C-v>` (Ctrl-V, 有時寫成 `^V`) 來進入可視(塊)模式，
 使用 `:` 進入命令列模式。
@@ -143,14 +143,14 @@ with `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with
 <!-- You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock to
 Escape ([macOS
 instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)). -->
-在使用Vim時會市場用到 `<ESC>`: 清考慮將 Caps Lock 重映射至 Escape ([macOS
+在使用Vim時會市場用到 `<ESC>`: 清考慮將 Caps Lock 重對映至 Escape ([macOS
 指引](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)).
 
 <!-- # Basics -->
 # 基本
 
 <!-- ## Inserting text -->
-## 插入文本
+## 插入文字
 
 <!-- From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
 other text editor, until you press `<ESC>` to return to Normal mode. This,
@@ -162,7 +162,7 @@ time editing from Insert mode). -->
 只需知道這一點與之前介紹的內容，就足以使用 VIm 來編輯檔案了(雖然只使用插入模式效率不高)。
 
 <!-- ## Buffers, tabs, and windows -->
-## 緩存, 標籤頁，窗口
+## 緩存, 標籤頁，視窗
 
 <!-- Vim maintains a set of open files, called "buffers". A Vim session has a number
 of tabs, each of which has a number of windows (split panes). Each window shows
@@ -175,11 +175,11 @@ Vim 會維護一系列打開的檔案，其叫做 "緩存"。
 一個 Vim 會話包含許多標籤頁，每個標籤頁持有許多視窗(分割窗格)。
 每個視窗顯示一個緩存。
 與網頁瀏覽器等其他我們熟悉的程式不一樣的是，緩存與視窗不是一一對應的關係；
-視窗是單純的瀏覽介面。一個緩存可以被 _多個_ 視窗所開啓，也可以在同一個標籤頁內打開。
-這個功能很好用，例如在查看同一個檔案的不同部分的時候。
+視窗是單純的瀏覽介面。一個緩存可以被 _多個_ 視窗所開啟，也可以在同一個標籤頁內開啟。
+這個功能很好用，例如在檢視同一個檔案的不同部分的時候。
 
 <!-- By default, Vim opens with a single tab, which contains a single window. -->
-預設情況下，Vim 會開啓一個標籤頁，這個標籤頁包含一個視窗。
+預設情況下，Vim 會開啟一個標籤頁，這個標籤頁包含一個視窗。
 
 <!-- ## Command-line -->
 ## 命令列
@@ -189,8 +189,8 @@ to the command line at the bottom of the screen upon pressing `:`. This mode
 has many functionalities, including opening, saving, and closing files, and
 [quitting Vim](https://twitter.com/iamdevloper/status/435555976687923200). -->
 在標準模式下鍵入 `:` 來進入命令列模式。
-此時光標會立即跳至熒幕下方的命令列。
-這個模式包含許多功能，如開啓，存儲，關閉檔案，以及[退出 Vim](https://twitter.com/iamdevloper/status/435555976687923200).
+此時游標會立即跳至熒幕下方的命令列。
+這個模式包含許多功能，如開啟，儲存，關閉檔案，以及[退出 Vim](https://twitter.com/iamdevloper/status/435555976687923200).
 
 <!-- - `:q` quit (close window)
 - `:w` save ("write")
@@ -201,9 +201,9 @@ has many functionalities, including opening, saving, and closing files, and
     - `:help :w` opens help for the `:w` command
     - `:help w` opens help for the `w` movement -->
 - `:q` 退出 (關閉視窗)
-- `:w` 存儲 ("寫入")
-- `:wq` 存儲後退出
-- `:e {檔案名}` 開啓檔案
+- `:w` 儲存 ("寫入")
+- `:wq` 儲存後退出
+- `:e {檔案名}` 開啟檔案
 - `:ls` 顯示現有的緩存
 - `:help {topic}` 顯示幫助
     - `:help :w` 顯示關於 `:w` 指令的幫助
@@ -218,7 +218,7 @@ _compose_. This enables efficient movement and edits, especially once the
 commands become muscle memory. -->
 Vim 最重要的想法就是 Vim 自身的介面就是一種程式語言。
 鍵擊是指令， 這些指令可以 _結合_。
-這使得移動與編輯更加高效，尤其是在這些指令成爲肌肉記憶的情況下。
+這使得移動與編輯更加高效，尤其是在這些指令成為肌肉記憶的情況下。
 
 <!-- ## Movement -->
 ## 移動
@@ -227,7 +227,7 @@ Vim 最重要的想法就是 Vim 自身的介面就是一種程式語言。
 navigate the buffer. Movements in Vim are also called "nouns", because they
 refer to chunks of text. -->
 通常情況下我們應該在標準模式下使用移動指令來導航緩存。
-在 Vim 中移動被稱爲 "名詞"，因爲這些移動指令參考了文本塊。
+在 Vim 中移動被稱為 "名詞"，因為這些移動指令參考了文字塊。
 
 <!-- - Basic movement: `hjkl` (left, down, up, right)
 - Words: `w` (next word), `b` (beginning of word), `e` (end of word)
@@ -246,7 +246,7 @@ refer to chunks of text. -->
 - 列: `0` (列首), `^` (第一個非空字元), `$` (列尾)
 - 熒幕: `H` (熒幕首列), `M` (中間), `L` (熒幕末尾)
 - 滾動: `Ctrl-u` (向上), `Ctrl-d` (向下)
-- 檔案: `gg` (文件頭), `G` (文件尾)
+- 檔案: `gg` (檔案頭), `G` (檔案尾)
 - 列數: `:{列數}<CR>` or `{列數}G` (列 {列數})
 - 雜項: `%` (尋找配對)
 - 查找: `f{character}`, `t{character}`, `F{character}`, `T{character}`
@@ -257,14 +257,14 @@ refer to chunks of text. -->
 <!-- ## Selection -->
 ## 選擇
 
-可視化模式:
+視覺化模式:
 
 <!-- - Visual
 - Visual Line
 - Visual Block -->
-- 可視化
-- 可視化(列)
-- 可視化(塊)
+- 視覺化
+- 視覺化(列)
+- 視覺化(塊)
 
 <!-- Can use movement keys to make selection. -->
 可以使用移動鍵來選擇
@@ -278,7 +278,7 @@ interface starts to look like a programming language. Vim's editing commands
 are also called "verbs", because verbs act on nouns. -->
 所有我們曾用滑鼠做的事情，現在都可以使用鍵盤上的編輯與移動指令來完成。
 從此時起 Vim 的介面開始有些像程式語言了。
-Vim 的編輯命令也被稱爲 "動詞"， 因爲動詞可以操作名詞。
+Vim 的編輯命令也被稱為 "動詞"， 因為動詞可以操作名詞。
 
 <!-- - `i` enter Insert mode
     - but for manipulating/deleting text, want to use something more than
@@ -299,7 +299,7 @@ Vim 的編輯命令也被稱爲 "動詞"， 因爲動詞可以操作名詞。
 - `p` to paste
 - Lots more to learn: e.g. `~` flips the case of a character -->
 - `i` 進入插入模式
-    - 但是對於操作/刪除文本，想使用除了 backspace 的方法完成
+    - 但是對於操作/刪除文字，想使用除了 backspace 的方法完成
 - `o` / `O` 在此列前/後插入新列
 - `d{motion}` 刪除 {motion}
     - 例如 `dw` 刪除詞, `d$` 刪除至列尾, `d0` 刪除至列首
@@ -308,12 +308,12 @@ Vim 的編輯命令也被稱爲 "動詞"， 因爲動詞可以操作名詞。
     - 如同 `d{motion}` 後執行 `i`
 - `x` 刪除字元 (與 `dl` 效果相同)
 - `s` 替換字元 (與 `xi` 效果相同)
-- 可視化模式搭配操作
-    - 選中文本, 使用 `d` 刪除或使用 `c` 更改
+- 視覺化模式搭配操作
+    - 選中文字, 使用 `d` 刪除或使用 `c` 更改
 - `u` 復原, `<C-r>` 重做
 - `y` 複製 / "yank" (有些其他指令如 `d` 也會複製)
-- `p` 粘貼
-- 還有許多其他值得學習的: 例如 `~` 改變字符的大小寫
+- `p` 貼上
+- 還有許多其他值得學習的: 例如 `~` 改變字元的大小寫
 
 ## Counts
 

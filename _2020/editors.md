@@ -97,89 +97,139 @@ Vim 避免使用滑鼠，因爲滑鼠是低效率的；Vim甚至避免使用方�
 <!-- The end result is an editor that can match the speed at which you think. -->
 最終的結果是，使用 Vim 編輯跟得上我們思考的速度。
 
-# Modal editing
+<!-- # Modal editing -->
+# 編輯模態
 
-Vim's design is based on the idea that a lot of programmer time is spent
+<!-- Vim's design is based on the idea that a lot of programmer time is spent
 reading, navigating, and making small edits, as opposed to writing long streams
-of text. For this reason, Vim has multiple operating modes.
+of text. For this reason, Vim has multiple operating modes. -->
+Vim 設計基於使用者花費大量時間進行閱讀，瀏覽與小修改，
+而不是編寫長文本。因此，Vim 擁有多種模式：
 
-- **Normal**: for moving around a file and making edits
+<!-- - **Normal**: for moving around a file and making edits
 - **Insert**: for inserting text
 - **Replace**: for replacing text
 - **Visual** (plain, line, or block): for selecting blocks of text
-- **Command-line**: for running a command
+- **Command-line**: for running a command -->
+- **標準(Normal)**: 在檔案中移動並更正文本
+- **插入(Insert)**: 插入文本
+- **替換(Replace)**: 替換文本
+- **可視化(Visual)** (以字元，列， 或文字塊): 選中文本
+- **命令列(Command-line)**: 執行指令
 
-Keystrokes have different meanings in different operating modes. For example,
+<!-- Keystrokes have different meanings in different operating modes. For example,
 the letter `x` in Insert mode will just insert a literal character 'x', but in
 Normal mode, it will delete the character under the cursor, and in Visual mode,
-it will delete the selection.
+it will delete the selection. -->
+在不同的模式下鍵擊的作用也不同。例如，`x` 在插入模式下會鍵入 'x'，但在標準模式下
+會刪除當前光標下的字元，若在可視模式下會刪除選中的文本。
 
-In its default configuration, Vim shows the current mode in the bottom left.
+<!-- In its default configuration, Vim shows the current mode in the bottom left.
 The initial/default mode is Normal mode. You'll generally spend most of your
-time between Normal mode and Insert mode.
+time between Normal mode and Insert mode. -->
+在默認配置下，Vim會在底部左端顯示當前的模式。
+Vim 的默認模式是標準模式。 通常我們會將大部分時間用在標準與插入模式上。
 
-You change modes by pressing `<ESC>` (the escape key) to switch from any mode
+<!-- You change modes by pressing `<ESC>` (the escape key) to switch from any mode
 back to Normal mode. From Normal mode, enter Insert mode with `i`, Replace mode
 with `R`, Visual mode with `v`, Visual Line mode with `V`, Visual Block mode
 with `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with
-`:`.
+`:`. -->
+我們可以按下 `<ESC>` 來從任意模式轉換爲標準模式。
+在標準模式中，使用 `i` 進入插入模式，使用 `R` 進入替換模式，使用 `v` 進入可視模式，
+使用 `V` 進入可視(列)模式，使用 `<C-v>` (Ctrl-V, 有時寫成 `^V`) 來進入可視(塊)模式，
+使用 `:` 進入命令列模式。
 
-You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock to
+<!-- You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock to
 Escape ([macOS
-instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)).
+instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)). -->
+在使用Vim時會市場用到 `<ESC>`: 清考慮將 Caps Lock 重映射至 Escape ([macOS
+指引](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)).
 
-# Basics
+<!-- # Basics -->
+# 基本
 
-## Inserting text
+<!-- ## Inserting text -->
+## 插入文本
 
-From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
+<!-- From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
 other text editor, until you press `<ESC>` to return to Normal mode. This,
 along with the basics explained above, are all you need to start editing files
 using Vim (though not particularly efficiently, if you're spending all your
-time editing from Insert mode).
+time editing from Insert mode). -->
+在標準模式下，按下 `i` 來進入插入模式。
+現在 Vim 和許多其他編輯器一樣，直到我們按下 `<ESC>` 來回到標準模式。
+只需知道這一點與之前介紹的內容，就足以使用 VIm 來編輯檔案了(雖然只使用插入模式效率不高)。
 
-## Buffers, tabs, and windows
+<!-- ## Buffers, tabs, and windows -->
+## 緩存, 標籤頁，窗口
 
-Vim maintains a set of open files, called "buffers". A Vim session has a number
+<!-- Vim maintains a set of open files, called "buffers". A Vim session has a number
 of tabs, each of which has a number of windows (split panes). Each window shows
 a single buffer. Unlike other programs you are familiar with, like web
 browsers, there is not a 1-to-1 correspondence between buffers and windows;
 windows are merely views. A given buffer may be open in _multiple_ windows,
 even within the same tab. This can be quite handy, for example, to view two
-different parts of a file at the same time.
+different parts of a file at the same time. -->
+Vim 會維護一系列打開的檔案，其叫做 "緩存"。
+一個 Vim 會話包含許多標籤頁，每個標籤頁持有許多視窗(分割窗格)。
+每個視窗顯示一個緩存。
+與網頁瀏覽器等其他我們熟悉的程式不一樣的是，緩存與視窗不是一一對應的關係；
+視窗是單純的瀏覽介面。一個緩存可以被 _多個_ 視窗所開啓，也可以在同一個標籤頁內打開。
+這個功能很好用，例如在查看同一個檔案的不同部分的時候。
 
-By default, Vim opens with a single tab, which contains a single window.
+<!-- By default, Vim opens with a single tab, which contains a single window. -->
+預設情況下，Vim 會開啓一個標籤頁，這個標籤頁包含一個視窗。
 
-## Command-line
+<!-- ## Command-line -->
+## 命令列
 
-Command mode can be entered by typing `:` in Normal mode. Your cursor will jump
+<!-- Command mode can be entered by typing `:` in Normal mode. Your cursor will jump
 to the command line at the bottom of the screen upon pressing `:`. This mode
 has many functionalities, including opening, saving, and closing files, and
-[quitting Vim](https://twitter.com/iamdevloper/status/435555976687923200).
+[quitting Vim](https://twitter.com/iamdevloper/status/435555976687923200). -->
+在標準模式下鍵入 `:` 來進入命令列模式。
+此時光標會立即跳至熒幕下方的命令列。
+這個模式包含許多功能，如開啓，存儲，關閉檔案，以及[退出 Vim](https://twitter.com/iamdevloper/status/435555976687923200).
 
-- `:q` quit (close window)
+<!-- - `:q` quit (close window)
 - `:w` save ("write")
 - `:wq` save and quit
 - `:e {name of file}` open file for editing
 - `:ls` show open buffers
 - `:help {topic}` open help
     - `:help :w` opens help for the `:w` command
-    - `:help w` opens help for the `w` movement
+    - `:help w` opens help for the `w` movement -->
+- `:q` 退出 (關閉視窗)
+- `:w` 存儲 ("寫入")
+- `:wq` 存儲後退出
+- `:e {檔案名}` 開啓檔案
+- `:ls` 顯示現有的緩存
+- `:help {topic}` 顯示幫助
+    - `:help :w` 顯示關於 `:w` 指令的幫助
+    - `:help w` 顯示關於 `w` 移動方式的幫助
 
-# Vim's interface is a programming language
+<!-- # Vim's interface is a programming language -->
+# Vim 的介面是一種程式語言
 
-The most important idea in Vim is that Vim's interface itself is a programming
+<!-- The most important idea in Vim is that Vim's interface itself is a programming
 language. Keystrokes (with mnemonic names) are commands, and these commands
 _compose_. This enables efficient movement and edits, especially once the
-commands become muscle memory.
+commands become muscle memory. -->
+Vim 最重要的想法就是 Vim 自身的介面就是一種程式語言。
+鍵擊是指令， 這些指令可以 _結合_。
+這使得移動與編輯更加高效，尤其是在這些指令成爲肌肉記憶的情況下。
 
-## Movement
+<!-- ## Movement -->
+## 移動
 
-You should spend most of your time in Normal mode, using movement commands to
+<!-- You should spend most of your time in Normal mode, using movement commands to
 navigate the buffer. Movements in Vim are also called "nouns", because they
-refer to chunks of text.
+refer to chunks of text. -->
+通常情況下我們應該在標準模式下使用移動指令來導航緩存。
+在 Vim 中移動被稱爲 "名詞"，因爲這些移動指令參考了文本塊。
 
-- Basic movement: `hjkl` (left, down, up, right)
+<!-- - Basic movement: `hjkl` (left, down, up, right)
 - Words: `w` (next word), `b` (beginning of word), `e` (end of word)
 - Lines: `0` (beginning of line), `^` (first non-blank character), `$` (end of line)
 - Screen: `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)
@@ -190,26 +240,47 @@ refer to chunks of text.
 - Find: `f{character}`, `t{character}`, `F{character}`, `T{character}`
     - find/to forward/backward {character} on the current line
     - `,` / `;` for navigating matches
-- Search: `/{regex}`, `n` / `N` for navigating matches
+- Search: `/{regex}`, `n` / `N` for navigating matches -->
+- 基礎移動: `hjkl` (左，下，上，右)
+- 詞: `w` (下一詞), `b` (詞首), `e` (詞尾)
+- 列: `0` (列首), `^` (第一個非空字元), `$` (列尾)
+- 熒幕: `H` (熒幕首列), `M` (中間), `L` (熒幕末尾)
+- 滾動: `Ctrl-u` (向上), `Ctrl-d` (向下)
+- 檔案: `gg` (文件頭), `G` (文件尾)
+- 列數: `:{列數}<CR>` or `{列數}G` (列 {列數})
+- 雜項: `%` (尋找配對)
+- 查找: `f{character}`, `t{character}`, `F{character}`, `T{character}`
+    - 在此列中 查到/到 向前/向後查找 {character}
+    - `,` / `;` 來導向結果
+- 搜尋: `/{regex}`, `n` / `N` 用於匹配導航
 
-## Selection
+<!-- ## Selection -->
+## 選擇
 
-Visual modes:
+可視化模式:
 
-- Visual
+<!-- - Visual
 - Visual Line
-- Visual Block
+- Visual Block -->
+- 可視化
+- 可視化(列)
+- 可視化(塊)
 
-Can use movement keys to make selection.
+<!-- Can use movement keys to make selection. -->
+可以使用移動鍵來選擇
 
-## Edits
+<!-- ## Edits -->
+## 編輯
 
-Everything that you used to do with the mouse, you now do with the keyboard
+<!-- Everything that you used to do with the mouse, you now do with the keyboard
 using editing commands that compose with movement commands. Here's where Vim's
 interface starts to look like a programming language. Vim's editing commands
-are also called "verbs", because verbs act on nouns.
+are also called "verbs", because verbs act on nouns. -->
+所有我們曾用滑鼠做的事情，現在都可以使用鍵盤上的編輯與移動指令來完成。
+從此時起 Vim 的介面開始有些像程式語言了。
+Vim 的編輯命令也被稱爲 "動詞"， 因爲動詞可以操作名詞。
 
-- `i` enter Insert mode
+<!-- - `i` enter Insert mode
     - but for manipulating/deleting text, want to use something more than
     backspace
 - `o` / `O` insert line below / above
@@ -226,7 +297,23 @@ are also called "verbs", because verbs act on nouns.
 - `u` to undo, `<C-r>` to redo
 - `y` to copy / "yank" (some other commands like `d` also copy)
 - `p` to paste
-- Lots more to learn: e.g. `~` flips the case of a character
+- Lots more to learn: e.g. `~` flips the case of a character -->
+- `i` 進入插入模式
+    - 但是對於操作/刪除文本，想使用除了 backspace 的方法完成
+- `o` / `O` 在此列前/後插入新列
+- `d{motion}` 刪除 {motion}
+    - 例如 `dw` 刪除詞, `d$` 刪除至列尾, `d0` 刪除至列首
+- `c{motion}` 變更 {motion}
+    - 例如 `cw` 更改詞
+    - 如同 `d{motion}` 後執行 `i`
+- `x` 刪除字元 (與 `dl` 效果相同)
+- `s` 替換字元 (與 `xi` 效果相同)
+- 可視化模式搭配操作
+    - 選中文本, 使用 `d` 刪除或使用 `c` 更改
+- `u` 復原, `<C-r>` 重做
+- `y` 複製 / "yank" (有些其他指令如 `d` 也會複製)
+- `p` 粘貼
+- 還有許多其他值得學習的: 例如 `~` 改變字符的大小寫
 
 ## Counts
 

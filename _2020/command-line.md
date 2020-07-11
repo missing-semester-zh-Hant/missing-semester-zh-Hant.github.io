@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Command-line Environment （尚未翻譯）"
+title: "命令列環境"
 date: 2019-01-21
 ready: true
 video:
@@ -8,24 +8,38 @@ video:
   id: e8BO_dYxk5c
 ---
 
-In this lecture we will go through several ways in which you can improve your workflow when using the shell. We have been working with the shell for a while now, but we have mainly focused on executing different commands. We will now see how to run several processes at the same time while keeping track of them, how to stop or pause a specific process and how to make a process run in the background.
+<!-- In this lecture we will go through several ways in which you can improve your workflow when using the shell. We have been working with the shell for a while now, but we have mainly focused on executing different commands. We will now see how to run several processes at the same time while keeping track of them, how to stop or pause a specific process and how to make a process run in the background.
+-->
 
-We will also learn about different ways to improve your shell and other tools, by defining aliases and configuring them using dotfiles. Both of these can help you save time, e.g. by using the same configurations in all your machines without having to type long commands. We will look at how to work with remote machines using SSH.
+當我們使用 shell 時，可以使用一些方法改善我們的作業流程，本節課我們就來討論這些方法。 我們已經使用 shell 一段時間了，但是到目前為止我們的關注點主要集中在使用不同的指令上面。現在，我們將會學習如何同時執行多個不同的行程(processes)並追蹤它們的狀態、如何停止或暫停某個行程，以及如何使其在背景執行。
 
+<!--
+We will also learn about different ways to improve your shell and other tools, by defining aliases and configuring them using dotfiles. Both of these can help you save time, e.g. by using the same configurations in all your machines without having to type long commands. We will look at how to work with remote machines using SSH. -->
 
-# Job Control
+我們還將學習一些方法能夠改善我們的 shell 及其他工具的作業流程，像是透過定義別名或修改配置文件。這些方法都可以幫我們節省大量的時間，僅需要執行一些簡單的指令，我們就可以在所有的主機上使用相同的配置。我們還會學習如何使用 SSH 操作遠端電腦。
 
-In some cases you will need to interrupt a job while it is executing, for instance if a command is taking too long to complete (such as a `find` with a very large directory structure to search through).
+<!-- # Job Control -->
+# 任務控制
+
+<!-- In some cases you will need to interrupt a job while it is executing, for instance if a command is taking too long to complete (such as a `find` with a very large directory structure to search through).
 Most of the time, you can do `Ctrl-C` and the command will stop.
-But how does this actually work and why does it sometimes fail to stop the process?
+But how does this actually work and why does it sometimes fail to stop the process? -->
 
-## Killing a process
+某些情況下我們需要中斷正在執行的任務，比如當一個指令需要執行很長時間才能完成時（假設我們在一個非常大的目錄結構中使用 `find` 進行搜索）。大多數情況下，我們可以使用 `Ctrl-C` 來停止指令的執行。但是它的工作原理是什麼呢？為什麼有的時候會無法結束行程？
 
-Your shell is using a UNIX communication mechanism called a _signal_ to communicate information to the process. When a process receives a signal it stops its execution, deals with the signal and potentially changes the flow of execution based on the information that the signal delivered. For this reason, signals are _software interrupts_.
+<!-- ## Killing a process -->
+# 結束行程
 
-In our case, when typing `Ctrl-C` this prompts the shell to deliver a `SIGINT` signal to the process.
+<!-- Your shell is using a UNIX communication mechanism called a _signal_ to communicate information to the process. When a process receives a signal it stops its execution, deals with the signal and potentially changes the flow of execution based on the information that the signal delivered. For this reason, signals are _software interrupts_. -->
 
-Here's a minimal example of a Python program that captures `SIGINT` and ignores it, no longer stopping. To kill this program we can now use the `SIGQUIT` signal instead, by typing `Ctrl-\`.
+我們的 shell 會使用 UNIX 提供的信號(signal)機制達到行程間的相互溝通。當一個行程接收到信號時，它會停止執行、處理該信號並根據信號傳遞的訊息來改變其執行流程。就這一點而言，信號是一種軟體中斷(software interrupts)。
+
+<!-- In our case, when typing `Ctrl-C` this prompts the shell to deliver a `SIGINT` signal to the process. -->
+在上面的例子中，當我們輸入 `Ctrl-C` 時，shell 會發送一個SIGINT 信號到行程。
+
+<!-- Here's a minimal example of a Python program that captures `SIGINT` and ignores it, no longer stopping. To kill this program we can now use the `SIGQUIT` signal instead, by typing `Ctrl-\`. -->
+下面這個 Python 程式示範如何捕獲信號 `SIGINT` 並忽略它的基本操作， `Ctrl-C` 並不會讓程式停止。為了停止這個程式，我們需要使用 `SIGQUIT` 信號，通過輸入 `Ctrl-\` 可以發送該信號。
+
 
 ```python
 #!/usr/bin/env python
@@ -42,7 +56,8 @@ while True:
     i += 1
 ```
 
-Here's what happens if we send `SIGINT` twice to this program, followed by `SIGQUIT`. Note that `^` is how `Ctrl` is displayed when typed in the terminal.
+<!-- Here's what happens if we send `SIGINT` twice to this program, followed by `SIGQUIT`. Note that `^` is how `Ctrl` is displayed when typed in the terminal. -->
+如果我們向這個程式發送兩次 `SIGINT` ，然後再發送一次 `SIGQUIT` ，程式會有什麼反應？注意 `^` 是我們在終端輸入 `Ctrl` 時的表示形式：
 
 ```
 $ python sigint.py
@@ -53,27 +68,35 @@ I got a SIGINT, but I am not stopping
 30^\[1]    39913 quit       python sigint.py
 ```
 
-While `SIGINT` and `SIGQUIT` are both usually associated with terminal related requests, a more generic signal for asking a process to exit gracefully is the `SIGTERM` signal.
-To send this signal we can use the [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) command, with the syntax `kill -TERM <PID>`.
+<!-- While `SIGINT` and `SIGQUIT` are both usually associated with terminal related requests, a more generic signal for asking a process to exit gracefully is the `SIGTERM` signal.
+To send this signal we can use the [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) command, with the syntax `kill -TERM <PID>`. -->
+`SIGINT` 和 `SIGQUIT` 都常常用來發出和終止程式相關的請求，但有個更加通用、優雅地退出信號的方法是 `SIGTERM` 。為了發出這個信號我們需要使用 [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) 指令, 它的語法是： `kill -TERM <PID>`。
 
-## Pausing and backgrounding processes
 
-Signals can do other things beyond killing a process. For instance, `SIGSTOP` pauses a process. In the terminal, typing `Ctrl-Z` will prompt the shell to send a `SIGTSTP` signal, short for Terminal Stop (i.e. the terminal's version of `SIGSTOP`).
+## 暫停和背景行程
 
-We can then continue the paused job in the foreground or in the background using [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) or [`bg`](http://man7.org/linux/man-pages/man1/bg.1p.html), respectively.
+<!-- Signals can do other things beyond killing a process. For instance, `SIGSTOP` pauses a process. In the terminal, typing `Ctrl-Z` will prompt the shell to send a `SIGTSTP` signal, short for Terminal Stop (i.e. the terminal's version of `SIGSTOP`). -->
+信號可以讓行程做其他的事情，而不僅僅是終止它們。例如，`SIGSTOP` 會讓行程暫停。在終端中，輸入 `Ctrl-Z` 會讓 shell 發送 `SIGTSTP` (Terminal Stop)信號。
 
-The [`jobs`](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) command lists the unfinished jobs associated with the current terminal session.
+<!-- We can then continue the paused job in the foreground or in the background using [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) or [`bg`](http://man7.org/linux/man-pages/man1/bg.1p.html), respectively. -->
+我們可以使用 [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) 或 [`bg`](http://man7.org/linux/man-pages/man1/bg.1p.html) 指令恢復暫停的工作。它們分別表示在前台或背景繼續執行。
+
+<!-- The [`jobs`](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) command lists the unfinished jobs associated with the current terminal session.
 You can refer to those jobs using their pid (you can use [`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html) to find that out).
-More intuitively, you can also refer to a process using the percent symbol followed by its job number (displayed by `jobs`). To refer to the last backgrounded job you can use the `$!` special parameter.
+More intuitively, you can also refer to a process using the percent symbol followed by its job number (displayed by `jobs`). To refer to the last backgrounded job you can use the `$!` special parameter. -->
+[`jobs`](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) 指令會列出當前終端作業中尚未完成的任務。我們可以用 pid 指定這些任務（也可以用 [`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html) 找出 pid）。更加符合直覺的操作是我們可以使用百分比符號 + 任務編號（ `jobs` 會打印任務編號）來選取該任務。如果要選擇最近的一個任務，可以使用 `$!` 這一特殊參數。
 
-One more thing to know is that the `&` suffix in a command will run the command in the background, giving you the prompt back, although it will still use the shell's STDOUT which can be annoying (use shell redirections in that case).
+<!-- One more thing to know is that the `&` suffix in a command will run the command in the background, giving you the prompt back, although it will still use the shell's STDOUT which can be annoying (use shell redirections in that case). -->
+還有一件事情需要掌握，那就是指令中的 `&` 後綴可以讓指令在直接在背景執行，這使得我們可以直接在 shell 中繼續做其他操作，不過它此時還是會使用 shell 的標準輸出，這一點有時會比較惱人（這種情況可以使用 shell 重定向處理）。
 
-To background an already running program you can do `Ctrl-Z` followed by `bg`.
+<!-- To background an already running program you can do `Ctrl-Z` followed by `bg`.
 Note that backgrounded processes are still children processes of your terminal and will die if you close the terminal (this will send yet another signal, `SIGHUP`).
 To prevent that from happening you can run the program with [`nohup`](https://www.man7.org/linux/man-pages/man1/nohup.1.html) (a wrapper to ignore `SIGHUP`), or use `disown` if the process has already been started.
-Alternatively, you can use a terminal multiplexer as we will see in the next section.
+Alternatively, you can use a terminal multiplexer as we will see in the next section. -->
+讓已經在執行的行程轉到背景執行，我們可以輸入 `Ctrl-Z` ，然後緊接著再輸入 `bg` 。請注意，背景的行程仍然是我們的終端行程的子行程，一旦我們關閉終端（會發送另外一個信號 `SIGHUP`），這些背景的行程也會終止。為了防止這種情況發生，我們可以使用 [`nohup`](https://www.man7.org/linux/man-pages/man1/nohup.1.html) (一個用來忽略 `SIGHUP` 的封裝) 來執行程式。針對已經執行的程式，可以使用 `disown` 。除此之外，我們可以使用終端多工器來實現，下一章節我們會進行詳細地探討。
 
-Below is a sample session to showcase some of these concepts.
+<!-- Below is a sample session to showcase some of these concepts. -->
+用一些簡單的指令來示範上述觀念:
 
 ```
 $ sleep 1000
@@ -120,9 +143,12 @@ $ jobs
 
 ```
 
-A special signal is `SIGKILL` since it cannot be captured by the process and it will always terminate it immediately. However, it can have bad side effects such as leaving orphaned children processes.
+<!-- 
+A special signal is `SIGKILL` since it cannot be captured by the process and it will always terminate it immediately. However, it can have bad side effects such as leaving orphaned children processes. -->
+`SIGKILL` 是一個特殊的信號，它不能被行程捕獲並且會馬上結束該行程。不過這樣做會有一些副作用，例如留下孤兒行程。
 
 You can learn more about these and other signals [here](https://en.wikipedia.org/wiki/Signal_(IPC)) or typing [`man signal`](https://www.man7.org/linux/man-pages/man7/signal.7.html) or `kill -t`.
+我們可以輸入 [`man signal`](https://www.man7.org/linux/man-pages/man7/signal.7.html) 或 `kill -t` 來，詳細可參考[here](https://en.wikipedia.org/wiki/Signal_(IPC))。
 
 
 # Terminal Multiplexers

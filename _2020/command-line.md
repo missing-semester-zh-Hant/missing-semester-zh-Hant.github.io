@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Command-line Environment （尚未翻譯）"
+title: "Command-line Environment (翻譯中)"
 date: 2019-01-21
 ready: true
 video:
@@ -8,24 +8,38 @@ video:
   id: e8BO_dYxk5c
 ---
 
-In this lecture we will go through several ways in which you can improve your workflow when using the shell. We have been working with the shell for a while now, but we have mainly focused on executing different commands. We will now see how to run several processes at the same time while keeping track of them, how to stop or pause a specific process and how to make a process run in the background.
+<!-- In this lecture we will go through several ways in which you can improve your workflow when using the shell. We have been working with the shell for a while now, but we have mainly focused on executing different commands. We will now see how to run several processes at the same time while keeping track of them, how to stop or pause a specific process and how to make a process run in the background.
+-->
 
-We will also learn about different ways to improve your shell and other tools, by defining aliases and configuring them using dotfiles. Both of these can help you save time, e.g. by using the same configurations in all your machines without having to type long commands. We will look at how to work with remote machines using SSH.
+當您使用 shell 時，可以使用一些方法改善您的作業流程，本節課我們就來討論這些方法。 我們已經使用 shell 一段時間了，但是到目前為止我們的關注點主要集中在使用不同的命令上面。現在，我們將會學習如何同時執行多個不同的行程(processes)並追蹤它們的狀態、如何停止或暫停某個行程，以及如何使其在背景執行。
 
+<!--
+We will also learn about different ways to improve your shell and other tools, by defining aliases and configuring them using dotfiles. Both of these can help you save time, e.g. by using the same configurations in all your machines without having to type long commands. We will look at how to work with remote machines using SSH. -->
 
-# Job Control
+我們還將學習一些方法能夠改善您的 shell 及其他工具的作業流程，像是透過定義別名或修改配置文件。這些方法都可以幫您節省大量的時間，僅需要執行一些簡單的命令，我們就可以在所有的主機上使用相同的配置。我們還會學習如何使用 SSH 操作遠端電腦。
 
-In some cases you will need to interrupt a job while it is executing, for instance if a command is taking too long to complete (such as a `find` with a very large directory structure to search through).
+<!-- # Job Control -->
+# 任務控制
+
+<!-- In some cases you will need to interrupt a job while it is executing, for instance if a command is taking too long to complete (such as a `find` with a very large directory structure to search through).
 Most of the time, you can do `Ctrl-C` and the command will stop.
-But how does this actually work and why does it sometimes fail to stop the process?
+But how does this actually work and why does it sometimes fail to stop the process? -->
 
-## Killing a process
+某些情況下我們需要中斷正在執行的任務，比如當一個命令需要執行很長時間才能完成時（假設我們在一個非常大的目錄結構中使用 `find` 進行搜索）。大多數情況下，我們可以使用 `Ctrl-C` 來停止命令的執行。但是它的工作原理是什麼呢？為什麼有的時候會無法結束行程？
 
-Your shell is using a UNIX communication mechanism called a _signal_ to communicate information to the process. When a process receives a signal it stops its execution, deals with the signal and potentially changes the flow of execution based on the information that the signal delivered. For this reason, signals are _software interrupts_.
+<!-- ## Killing a process -->
+# 結束行程
 
-In our case, when typing `Ctrl-C` this prompts the shell to deliver a `SIGINT` signal to the process.
+<!-- Your shell is using a UNIX communication mechanism called a _signal_ to communicate information to the process. When a process receives a signal it stops its execution, deals with the signal and potentially changes the flow of execution based on the information that the signal delivered. For this reason, signals are _software interrupts_. -->
 
-Here's a minimal example of a Python program that captures `SIGINT` and ignores it, no longer stopping. To kill this program we can now use the `SIGQUIT` signal instead, by typing `Ctrl-\`.
+您的 shell 會使用 UNIX 提供的信號(signal)機制達到行程間的相互溝通。當一個行程接收到信號時，它會停止執行、處理該信號並根據信號傳遞的訊息來改變其執行流程。就這一點而言，信號是一種軟體中斷(software interrupts)。
+
+<!-- In our case, when typing `Ctrl-C` this prompts the shell to deliver a `SIGINT` signal to the process. -->
+在上面的例子中，當我們輸入 `Ctrl-C` 時，shell 會發送一個SIGINT 信號到行程。
+
+<!-- Here's a minimal example of a Python program that captures `SIGINT` and ignores it, no longer stopping. To kill this program we can now use the `SIGQUIT` signal instead, by typing `Ctrl-\`. -->
+下面這個 Python 程式示範如何捕獲信號 `SIGINT` 並忽略它的基本操作， `Ctrl-C` 並不會讓程式停止。為了停止這個程式，我們需要使用 `SIGQUIT` 信號，通過輸入 `Ctrl-\` 可以發送該信號。
+
 
 ```python
 #!/usr/bin/env python
@@ -42,7 +56,8 @@ while True:
     i += 1
 ```
 
-Here's what happens if we send `SIGINT` twice to this program, followed by `SIGQUIT`. Note that `^` is how `Ctrl` is displayed when typed in the terminal.
+<!-- Here's what happens if we send `SIGINT` twice to this program, followed by `SIGQUIT`. Note that `^` is how `Ctrl` is displayed when typed in the terminal. -->
+如果我們向這個程式發送兩次 `SIGINT` ，然後再發送一次 `SIGQUIT` ，程式會有什麼反應？注意 `^` 是我們在終端輸入 `Ctrl` 時的表示形式：
 
 ```
 $ python sigint.py
@@ -53,10 +68,12 @@ I got a SIGINT, but I am not stopping
 30^\[1]    39913 quit       python sigint.py
 ```
 
-While `SIGINT` and `SIGQUIT` are both usually associated with terminal related requests, a more generic signal for asking a process to exit gracefully is the `SIGTERM` signal.
-To send this signal we can use the [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) command, with the syntax `kill -TERM <PID>`.
+<!-- While `SIGINT` and `SIGQUIT` are both usually associated with terminal related requests, a more generic signal for asking a process to exit gracefully is the `SIGTERM` signal.
+To send this signal we can use the [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) command, with the syntax `kill -TERM <PID>`. -->
+`SIGINT` 和 `SIGQUIT` 都常常用來發出和終止程序相關的請求，但有個更加通用、優雅地退出信號的方法是 `SIGTERM` 。為了發出這個信號我們需要使用 [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) 命令, 它的語法是： `kill -TERM <PID>`。
 
-## Pausing and backgrounding processes
+
+## 暫停和背景行程
 
 Signals can do other things beyond killing a process. For instance, `SIGSTOP` pauses a process. In the terminal, typing `Ctrl-Z` will prompt the shell to send a `SIGTSTP` signal, short for Terminal Stop (i.e. the terminal's version of `SIGSTOP`).
 

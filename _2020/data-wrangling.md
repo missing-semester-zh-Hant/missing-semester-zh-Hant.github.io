@@ -53,9 +53,9 @@ on our local computer! `ssh` is magical, and we will talk more about it
 in the next lecture on the command-line environment. This is still way
 more stuff than we wanted though. And pretty hard to read. Let's do
 better: -->
-請注意我們在此處通過 `grep` 來使用管道，將 _遠端的_ 檔案傳送至近端電腦! 
+請注意我們在此處通過 `grep` 來使用管道，將 _遠端的_ 檔案傳送至本地端電腦! 
 `ssh` 非常神奇，我們會在下一課的命令列環境中詳細講授。
-此時返回的內容依然有些多，並且難於閱讀。讓我們改善方法：
+此時返回的內容依然冗長，且不好閱讀。讓我們做點改善：
 
 ```bash
 ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' | less
@@ -70,10 +70,10 @@ we debug our command-line, we can even stick the current filtered logs
 into a file so that we don't have to access the network while
 developing: -->
 為什麼要使用雙層引用呢？
-我們檢視的日誌非常多，從遠傳傳送至近端再濾掉有些浪費。
-作為替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至近端。 
+我們檢視的日誌非常多，從遠端傳送至本地端再濾掉有些浪費。
+作為替代，我們可以在遠端就濾掉一部分，然後將其結果傳送至本地端。 
 `less` 建立了一個 「分頁機制」 來允許我們通過滾動頁面來閱讀長文字。
-如果想節約更多傳送流量，我們甚至可以將過濾後的日誌寫入檔案，使得我們不需要再次通過網路傳送：
+如果想節省傳送流量，我們甚至可以將過濾後的日誌寫入檔案，使得我們不需要再次通過網路傳送：
 
 ```console
 $ ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' > ssh.log
@@ -83,7 +83,7 @@ $ less ssh.log
 <!-- There's still a lot of noise here. There are _a lot_ of ways to get rid
 of that, but let's look at one of the most powerful tools in your
 toolkit: `sed`. -->
-此時的結果依然有許多無用部分。 我們有 _很多_ 方法來更優化。首先讓我們熟悉一下最強的工具之一: `sed`.
+此時的結果依然有許多無用的部分。 我們有 _很多_ 方法來更優化。首先讓我們熟悉一下最強的工具之一: `sed`.
 
 <!-- `sed` is a "stream editor" that builds on top of the old `ed` editor. In
 it, you basically give short commands for how to modify the file, rather
@@ -107,12 +107,12 @@ construct that lets you match text against patterns. The `s` command is
 written on the form: `s/REGEX/SUBSTITUTION/`, where `REGEX` is the
 regular expression you want to search for, and `SUBSTITUTION` is the
 text you want to substitute matching text with. -->
-我們剛剛寫了一段 _正規表示式_ ; 正規表示式允許我們匹配符合特定句法的字串。 
-`s` 命令的使用方式是這樣： `s/REGEX/SUBSTITUTION/`, 其中 `REGEX` 是我們需要匹配的正規表示式， 
+我們剛剛寫了一段 _正規表達式_ ; 正規表達式允許我們匹配符合特定句法的字串。 
+`s` 命令的使用方式是這樣： `s/REGEX/SUBSTITUTION/`, 其中 `REGEX` 是我們需要匹配的正規表達式， 
 `SUBSTITUTION` 是用於替代匹配結果的字串。
 
 <!-- ## Regular expressions -->
-## 正規表示式
+## 正規表達式
 
 <!-- Regular expressions are common and useful enough that it's worthwhile to
 take some time to understand how they work. Let's start by looking at
@@ -122,30 +122,32 @@ just carry their normal meaning, but some characters have "special"
 matching behavior. Exactly which characters do what vary somewhat
 between different implementations of regular expressions, which is a
 source of great frustration. Very common patterns are: -->
-正規表示式很常見也足夠有用，值得用些時間去理解它。
+正規表達式很常見也很有用，值得用些時間去理解它。
 讓我們從上面使用過的字串開始: `/.*Disconnected from /`. 
-正規表示式通常 (也有例外) 被 `/` 包圍。
+正規表達式通常 (也有例外) 被 `/` 包圍。
 多數 ASCII 字元代表其自身的含義，有些則擁有「特別的」含義。
-由於正規表示式實現方法的不同，這些符號也常常有不同的含義，這讓我們有些挫敗感。
-常見的表示式有：
+由於正規表達式實現方法的不同，這些符號也常常有不同的含義，這讓我們感到有些挫折。
+常見的表達式有：
 
- <!-- - `.` means "any single character" except newline
+ <!-- 
+ - `.` means "any single character" except newline
  - `*` zero or more of the preceding match
  - `+` one or more of the preceding match
  - `[abc]` any one character of `a`, `b`, and `c`
  - `(RX1|RX2)` either something that matches `RX1` or `RX2`
  - `^` the start of the line
- - `$` the end of the line -->
-  - `.` 意為除去換行符外的 「任意一個字元」 
+ - `$` the end of the line 
+ -->
+ - `.` 意為除去換行符外的 「任意一個字元」 
  - `*` 0或多個 `*` 前的字元
  - `+` 1或更多個 `*` 前的字元
  - `[abc]`  `a`, `b`, 與 `c` 中的任意一個
  - `(RX1|RX2)` 能匹配 `RX1` 或 `RX2` 中的任意一個的字串
- - `^` 列首
- - `$` 列尾
+ - `^` 行首
+ - `$` 行尾
 
 <!-- sed's regular expressions are somewhat weird, and will require you to put a \ before most of these to give them their special meaning. Or you can pass -E. -->
-`sed` 的正規表示式有些古怪，需要你在這些表示式前使用 `\` 來使它們擁有這些特殊含義。
+`sed` 的正規表達式有些古怪，需要你在這些表達式前使用 `\` 來使它們擁有這些特殊含義。
 也可以使用 `-E` 達成同樣效果。
 
 <!-- So, looking back at `/.*Disconnected from /`, we see that it matches
@@ -155,7 +157,7 @@ beware, regular expressions are trixy. What if someone tried to log in
 with the username "Disconnected from"? We'd have: -->
 讓我們重回 `/.*Disconnected from /`, 可以看出它會匹配以任意字元起始，緊接
 "Disconnected from" 的字串，這就是我們需要的。
-但要小心，正規表示式時而有些棘手。
+但要小心，正規表達式時而有些棘手。
 試想某人嘗試使用 "Disconnected from" 作為使用者名登入,我們將會有:
 
 ```
@@ -165,7 +167,7 @@ Jan 17 03:13:00 thesquareplanet.com sshd[2631]: Disconnected from invalid user D
 <!-- What would we end up with? Well, `*` and `+` are, by default, "greedy".
 They will match as much text as they can. So, in the above, we'd end up
 with just -->
-我們會得到怎樣的結果？實際上，`*` 與 `+` 預設是「貪婪的」。它們會匹配儘可能多的字元。
+我們會得到怎樣的結果？實際上，`*` 與 `+` 預設是「貪婪的」。它們會匹配所有可能的字元。
 所以，上述字串會得出這樣的匹配結果：
 
 ```
@@ -176,7 +178,7 @@ with just -->
 implementations, you can just suffix `*` or `+` with a `?` to make them
 non-greedy, but sadly `sed` doesn't support that. We _could_ switch to
 perl's command-line mode though, which _does_ support that construct: -->
-這並不是我們需要的。在一些正規表示式的實現中，我們可以單純給`*` 與 `+` 加入 `?` 字尾使其轉變為非貪婪模式。不過令人惋惜，`sed` 並不支援這種方式。
+這並不是我們需要的。在一些正規表達式的實現中，我們可以單純給`*` 與 `+` 加入 `?` 字尾使其轉變為非貪婪模式。只可惜，`sed` 並不支援這種方式。
 我們 _可以_ 換用 perl 的命令列模式，它 _支援_ 這樣的結構：
 
 ```bash
@@ -215,10 +217,10 @@ characters where the username is. Then we're matching on any single word
 "port" followed by a sequence of digits. Then possibly the suffix
 `[preauth]`, and then the end of the line. -->
 讓我們用[regex debugger](https://regex101.com/r/qqbZqh/2)來看看會得出怎樣的結果。
-很棒，起始的部分和之前是一樣的。然後，我們匹配出所有型別的 「user」 變體(在日誌中有兩種不同字首)。
+起始的部分和之前是一樣的。然後，我們匹配出所有型別的 「user」 變體(在日誌中有兩種不同字首)。
 接下來我們匹配屬於使用者名稱的所有字元。
 再之後，匹配任意一個單詞(`[^ ]+`; 匹配由任意非空格組成的非空字串)。
-此時，再匹配 「port」 與接續的一串數字，和可能存在的字尾 `[preauth]`， 直至列尾。
+此時，再匹配 「port」 與接續的一串數字，和可能存在的字尾 `[preauth]`， 直至行尾。
 
 <!-- Notice that with this technique, as username of "Disconnected from"
 won't confuse us any more. Can you see why? -->
@@ -233,7 +235,7 @@ as `\1`, `\2`, `\3`, etc. So: -->
 還剩下一個問題需要解決，就是日誌的全部內容都被替換成了空字串。
 我們希望能 _留下_ 匹配到的使用者名。
 為了達成此目的，我們可以使用 「捕捉群」(capture groups)。
-被括號包圍的正規表示式會被按順序存入捕捉群，而捕捉群的內容可以在替換時取用(在有些正規表示式實現中，替換內容甚至支援正規表示式本身！)。
+被括號包圍的正規表達式會被按順序存入捕捉群，而捕捉群的內容可以在替換時取用(在有些正規表達式實現中，替換內容甚至支援正規表達式本身！)。
 使用 `\1`, `\2`, `\3` 以此類推來取用其內容：
 
 ```bash
@@ -251,22 +253,22 @@ tests](https://fightingforalostcause.net/content/misc/2006/compare-email-regex.p
 And [test matrices](https://mathiasbynens.be/demo/url-regex). You can
 even write a regex for determining if a given number [is a prime
 number](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/). -->
-你大概可以想象到，我們有時需要 _真的非常_ 複雜的正規表示式。
+你大概可以想象到，我們有時需要 _真的非常_ 複雜的正規表達式。
 例如，此處有文章介紹如何匹配[電子郵件](https://www.regular-expressions.info/email.html)，
-這實際上[很難](https://emailregex.com/)。
+這實際上很[困難](https://emailregex.com/)。
 人們對其進行了[很多討論](https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression/1917982)，
 還寫出了許多[測試用例](https://fightingforalostcause.net/content/misc/2006/compare-email-regex.php)，與[test matrices](https://mathiasbynens.be/demo/url-regex)。
-我們甚至還能用正規表示式判斷一個數是否為[質數](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/)。
+我們甚至還能用正規表達式判斷一個數是否為[質數](https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/)。
 
 <!-- Regular expressions are notoriously hard to get right, but they are also
 very handy to have in your toolbox! -->
-正規表示式可是相當難以確保正確的，但是他們依然十分好用！
+正規表達式可是相當難以確保正確的，但是他們依然十分好用！
 
 <!-- ## Back to data wrangling -->
 ## 回到資料處理
 
 <!-- Okay, so we now have -->
-很棒，現在我們可以寫出：
+現在我們可以寫出：
 
 ```bash
 ssh myserver journalctl
@@ -298,7 +300,7 @@ ssh myserver journalctl
 lines that are the same into a single line, prefixed with a count of the
 number of occurrences. We probably want to sort that too and only keep
 the most common logins: -->
-`sort` 將會，如同字面意思，對他排序。 `uniq -c` 會合併連續的列並寫出出現次數。
+`sort` 將會，如同字面意思，對他排序。 `uniq -c` 會合併連續的行並寫出出現次數。
 我們希望能按照出現次數排序，來找出最常登入的使用者：
 
 ```bash
@@ -316,7 +318,7 @@ part says "sort until the `n`th field, where the default is the end of
 the line. In this _particular_ example, sorting by the whole line
 wouldn't matter, but we're here to learn! -->
 `sort -n` 將會按照數字排序 (預設是按照字母順序) 。
- `-k1,1` 表示 「按照被空格分個的第一行排序」。 
+ `-k1,1` 表示 「按照被空格分隔的第一行排序」。 
 `,n`表示 「僅排序前 `n` 個部分」 預設是醬所有部分都排序。
 在這個 _典型的_ 例子中，排序所有部分沒有任何問題，我們只是為了講授 `,n` 的用法才使用了這個！
 
@@ -326,7 +328,7 @@ wouldn't matter, but we're here to learn! -->
 
 <!-- Okay, so that's pretty cool, but we'd sort of like to only give the
 usernames, and maybe not one per line? -->
-很棒，結果已經非常好了，但我們只想要使用者名稱，而且不要一列只寫一個。
+結果已經非常好了，但我們只想要使用者名稱，而且不要一列只寫一個。
 
 ```bash
 ssh myserver journalctl
@@ -360,9 +362,9 @@ and `$1` through `$n` are set to the `n`th _field_ of that line, when
 separated by the `awk` field separator (whitespace by default, change
 with `-F`). In this case, we're saying that, for every line, print the
 contents of the second field, which happens to be the username! -->
-首先，`{print $2}` 有什麼作用？ `awk` 程式可以(非必須)接受一個選項串和一個指令碼塊，指出當匹配到內容時應該做出什麼動作。
-在指令碼塊中 `$0` 代表整列的文字， `$1` 到 `$n` 代表此列中第 `n` 個 _部分_ ，
-這些 _部分_ 由 `awk` 域分隔符劃分(預設是空格， 可以用過 `-F` 指定)。
+首先，`{print $2}` 有什麼作用？ `awk` 程式可以接受一個選項串和一個指令區塊，指出當匹配到內容時應該做出什麼動作。
+在指令碼塊中 `$0` 代表整列的文字， `$1` 到 `$n` 代表此列中第 `n` 個 _欄位_ ，
+這些 _欄位_ 由 `awk` 域分隔符劃分(預設是空格， 可以用過 `-F` 指定)。
 在這個例子中，這些程式碼的意思是 印出每列第二個部分，也就是使用者名！
 
 <!-- Let's see if we can do something fancier. Let's compute the number of
@@ -379,14 +381,14 @@ field of the line should be equal to 1 (that's the count from `uniq
 -c`), and that the second field should match the given regular
 expression. And the block just says to print the username. We then count
 the number of lines in the output with `wc -l`. -->
-這裡有許多要講解。首先，請注意我們指定了表示式(也就是 `{...}` 前面的那些)。
-這個表示式要求此列文字的第一部分必須是 1 (這部分是 `uniq -c` 取得的)，
-並且第二部分必須匹配給定的表示式。
+這裡有許多要講解。首先，請注意我們指定了表達式(也就是 `{...}` 前面的那些)。
+這個表達式要求此列文字的第一部分必須是 1 (這部分是 `uniq -c` 取得的)，
+並且第二部分必須匹配給定的表達式。
 指令碼塊中的內容則表示印出使用者名。
 接下來我們使用 `wc -l` 統計輸出結果的列數。
 
 <!-- However, `awk` is a programming language, remember? -->
-還記得嗎，`awk` 是一種程式語言：
+別忘記 `awk` 是一種程式語言：
 
 ```awk
 BEGIN { rows = 0 }
@@ -401,17 +403,17 @@ it out at the end. In fact, we _could_ get rid of `grep` and `sed`
 entirely, because `awk` [can do it
 all](https://backreference.org/2010/02/10/idiomatic-awk/), but we'll
 leave that as an exercise to the reader. -->
-`BEGIN` 是一種匹配起始輸入 (and `END` 匹配結尾)的表示式。
+`BEGIN` 是一種匹配起始輸入 (and `END` 匹配結尾)的模式。
 然後，對每列第一部分相加（本例中此部分均為 1 ），
 再印出最後結果。
 實際上，_無需_ `grep` 與 `sed`，因為 `awk` [可以解決所有問題](https://backreference.org/2010/02/10/idiomatic-awk/)。
 至於如何做到，可以參考課後練習。
 
 <!-- ## Analyzing data -->
-## 分析資料
+## 分析數據
 
 <!-- You can do math! For example, add the numbers on each line together: -->
-我們也可以做些算術！例如，將每列數字相加：
+我們也可以做些計算！例如，將每列數字相加：
 
 ```bash
  | paste -sd+ | bc -l
@@ -427,8 +429,8 @@ echo "2*($(data | paste -sd+))" | bc -l
 <!-- You can get stats in a variety of ways.
 [`st`](https://github.com/nferraz/st) is pretty neat, but if you already
 have R: -->
-我們可以從許多渠道獲取所需資料。
-[`st`](https://github.com/nferraz/st) 很不錯，不過如果你已經安裝了R：
+我們可以透過多種方式獲取統計數據。
+[`st`](https://github.com/nferraz/st) 是個不錯的選擇，不過如果你已經安裝了R：
 
 ```bash
 ssh myserver journalctl
@@ -445,7 +447,7 @@ much detail, but suffice to say that `summary` prints summary statistics
 about a matrix, and we computed a matrix from the input stream of
 numbers, so R gives us the statistics we wanted! -->
 R 是一種 (古怪的) 程式語言，適合用來進行資料分析或[繪圖](https://ggplot2.tidyverse.org/)。
-我們不會介紹太多，只需知道 `summary` 會印出關於矩陣的關鍵摘要。
+我們不會介紹太多，只需知道 `summary` 會印出關於矩陣的統計結果。
 我們從輸入的數字中計算出一個矩陣，R會給出分析結果。
 
 <!-- If you just want some simple plotting, `gnuplot` is your friend: -->
@@ -462,13 +464,13 @@ ssh myserver journalctl
 ```
 
 <!-- ## Data wrangling to make arguments -->
-## 使用資料處理來獲取引數
+## 使用資料處理來獲取參數
 
 <!-- Sometimes you want to do data wrangling to find things to install or
 remove based on some longer list. The data wrangling we've talked about
 so far + `xargs` can be a powerful combo: -->
 有時我們需要利用資處理來從一個長表中找出想要安裝或反安裝的東西，
-利用我們之前講授的知識與 `xargs` 可以輕鬆實現：
+利用我們之前講授的知識配合 `xargs` 可以輕鬆實現：
 
 ```bash
 rustup toolchain list | grep nightly | grep -vE "nightly-x86" | sed 's/-x86.*//' | xargs rustup toolchain uninstall
@@ -483,7 +485,7 @@ capture an image from our camera, convert it to grayscale, compress it,
 send it to a remote machine over SSH, decompress it there, make a copy,
 and then display it. -->
 雖然截至目前我們都在處理文字，不過管道對於處理二進位資料也十分有效。
-例如，我們可以使用ffmpeg來從相機中獲取影象，轉換為灰度，再進行壓縮，最後通過SSH傳送至遠端，再在遠端解壓縮，建立複製並顯示。
+例如，我們可以使用ffmpeg來從相機中獲取影象，轉換為灰度，再進行壓縮，最後通過SSH傳送至遠端，在遠端解壓縮後存檔並顯示。
 
 ```bash
 ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 -
@@ -492,57 +494,26 @@ ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 -
  | ssh mymachine 'gzip -d | tee copy.jpg | env DISPLAY=:0 feh -'
 ```
 
-# Exercises
+# 課後練習
 
-1. Take this [short interactive regex tutorial](https://regexone.com/).
-2. Find the number of words (in `/usr/share/dict/words`) that contain at
-   least three `a`s and don't have a `'s` ending. What are the three
-   most common last two letters of those words? `sed`'s `y` command, or
-   the `tr` program, may help you with case insensitivity. How many
-   of those two-letter combinations are there? And for a challenge:
-   which combinations do not occur?
-3. To do in-place substitution it is quite tempting to do something like
-   `sed s/REGEX/SUBSTITUTION/ input.txt > input.txt`. However this is a
-   bad idea, why? Is this particular to `sed`? Use `man sed` to find out
-   how to accomplish this.
-4. Find your average, median, and max system boot time over the last ten
-   boots. Use `journalctl` on Linux and `log show` on macOS, and look
-   for log timestamps near the beginning and end of each boot. On Linux,
-   they may look something like:
+1. 學習這篇 [簡短的交互式正規表達式教學](https://regexone.com/)。
+2. 統計words文件 (`/usr/share/dict/words`) 中包含至少三個`a` 且不以`'s` 結尾的單字個數。這些單詞中，出現頻率最高的末尾兩個字母是什麼？ `sed` 的 `y` 命令，或者 `tr` 指令也許可以幫你解決大小寫的問題。共存在多少種詞尾兩字母組合？更進階的問題：哪個組合從未出現過？
+3. 進行原地替換似乎很實用，例如： `sed s/REGEX/SUBSTITUTION/ input.txt > input.txt`。但是這並不是一個明智的做法，為什麼呢？還是說只有 `sed` 是這樣的? 查看 `man sed` 來回答這個問題。
+4. 找出您最近十次開機的開機時間平均數、中位數和最長時間。在Linux上需要用到 `journalctl` ，而在 macOS 上使用 `log show`。找到每次起到開始和結束時的時間戳記。在Linux上類似這樣操作：
    ```
    Logs begin at ...
    ```
-   and
+   和
    ```
    systemd[577]: Startup finished in ...
    ```
-   On macOS, [look
-   for](https://eclecticlight.co/2018/03/21/macos-unified-log-3-finding-your-way/):
+   在 macOS, [查找](https://eclecticlight.co/2018/03/21/macos-unified-log-3-finding-your-way/):
    ```
    === system boot:
    ```
-   and
+   和
    ```
    Previous shutdown cause: 5
    ```
-5. Look for boot messages that are _not_ shared between your past three
-   reboots (see `journalctl`'s `-b` flag). Break this task down into
-   multiple steps. First, find a way to get just the logs from the past
-   three boots. There may be an applicable flag on the tool you use to
-   extract the boot logs, or you can use `sed '0,/STRING/d'` to remove
-   all lines previous to one that matches `STRING`. Next, remove any
-   parts of the line that _always_ varies (like the timestamp). Then,
-   de-duplicate the input lines and keep a count of each one (`uniq` is
-   your friend). And finally, eliminate any line whose count is 3 (since
-   it _was_ shared among all the boots).
-6. Find an online data set like [this
-   one](https://stats.wikimedia.org/EN/TablesWikipediaZZ.htm), [this
-   one](https://ucr.fbi.gov/crime-in-the-u.s/2016/crime-in-the-u.s.-2016/topic-pages/tables/table-1).
-   or maybe one [from
-   here](https://www.springboard.com/blog/free-public-data-sets-data-science-project/).
-   Fetch it using `curl` and extract out just two columns of numerical
-   data. If you're fetching HTML data,
-   [`pup`](https://github.com/EricChiang/pup) might be helpful. For JSON
-   data, try [`jq`](https://stedolan.github.io/jq/). Find the min and
-   max of one column in a single command, and the sum of the difference
-   between the two columns in another.
+5. 查看之前三次重新啟動訊息中不同的部分 (參考 `journalctl` 的 `-b` 選項)。將這一任務分為幾個步驟，首先獲取之前三次啟動的日誌，也許獲取啟動日誌的命令就有合適的選項可以幫助您提取前三次啟動的日誌，亦或者您可以使用 `sed '0,/ STRING/d'` 來刪除 `STRING` 匹配到的字符串前面的全部內容。然後，過濾掉每次都不相同的部分，例如時間戳記。下一步，重複記錄輸入行並對其計數(可以使用 `uniq` )。最後，刪除所有出現過3次的內容（因為這些內容為重複的部分）。
+6. 在網路上找一個類似 [這個](https://stats.wikimedia.org/EN/TablesWikipediaZZ.htm)、[這個](https://ucr.fbi.gov/crime-in-the-u.s/2016/crime-in-the-u.s.-2016/topic-pages/tables/table-1)或[這個](https://www.springboard.com/blog/free-public-data-sets-data-science-project/)的資料表格。用 `curl` 獲取表格並提取其中兩行數據，如果您想要獲取的是HTML資料，那麼 `pup` 可能會更有幫助。對於JSON類型的數據，可以試試 `jq` 。請使用一條指令來找出其中一行的最大值和最小值，用另外一條指令計算兩行之間差的總和。 

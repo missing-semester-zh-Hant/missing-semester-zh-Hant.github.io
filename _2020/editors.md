@@ -315,28 +315,38 @@ Vim 的編輯命令也被稱為 "動詞"， 因為動詞可以操作名詞。
 - `p` 貼上
 - 還有許多其他值得學習的: 例如 `~` 改變字元的大小寫
 
-## Counts
+<!-- ## Counts -->
+## 計數
 
-You can combine nouns and verbs with a count, which will perform a given action
-a number of times.
+<!-- You can combine nouns and verbs with a count, which will perform a given action
+a number of times. -->
+我們可以將名詞和動詞與計數結合使用，這將多次執行指定的動作。
 
-- `3w` move 3 words forward
-- `5j` move 5 lines down
-- `7dw` delete 7 words
+- `3w` 前移 3 個詞語
+- `5j` 下移 5 列
+- `7dw` 刪除 7 個詞語
 
-## Modifiers
+<!-- ## Modifiers -->
+## 修飾詞
 
-You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
-which means "inner" or "inside", and `a`, which means "around".
+<!-- You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
+which means "inner" or "inside", and `a`, which means "around". -->
+我們可以使用修飾詞來更改名詞的含義。 例如“ i”，表示“核心”或“內部”，以及“ a”，表示“周圍”。
 
-- `ci(` change the contents inside the current pair of parentheses
+<!-- - `ci(` change the contents inside the current pair of parentheses
 - `ci[` change the contents inside the current pair of square brackets
-- `da'` delete a single-quoted string, including the surrounding single quotes
+- `da'` delete a single-quoted string, including the surrounding single quotes -->
+-`ci（`更改當前括號對中的內容
+-`ci [`更改當前方括號對的內容
+-`da'刪除單引號字符串，包括周圍的單引號
 
-# Demo
+<!-- # Demo -->
+# 示例
 
-Here is a broken [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz)
-implementation:
+<!-- Here is a broken [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz)
+implementation: -->
+這是一個錯誤的 [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz)
+實現:
 
 ```python
 def fizz_buzz(limit):
@@ -352,13 +362,19 @@ def main():
     fizz_buzz(10)
 ```
 
-We will fix the following issues:
+<!-- We will fix the following issues: -->
+我們將會修復以下問題:
 
-- Main is never called
+<!-- - Main is never called
 - Starts at 0 instead of 1
 - Prints "fizz" and "buzz" on separate lines for multiples of 15
 - Prints "fizz" for multiples of 5
-- Uses a hard-coded argument of 10 instead of taking a command-line argument
+- Uses a hard-coded argument of 10 instead of taking a command-line argument -->
+- Main 從未被調用
+- 從 0 而非 1 開始
+- 在 15 的倍數時，在不同列內打印 "fizz" 和 "buzz"
+- 在 5 的倍數時，打印 "fizz"
+- 使用了硬編碼參數10，而非獲取命令列參數
 
 {% comment %}
 - main is never called
@@ -385,10 +401,11 @@ We will fix the following issues:
   - `ci(` to "int(sys.argv[1])"
 {% endcomment %}
 
-See the lecture video for the demonstration. Compare how the above changes are
+<!-- See the lecture video for the demonstration. Compare how the above changes are
 made using Vim to how you might make the same edits using another program.
 Notice how very few keystrokes are required in Vim, allowing you to edit at the
-speed you think.
+speed you think. -->
+觀看講座視頻的演示。 比較使用Vim進行上述更正的方式與使用其他程序進行相同更正的方式。 注意Vim中幾乎不需要擊鍵的特性，使我們可以用與思考相同的速度編輯。
 
 # Customizing Vim
 

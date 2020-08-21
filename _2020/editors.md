@@ -122,7 +122,7 @@ the letter `x` in Insert mode will just insert a literal character 'x', but in
 Normal mode, it will delete the character under the cursor, and in Visual mode,
 it will delete the selection. -->
 在不同的模式下鍵擊的作用也不同。例如，`x` 在插入模式下會鍵入 'x'，但在標準模式下
-會刪除當前游標下的字元，若在可視模式下會刪除選中的文字。
+會刪除當前遊標下的字元，若在可視模式下會刪除選中的文字。
 
 <!-- In its default configuration, Vim shows the current mode in the bottom left.
 The initial/default mode is Normal mode. You'll generally spend most of your
@@ -189,7 +189,7 @@ to the command line at the bottom of the screen upon pressing `:`. This mode
 has many functionalities, including opening, saving, and closing files, and
 [quitting Vim](https://twitter.com/iamdevloper/status/435555976687923200). -->
 在標準模式下鍵入 `:` 來進入命令列模式。
-此時游標會立即跳至熒幕下方的命令列。
+此時遊標會立即跳至熒幕下方的命令列。
 這個模式包含許多功能，如開啟，儲存，關閉檔案，以及[退出 Vim](https://twitter.com/iamdevloper/status/435555976687923200).
 
 <!-- - `:q` quit (close window)
@@ -249,8 +249,8 @@ refer to chunks of text. -->
 - 檔案: `gg` (檔案頭), `G` (檔案尾)
 - 列數: `:{列數}<CR>` or `{列數}G` (列 {列數})
 - 雜項: `%` (尋找配對)
-- 查找: `f{character}`, `t{character}`, `F{character}`, `T{character}`
-    - 在此列中 查到/到 向前/向後查找 {character}
+- 查詢: `f{character}`, `t{character}`, `F{character}`, `T{character}`
+    - 在此列中 查到/到 向前/向後查詢 {character}
     - `,` / `;` 來導向結果
 - 搜尋: `/{regex}`, `n` / `N` 用於匹配導航
 
@@ -338,7 +338,7 @@ which means "inner" or "inside", and `a`, which means "around". -->
 - `da'` delete a single-quoted string, including the surrounding single quotes -->
 -`ci（`更改當前括號對中的內容
 -`ci [`更改當前方括號對的內容
--`da'刪除單引號字符串，包括周圍的單引號
+-`da'刪除單引號字串，包括周圍的單引號
 
 <!-- # Demo -->
 # 示例
@@ -370,11 +370,11 @@ def main():
 - Prints "fizz" and "buzz" on separate lines for multiples of 15
 - Prints "fizz" for multiples of 5
 - Uses a hard-coded argument of 10 instead of taking a command-line argument -->
-- Main 從未被調用
+- Main 從未被呼叫
 - 從 0 而非 1 開始
-- 在 15 的倍數時，在不同列內打印 "fizz" 和 "buzz"
-- 在 5 的倍數時，打印 "fizz"
-- 使用了硬編碼參數10，而非獲取命令列參數
+- 在 15 的倍數時，在不同列內列印 "fizz" 和 "buzz"
+- 在 5 的倍數時，列印 "fizz"
+- 使用了硬編碼引數10，而非獲取命令列引數
 
 {% comment %}
 - main is never called
@@ -405,7 +405,7 @@ def main():
 made using Vim to how you might make the same edits using another program.
 Notice how very few keystrokes are required in Vim, allowing you to edit at the
 speed you think. -->
-觀看講座視頻的演示。 比較使用Vim進行上述更正的方式與使用其他程序進行相同更正的方式。 注意Vim中幾乎不需要擊鍵的特性，使我們可以用與思考相同的速度編輯。
+觀看講座視訊的演示。 比較使用Vim進行上述更正的方式與使用其他程式進行相同更正的方式。 注意Vim中幾乎不需要擊鍵的特性，使我們可以用與思考相同的速度編輯。
 
 <!-- # Customizing Vim -->
 # 自訂Vim
@@ -413,16 +413,16 @@ speed you think. -->
 <!-- Vim is customized through a plain-text configuration file in `~/.vimrc`
 (containing Vimscript commands). There are probably lots of basic settings that
 you want to turn on. -->
-Vim是通過 `〜/ .vimrc` 中的純文本配置文件定製的。
-（包含Vimscript指令）。 這裏可能有許多我們想啓用的基本設置。
+Vim是通過 `〜/ .vimrc` 中的純文字配置檔案定製的。
+（包含Vimscript指令）。 這裡可能有許多我們想啟用的基本設定。
 
 <!-- We are providing a well-documented basic config that you can use as a starting
 point. We recommend using this because it fixes some of Vim's quirky default
 behavior. **Download our config [here](/2020/files/vimrc) and save it to
 `~/.vimrc`.** -->
-我們提供了詳盡說明的基礎配置文件，你可以使用它作爲起點。
-我們建議使用它來避免遇到一些Vim的古怪默認行爲。
-**在[這裏](/2020/files/vimrc)下載我們的配置文件，並將其存儲至 `~/.vimrc` **
+我們提供了詳盡說明的基礎配置檔案，你可以使用它作為起點。
+我們建議使用它來避免遇到一些Vim的古怪預設行為。
+**在[這裡](/2020/files/vimrc)下載我們的配置檔案，並將其儲存至 `~/.vimrc` **
 
 <!-- Vim is heavily customizable, and it's worth spending time exploring
 customization options. You can look at people's dotfiles on GitHub for
@@ -433,12 +433,12 @@ inspiration, for example, your instructors' Vim configs
 lots of good blog posts on this topic too. Try not to copy-and-paste people's
 full configuration, but read it, understand it, and take what you need. -->
 Vim是可高度自訂的，值得用些時間去探索自訂選項。
-我們課咦在GitHub上查看其他人的 dotfile 獲取靈感。
-例如，你的講師們的 Vim 配置文件 ([Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc),
+我們課咦在GitHub上檢視其他人的 dotfile 獲取靈感。
+例如，你的講師們的 Vim 配置檔案 ([Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc),
 [Jon](https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim) (uses [neovim](https://neovim.io/)),
 [Jose](https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc))。
-關於這些也有許多相當多的優秀博客文章。
-嘗試不直接複製粘貼，而是閱讀，理解並獲取你想要的部分。
+關於這些也有許多相當多的優秀網誌文章。
+嘗試不直接複製貼上，而是閱讀，理解並獲取你想要的部分。
 
 <!-- # Extending Vim -->
 # 擴充Vim
@@ -448,19 +448,19 @@ you might find on the internet, you do _not_ need to use a plugin manager for
 Vim (since Vim 8.0). Instead, you can use the built-in package management
 system. Simply create the directory `~/.vim/pack/vendor/start/`, and put
 plugins in there (e.g. via `git clone`). -->
-這裏有許多插件可以用來擴充Vim。
-可能與你在網路上找到的過時建議相反，我們 _不_ 需要插件管理器(自從 Vim 8.0後)。
+這裡有許多外掛可以用來擴充Vim。
+可能與你在網路上找到的過時建議相反，我們 _不_ 需要外掛管理器(自從 Vim 8.0後)。
 取而代之，我們可以使用內建的包管理系統。
-只需建立目錄 `~/.vim/pack/vendor/start/`，然後將插件放入其中(例如使用 `git clone`)。
+只需建立目錄 `~/.vim/pack/vendor/start/`，然後將外掛放入其中(例如使用 `git clone`)。
 
 <!-- Here are some of our favorite plugins: -->
-這些是一部分我們最愛的插件:
+這些是一部分我們最愛的外掛:
 
 <!-- - [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): fuzzy file finder
 - [ack.vim](https://github.com/mileszs/ack.vim): code search
 - [nerdtree](https://github.com/scrooloose/nerdtree): file explorer
 - [vim-easymotion](https://github.com/easymotion/vim-easymotion): magic motions -->
-- [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): 模糊文件檢索
+- [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): 模糊檔案檢索
 - [ack.vim](https://github.com/mileszs/ack.vim): 程式碼搜尋
 - [nerdtree](https://github.com/scrooloose/nerdtree): 檔案總管
 - [vim-easymotion](https://github.com/easymotion/vim-easymotion): 迅速跳轉
@@ -473,12 +473,12 @@ can check out the instructors' dotfiles
 Check out [Vim Awesome](https://vimawesome.com/) for more awesome Vim plugins.
 There are also tons of blog posts on this topic: just search for "best Vim
 plugins". -->
-我們不會在此處給出太多插件，你可以在講師的 dotfile 處查看更多
+我們不會在此處給出太多外掛，你可以在講師的 dotfile 處檢視更多
 ([Anish](https://github.com/anishathalye/dotfiles)，
 [Jon](https://github.com/jonhoo/configs)，
 [Jose](https://github.com/JJGO/dotfiles))。
-從[Vim Awesome](https://vimawesome.com/)處可以獲得更多奇妙插件。
-這裏也有許多網誌分享，僅需檢索"best Vim plugins"。
+從[Vim Awesome](https://vimawesome.com/)處可以獲得更多奇妙外掛。
+這裡也有許多網誌分享，僅需檢索"best Vim plugins"。
 
 <!-- # Vim-mode in other programs -->
 # 其他程式中的 Vim 模式
@@ -498,7 +498,7 @@ cover the basics pretty well. -->
 editor is launched when a program wants to start an editor. For example, `git`
 will use this editor for commit messages. -->
 如果你使用 Bash，執行 `set -o vi`。如果你使用 Zsh，`bindkey -v`。若你使用 Fish，嘗試 `fish_vi_key_bindings`。
-另外，無論什麼 shell，都應可以使用 `export EDITOR=vim`。這是用於決定啓動哪個編輯器的環境變量。
+另外，無論什麼 shell，都應可以使用 `export EDITOR=vim`。這是用於決定啟動哪個編輯器的環境變數。
 例如， `git` 使用次編輯器來提交訊息。
 
 <!-- ## Readline -->
@@ -508,9 +508,9 @@ will use this editor for commit messages. -->
 Readline](https://tiswww.case.edu/php/chet/readline/rltop.html) library for
 their command-line interface. Readline supports (basic) Vim emulation too,
 which can be enabled by adding the following line to the `~/.inputrc` file: -->
-許多程式使用 [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html) 庫作爲其命令列介面。
+許多程式使用 [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html) 庫作為其命令列介面。
 Readline 也支援基本的 Vim 模式。 
-在 `~/.inputrc` 中加入此行開啓它。
+在 `~/.inputrc` 中加入此行開啟它。
 
 ```
 set editing-mode vi
@@ -541,11 +541,11 @@ notebooks](https://github.com/lambdalisue/jupyter-vim-binding). -->
 all of these kinds of things, but you'll learn them as you go. A good
 heuristic: whenever you're using your editor and you think "there must be a
 better way of doing this", there probably is: look it up online. -->
-這裏有一些向你展現編輯器能力的例子。我們無法涵蓋所有事情，不過在你使用的過程中也會學到這些。
+這裡有一些向你展現編輯器能力的例子。我們無法涵蓋所有事情，不過在你使用的過程中也會學到這些。
 一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼更好地辦法做這個”，通常來說真的是這樣，在網上搜尋一下。
 
 <!-- ## Search and replace -->
-## 搜索與替換
+## 搜尋與替換
 
 <!-- `:s` (substitute) command ([documentation](http://vim.wikia.com/wiki/Search_and_replace)).
 
@@ -553,12 +553,12 @@ better way of doing this", there probably is: look it up online. -->
     - replace foo with bar globally in file
 - `%s/\[.*\](\(.*\))/\1/g`
     - replace named Markdown links with plain URLs -->
-`:s` (substitute) 指令 ([文檔](http://vim.wikia.com/wiki/Search_and_replace)).
+`:s` (substitute) 指令 ([文件](http://vim.wikia.com/wiki/Search_and_replace)).
 
 - `%s/foo/bar/g`
-    - 將 foo 全域替換爲 bar
+    - 將 foo 全域替換為 bar
 - `%s/\[.*\](\(.*\))/\1/g`
-    - 將有名字的 Markdown 連結替換爲單純URLs
+    - 將有名字的 Markdown 連結替換為單純URLs
 
 <!-- ## Multiple windows -->
 ## 多視窗
@@ -607,13 +607,13 @@ better way of doing this", there probably is: look it up online. -->
 - `@{character}` 重放
 - 其執行遇到錯誤時將會停止
 - `{number}@{character}` 執行 {number} 次
-- 巨集可以遞歸
+- 巨集可以遞迴
     - 首先使用 `q{character}q` 清除巨集
-    - 錄製巨集， 使用 `@{character}` 來遞歸調用它
+    - 錄製巨集， 使用 `@{character}` 來遞迴呼叫它
     (錄製結束前不會執行)
-- 例如： 將 xml 轉制成 json ([檔案](/2020/files/example-data.xml))
-    - 一个有 “name” / “email” 键对象的数组
-    - 用一个 Python 程序？
+- 例如： 將 xml 轉製成 json ([檔案](/2020/files/example-data.xml))
+    - 一個有 “name” / “email” 鍵物件的陣列
+    - 用一個 Python 程式？
     - Use sed / regexes
         - `g/people/d`
         - `%s/<person>/{/g`
@@ -649,7 +649,7 @@ better way of doing this", there probably is: look it up online. -->
 - [Vim Adventures](https://vim-adventures.com/) 透過遊戲學習 Vim
 - [Vim Tips Wiki](http://vim.wikia.com/wiki/Vim_Tips_Wiki)
 - [Vim Advent Calendar](https://vimways.org/2019/) 有許多小技巧
-- [Vim Golf](http://www.vimgolf.com/) 是一個以 Vim UI 作爲程式語言的 [code golf](https://en.wikipedia.org/wiki/Code_golf)
+- [Vim Golf](http://www.vimgolf.com/) 是一個以 Vim UI 作為程式語言的 [code golf](https://en.wikipedia.org/wiki/Code_golf)
 - [Vi/Vim Stack Exchange](https://vi.stackexchange.com/)
 - [Vim Screencasts](http://vimcasts.org/)
 - [Practical Vim](https://pragprog.com/book/dnvim2/practical-vim-second-edition) (書)

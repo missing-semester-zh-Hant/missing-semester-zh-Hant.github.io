@@ -333,12 +333,14 @@ a number of times. -->
 which means "inner" or "inside", and `a`, which means "around". -->
 我們可以使用修飾詞來更改名詞的含義。 例如“ i”，表示“核心”或“內部”，以及“ a”，表示“周圍”。
 
-<!-- - `ci(` change the contents inside the current pair of parentheses
+<!-- 
+- `ci(` change the contents inside the current pair of parentheses
 - `ci[` change the contents inside the current pair of square brackets
-- `da'` delete a single-quoted string, including the surrounding single quotes -->
--`ci（`更改當前括號對中的內容
--`ci [`更改當前方括號對的內容
--`da'刪除單引號字串，包括周圍的單引號
+- `da'` delete a single-quoted string, including the surrounding single quotes 
+-->
+- `ci(` 更改當前括號對中的內容
+- `ci[` 更改當前方括號對的內容
+- `da'` 刪除單引號字串，包括周圍的單引號
 
 <!-- # Demo -->
 # 示例
@@ -422,7 +424,7 @@ behavior. **Download our config [here](/2020/files/vimrc) and save it to
 `~/.vimrc`.** -->
 我們提供了詳盡說明的基礎配置檔案，你可以使用它作為起點。
 我們建議使用它來避免遇到一些Vim的古怪預設行為。
-**在[這裡](/2020/files/vimrc)下載我們的配置檔案，並將其儲存至 `~/.vimrc` **
+**在[這裡](/2020/files/vimrc)下載我們的配置檔案，並將其儲存至 `~/.vimrc`**
 
 <!-- Vim is heavily customizable, and it's worth spending time exploring
 customization options. You can look at people's dotfiles on GitHub for
@@ -654,15 +656,18 @@ better way of doing this", there probably is: look it up online. -->
 - [Vim Screencasts](http://vimcasts.org/)
 - [Practical Vim](https://pragprog.com/book/dnvim2/practical-vim-second-edition) (書)
 
-# Exercises
+<!-- # Exercises -->
+# 課後練習
 
-1. Complete `vimtutor`. Note: it looks best in a
+<!-- 1. Complete `vimtutor`. Note: it looks best in a
    [80x24](https://en.wikipedia.org/wiki/VT100) (80 columns by 24 lines)
-   terminal window.
-1. Download our [basic vimrc](/2020/files/vimrc) and save it to `~/.vimrc`. Read
+   terminal window. -->
+1. 完成 `vimtutor`。 註： 它在一個 [80x24](https://en.wikipedia.org/wiki/VT100)（80行，24列）的終端窗口看起來最好。
+<!-- 1. Download our [basic vimrc](/2020/files/vimrc) and save it to `~/.vimrc`. Read
    through the well-commented file (using Vim!), and observe how Vim looks and
-   behaves slightly differently with the new config.
-1. Install and configure a plugin:
+   behaves slightly differently with the new config. -->
+1. 下載我們的 基本 [vimrc](/2020/files/vimrc)， 然後把它保存到 `~/.vimrc。` 閱讀這個詳細註解的文件 (使用 Vim!)，然後觀察 Vim 在這個新的設置下看起來和使用起來有哪些細微的區別。
+<!-- 1. Install and configure a plugin:
    [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).
    1. Create the plugins directory with `mkdir -p ~/.vim/pack/vendor/start`
    1. Download the plugin: `cd ~/.vim/pack/vendor/start; git clone
@@ -674,15 +679,26 @@ better way of doing this", there probably is: look it up online. -->
       `:CtrlP`.
     1. Customize CtrlP by adding
        [configuration](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options)
-       to your `~/.vimrc` to open CtrlP by pressing Ctrl-P.
-1. To practice using Vim, re-do the [Demo](#demo) from lecture on your own
-   machine.
-1. Use Vim for _all_ your text editing for the next month. Whenever something
+       to your `~/.vimrc` to open CtrlP by pressing Ctrl-P. -->
+1. 安裝和配置一個插件： 
+   [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).
+   1. 用 `mkdir -p ~/.vim/pack/vendor/start`創建插件文件夾
+   1. 下載插件 `cd ~/.vim/pack/vendor/start; git clone https://github.com/ctrlpvim/ctrlp.vim`
+   1. 閱讀該插件的[文件](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md)，嘗試使用 CtrlP 在一個專案路徑裡定位一個文件，打開 Vim, 然後用 Vim 命令列執行 `:CtrlP`
+   1. 自定義 CtrlP： 添加 [configuration](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options) 到你的 `~/.vimrc` 來用按 Ctrl-P 打開 CtrlP
+<!-- 1. To practice using Vim, re-do the [Demo](#demo) from lecture on your own
+   machine. -->
+1. 練習使用 Vim, 在你自己的電腦上重做[範例](#demo)
+<!-- 1. Use Vim for _all_ your text editing for the next month. Whenever something
    seems inefficient, or when you think "there must be a better way", try
    Googling it, there probably is. If you get stuck, come to office hours or
-   send us an email.
-1. Configure your other tools to use Vim bindings (see instructions above).
-1. Further customize your `~/.vimrc` and install more plugins.
-1. (Advanced) Convert XML to JSON ([example file](/2020/files/example-data.xml))
+   send us an email. -->
+1. 下個月用 Vim 做你_所有_文件編輯。若使用上效率不好, 或者你感覺 “一定有一個更好的方式”，嘗試上網搜尋， 很有可能有一個更好的方式。如果你遇到難題，來我們的office hours或者給我們發郵件。
+<!-- 1. Configure your other tools to use Vim bindings (see instructions above). -->
+1. 在你的其他工具中設置 Vim 快捷鍵（見上面的操作指南）。
+<!-- 1. Further customize your `~/.vimrc` and install more plugins. -->
+1. 進一步自定義你的 `~/.vimrc` 和安裝更多插件。
+<!-- 1. (Advanced) Convert XML to JSON ([example file](/2020/files/example-data.xml))
    using Vim macros. Try to do this on your own, but you can look at the
-   [macros](#macros) section above if you get stuck.
+   [macros](#macros) section above if you get stuck. -->
+1. (進階) 用 Vim 巨集將 XML 轉換到 JSON ([範例文件](/2020/files/example-data.xml))。嘗試著先自己實做， 但是在你卡住的時候可以查看上面[巨集](#macros)章節。

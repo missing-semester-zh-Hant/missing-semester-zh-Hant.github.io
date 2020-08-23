@@ -76,7 +76,7 @@ Vim 有非常簡潔的行事理論，因此，許多工具支援類 Vim 的編�
 going to focus on explaining the philosophy of Vim, teaching you the basics,
 showing you some of the more advanced functionality, and giving you the
 resources to master the tool. -->
-在 50 分鐘之內教授完Vim的功能是不可能的，所以我們只會專注與介紹Vim的處世哲學，教授一點基礎知識，展示一些高階功能，並為你提供掌握Vim的學習資源。
+在 50 分鐘之內教授完 Vim 的功能是不可能的，所以我們只會專注與介紹 Vim 的處世哲學，教授一點基礎知識，展示一些高階功能，並為你提供掌握 Vim 的學習資源。
 
 <!-- # Philosophy of Vim -->
 # Vim之哲學
@@ -143,7 +143,7 @@ with `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with
 <!-- You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock to
 Escape ([macOS
 instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)). -->
-在使用Vim時會市場用到 `<ESC>`: 清考慮將 Caps Lock 重對映至 Escape ([macOS
+在使用Vim時，時常會用到 `<ESC>`: 请考慮將 Caps Lock 重對映至 Escape ([macOS
 指引](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS)).
 
 <!-- # Basics -->
@@ -162,7 +162,7 @@ time editing from Insert mode). -->
 只需知道這一點與之前介紹的內容，就足以使用 VIm 來編輯檔案了(雖然只使用插入模式效率不高)。
 
 <!-- ## Buffers, tabs, and windows -->
-## 緩存, 標籤頁，視窗
+## 緩存，標籤頁，視窗
 
 <!-- Vim maintains a set of open files, called "buffers". A Vim session has a number
 of tabs, each of which has a number of windows (split panes). Each window shows
@@ -331,7 +331,7 @@ a number of times. -->
 
 <!-- You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
 which means "inner" or "inside", and `a`, which means "around". -->
-我們可以使用修飾詞來更改名詞的含義。 例如“ i”，表示“核心”或“內部”，以及“ a”，表示“周圍”。
+我們可以使用修飾詞來更改名詞的含義。 例如“ i”，表示“inside”，“核心”或“內部”，以及“ a”，表示“around”，“周圍”。
 
 <!-- 
 - `ci(` change the contents inside the current pair of parentheses
@@ -501,7 +501,7 @@ editor is launched when a program wants to start an editor. For example, `git`
 will use this editor for commit messages. -->
 如果你使用 Bash，執行 `set -o vi`。如果你使用 Zsh，`bindkey -v`。若你使用 Fish，嘗試 `fish_vi_key_bindings`。
 另外，無論什麼 shell，都應可以使用 `export EDITOR=vim`。這是用於決定啟動哪個編輯器的環境變數。
-例如， `git` 使用次編輯器來提交訊息。
+例如， `git` 使用此編輯器來提交訊息。
 
 <!-- ## Readline -->
 ## Readline
@@ -544,7 +544,7 @@ all of these kinds of things, but you'll learn them as you go. A good
 heuristic: whenever you're using your editor and you think "there must be a
 better way of doing this", there probably is: look it up online. -->
 這裡有一些向你展現編輯器能力的例子。我們無法涵蓋所有事情，不過在你使用的過程中也會學到這些。
-一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼更好地辦法做這個”，通常來說真的是這樣，在網上搜尋一下。
+一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼更好的辦法做這個”，通常來說真的是這樣，在網上搜尋一下。 
 
 <!-- ## Search and replace -->
 ## 搜尋與替換

@@ -544,7 +544,7 @@ all of these kinds of things, but you'll learn them as you go. A good
 heuristic: whenever you're using your editor and you think "there must be a
 better way of doing this", there probably is: look it up online. -->
 這裡有一些向你展現編輯器能力的例子。我們無法涵蓋所有事情，不過在你使用的過程中也會學到這些。
-一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼更好的辦法做這個”，通常來說真的是這樣，在網上搜尋一下。 
+一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼地的辦法做這個”，通常來說真的是這樣，在網上搜尋一下。 
 
 <!-- ## Search and replace -->
 ## 搜尋與替換
@@ -700,7 +700,7 @@ better way of doing this", there probably is: look it up online. -->
    1. 閱讀該插件的[文件](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md)，嘗試使用 CtrlP 在一個專案路徑裡定位一個文件，打開 Vim, 然後用 Vim 命令列執行 `:CtrlP`
    1. 自定義 CtrlP： 添加 [configuration](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options) 到你的 `~/.vimrc` 來用按 Ctrl-P 打開 CtrlP
 1. 練習使用 Vim, 在你自己的電腦上重做[範例](#demo)
-1. 下個月用 Vim 做你_所有_文件編輯。若使用上效率不好, 或者你感覺 “一定有一個更好的方式”，嘗試上網搜尋， 很有可能有一個更好的方式。如果你遇到難題，來我們的office hours或者給我們發郵件。
+1. 下個月用 Vim 做你 _所有_ 文件編輯。若使用上效率不好, 或者你感覺 “一定有一個更好的方式”，嘗試上網搜尋， 很有可能有一個更好的方式。如果你遇到難題，來我們的office hours或者給我們發郵件。
 1. 在你的其他工具中設置 Vim 快捷鍵（見上面的操作指南）。
 1. 進一步自定義你的 `~/.vimrc` 和安裝更多插件。
 1. (進階) 用 Vim 巨集將 XML 轉換到 JSON ([範例文件](/2020/files/example-data.xml))。嘗試著先自己實做， 但是在你卡住的時候可以查看上面[巨集](#macros)章節。

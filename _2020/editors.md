@@ -407,7 +407,7 @@ def main():
 made using Vim to how you might make the same edits using another program.
 Notice how very few keystrokes are required in Vim, allowing you to edit at the
 speed you think. -->
-觀看講座視訊的演示。 比較使用Vim進行上述更正的方式與使用其他程式進行相同更正的方式。 注意Vim中幾乎不需要擊鍵的特性，使我們可以用與思考相同的速度編輯。
+觀看講座視訊的演示。 比較使用 Vim 進行上述更正的方式與使用其他程式進行相同更正的方式。 注意 Vim 中幾乎不需要擊鍵的特性，使我們可以用與思考相同的速度編輯。
 
 <!-- # Customizing Vim -->
 # 自訂Vim
@@ -531,10 +531,10 @@ popular ones are
 for Google Chrome and [Tridactyl](https://github.com/tridactyl/tridactyl) for
 Firefox. You can even get Vim bindings in [Jupyter
 notebooks](https://github.com/lambdalisue/jupyter-vim-binding). -->
-甚至有針對網頁[瀏覽器](http://vim.wikia.com/wiki/Vim_key_bindings_for_web_browsers) 的 Vim 快捷鍵擴充。
-受歡迎的款式有適用於 Google Chrome 的[Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
-和適用於 Firefox 的[Tridactyl](https://github.com/tridactyl/tridactyl)。
-在[Jupyter notebooks](https://github.com/lambdalisue/jupyter-vim-binding)中同樣可以使用。
+甚至有針對網頁 [瀏覽器](http://vim.wikia.com/wiki/Vim_key_bindings_for_web_browsers) 的 Vim 快捷鍵擴充。
+受歡迎的款式有適用於 Google Chrome 的 [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en) 
+和適用於 Firefox 的 [Tridactyl](https://github.com/tridactyl/tridactyl)。
+在 [Jupyter notebooks](https://github.com/lambdalisue/jupyter-vim-binding) 中同樣可以使用。
 
 <!-- # Advanced Vim -->
 # Vim 進階

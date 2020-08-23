@@ -435,7 +435,7 @@ inspiration, for example, your instructors' Vim configs
 lots of good blog posts on this topic too. Try not to copy-and-paste people's
 full configuration, but read it, understand it, and take what you need. -->
 Vim是可高度自訂的，值得用些時間去探索自訂選項。
-我們課咦在GitHub上檢視其他人的 dotfile 獲取靈感。
+我們可以在GitHub上檢視其他人的 dotfile 獲取靈感。
 例如，你的講師們的 Vim 配置檔案 ([Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc),
 [Jon](https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim) (uses [neovim](https://neovim.io/)),
 [Jose](https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc))。

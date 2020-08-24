@@ -244,7 +244,7 @@ refer to chunks of text. -->
 - 基礎移動: `hjkl` (左，下，上，右)
 - 詞: `w` (下一詞), `b` (詞首), `e` (詞尾)
 - 列: `0` (列首), `^` (第一個非空字元), `$` (列尾)
-- 熒幕: `H` (熒幕首列), `M` (中間), `L` (熒幕末尾)
+- 螢幕: `H` (螢幕首列), `M` (中間), `L` (螢幕末尾)
 - 滾動: `Ctrl-u` (向上), `Ctrl-d` (向下)
 - 檔案: `gg` (檔案頭), `G` (檔案尾)
 - 列數: `:{列數}<CR>` or `{列數}G` (列 {列數})
@@ -415,7 +415,7 @@ speed you think. -->
 <!-- Vim is customized through a plain-text configuration file in `~/.vimrc`
 (containing Vimscript commands). There are probably lots of basic settings that
 you want to turn on. -->
-Vim是通過 `〜/ .vimrc` 中的純文字配置檔案定製的。
+Vim是通過 `~/.vimrc` 中的純文字配置檔案定製的。
 （包含Vimscript指令）。 這裡可能有許多我們想啟用的基本設定。
 
 <!-- We are providing a well-documented basic config that you can use as a starting
@@ -704,3 +704,4 @@ better way of doing this", there probably is: look it up online. -->
 1. 在你的其他工具中設置 Vim 快捷鍵（見上面的操作指南）。
 1. 進一步自定義你的 `~/.vimrc` 和安裝更多插件。
 1. (進階) 用 Vim 巨集將 XML 轉換到 JSON ([範例文件](/2020/files/example-data.xml))。嘗試著先自己實做， 但是在你卡住的時候可以查看上面[巨集](#macros)章節。
+

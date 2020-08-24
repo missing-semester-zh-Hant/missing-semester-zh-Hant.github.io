@@ -544,7 +544,7 @@ all of these kinds of things, but you'll learn them as you go. A good
 heuristic: whenever you're using your editor and you think "there must be a
 better way of doing this", there probably is: look it up online. -->
 這裡有一些向你展現編輯器能力的例子。我們無法涵蓋所有事情，不過在你使用的過程中也會學到這些。
-一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼地的辦法做這個”，通常來說真的是這樣，在網上搜尋一下。 
+一個好辦法是：如果你在使用編輯器的時候感到“一定有什麼更好地的辦法做這個”，通常來說真的是這樣，在網上搜尋一下。 
 
 <!-- ## Search and replace -->
 ## 搜尋與替換

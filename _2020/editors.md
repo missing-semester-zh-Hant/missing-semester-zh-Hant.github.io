@@ -189,7 +189,7 @@ to the command line at the bottom of the screen upon pressing `:`. This mode
 has many functionalities, including opening, saving, and closing files, and
 [quitting Vim](https://twitter.com/iamdevloper/status/435555976687923200). -->
 在標準模式下鍵入 `:` 來進入命令列模式。
-此時遊標會立即跳至熒幕下方的命令列。
+此時遊標會立即跳至螢幕下方的命令列。
 這個模式包含許多功能，如開啟，儲存，關閉檔案，以及[退出 Vim](https://twitter.com/iamdevloper/status/435555976687923200).
 
 <!-- - `:q` quit (close window)

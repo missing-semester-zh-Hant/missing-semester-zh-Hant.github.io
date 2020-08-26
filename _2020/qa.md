@@ -16,7 +16,7 @@ video:
 - [我該使用 Python 還是 Bash 腳本還是其他語言](#我該使用-python-還是-bash-腳本還是其他語言)
 - [`source script.sh` 和 `./script.sh` 有什麼區別](#source-scriptsh-和-scriptsh-有什麼區別)
 - [各種程式套件和工具的儲存位置是什麼？如何引用它們？ `/bin` 和 `/lib` 又是什麼？](#各種程式套件和工具的儲存位置是什麼如何引用它們-bin-和-lib-又是什麼)
-- [我是否可以 `apt-get install` 一個 python 程式, 或者使用 `pip install`?](#我是否可以-apt-get-install-一個-python-程式或者使用-pip-install)
+- [我應使用 `apt-get install` 還是 `pip install` 來安裝一個 python 程式?](#我應使用-apt-get-install-還是-pip-install-來安裝一個-python-程式)
 - [提升程式碼效能最簡單好用的分析工具有哪些](#提升程式碼效能最簡單好用的分析工具有哪些)
 - [你在用什麼瀏覽器外掛](#你在用什麼瀏覽器外掛)
 - [還有哪些有用的資料預處理工具](#還有哪些有用的資料預處理工具)
@@ -136,7 +136,7 @@ In general, there are some conventions about where specific types of files live.
 - `/var` - 變數檔案——在正常執行的系統中其內容不斷變化的檔案
 
 <!-- ## Should I `apt-get install` a python-whatever, or `pip install` whatever package? -->
-## 我是否可以 `apt-get install` 一個 python 程式，或者使用 `pip install`?
+## 我應使用 `apt-get install` 還是 `pip install` 來安裝一個 python 程式?
 
 <!-- There's no universal answer to this question. It's related to the more general question of whether you should use your system's package manager or a language-specific package manager to install software. A few things to take into account: -->
 這個問題通常沒有合適的答案。這與使用作業系統套件管理系統還是特定語言的套件管理系統這個更打的問題有關。你需要考慮這些事情：

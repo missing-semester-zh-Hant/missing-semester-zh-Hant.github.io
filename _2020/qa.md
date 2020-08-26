@@ -196,7 +196,7 @@ You just manually compute the time taken between different parts of your code. B
 通常來說，Vim 和 Python 也可以看作不常規的資料整理工具。對於一些複雜的多行轉換，Vim 巨集是非常寶貴的工具。你可以記錄一系列動作，並根據需求重複多次。例如，在編輯器章節的 [lecture notes](/2020/editors/#巨集) (和去年的[課程回放](/2019/editors/))中，有一個示例，僅使用vim巨集將XML格式的檔案轉換為JSON。
 
 <!-- For tabular data, often presented in CSVs, the [pandas](https://pandas.pydata.org/) Python library is a great tool. Not only because it makes it quite easy to define complex operations like group by, join or filters; but also makes it quite easy to plot different properties of your data. It also supports exporting to many table formats including XLS, HTML or LaTeX. Alternatively the R programming language (an arguably [bad](http://arrgh.tim-smith.us/) programming language) has lots of functionality for computing statistics over data and can be quite useful as the last step of your pipeline. [ggplot2](https://ggplot2.tidyverse.org/) is a great plotting library in R.  -->
-對於通常以CSV格式表示的表格資料，[pandas](https://pandas.pydata.org/) Python庫是一個很好的工具。 因為它不僅使定義復雜的操作（如分組，聯接或過濾）變得非常容易；而且還很容易繪製資料的不同屬性。它還支援匯出為多種表格式，包括XLS，HTML或LaTeX。 另外，R程式語言（可以說是[不好的](（)http://arrgh.tim-smith.us/)程式語言）具有用於計算資料統計資訊的許多功能，在作為管道的最後一步時非常有效。 [ggplot2](https://ggplot2.tidyverse.org/)是R中不錯的繪相簿。
+對於通常以CSV格式表示的表格資料，[pandas](https://pandas.pydata.org/) Python庫是一個很好的工具。 因為它不僅使定義復雜的操作（如分組，聯接或過濾）變得非常容易；而且還很容易繪製資料的不同屬性。它還支援匯出為多種表格式，包括XLS，HTML或LaTeX。 另外，R程式語言（可以說是[不好的](http://arrgh.tim-smith.us/)程式語言）具有用於計算資料統計資訊的許多功能，在作為管道的最後一步時非常有效。 [ggplot2](https://ggplot2.tidyverse.org/)是R中不錯的繪相簿。
 
 <!-- ## What is the difference between Docker and a Virtual Machine? -->
 ## Docker 和虛擬機器有什麼區別

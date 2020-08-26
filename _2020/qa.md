@@ -25,8 +25,8 @@ video:
 - [Vim 還是 Emacs](#Vim-還是-Emacs)
 - [有哪些機器學習的注意與技巧](#有哪些機器學習的注意與技巧)
 - [還有什麼 Vim 小技巧](#還有什麼-Vim-小技巧)
-- [What is 2FA and why should I use it?](#what-is-2fa-and-why-should-i-use-it)
-- [Any comments on differences between web browsers?](#any-comments-on-differences-between-web-browsers)
+- [雙重驗證（2FA）是什麼，我該如何使用它](#雙重驗證2FA是什麼我該如何使用它)
+- [對Web瀏覽器之間的差異有何評論](#對Web瀏覽器之間的差異有何評論)
 
 <!-- ## Any recommendations on learning Operating Systems related topics like processes, virtual memory, interrupts, memory management, etc  -->
 ## 關於學習作業系統相關題目的建議，如進程，虛擬內存，中斷，內存管理
@@ -267,16 +267,19 @@ Lastly, if you do not work with some sort of cluster where you submit your GPU j
 - 記號 - 在 Vim 中，你可以透過 `m<X>` 將字元 `X` 設定爲記號。其後可以使用 `'<X>` 來回到標記位置。這可以讓你在單一檔案內甚至跨檔案迅速定位。
 - 導航 - `Ctrl+O` 與 `Ctrl+I` 可以在你最近瀏覽的位置間移動。
 - 撤銷樹 - vim 對於追蹤變化有非常奇異的機制。不同於其他編輯器，vim 存儲變化樹，因爲你在撤銷後做了一些更正，仍然可以透過撤銷樹的導航回到初始狀態。一些外掛可以可視化撤銷樹，例如  [gundo.vim](https://github.com/sjl/gundo.vim) 和 [undotree](https://github.com/mbbill/undotree)。
-- Undo with time - The `:earlier` and `:later` commands will let you navigate the files using time references instead of one change at a time.
-- [Persistent undo](https://vim.fandom.com/wiki/Using_undo_branches#Persistent_undo) is an amazing built-in feature of vim that is disabled by default. It persists undo history between vim invocations. By setting `undofile` and `undodir` in your `.vimrc`, vim will storage a per-file history of changes.
-- Leader Key - The leader key is a special key that is often left to the user to be configured for custom commands. The pattern is usually to press and release this key (often the space key) and then some other key to execute a certain command. Often, plugins will use this key to add their own functionality, for instance the UndoTree plugin uses `<Leader> U` to open the undo tree. 
-- Advanced Text Objects - Text objects like searches can also be composed with vim commands. E.g. `d/<pattern>` will delete to the next match of said pattern or `cgn` will change the next occurrence of the last searched string. 
+- 按時間撤銷 - `:earlier` 和 `:later` 可以使用相對時間前後更正，而非逐一修改。
+- [永久重做（Persistent undo）](https://vim.fandom.com/wiki/Using_undo_branches#Persistent_undo) 是一個默認不啓用的 vim 內建功能。它會在多次 vim 啓動之間記錄撤銷歷史。透過設定 `.vimrc` 內的 `undofile` 和 `undodir`，vim 會爲每個文件記錄更正歷史。
+- Leader 鍵 -  Leader 鍵是一個通常留給用戶自訂功能的特殊按鍵。通常是由按下後釋放這個鍵（通常是空格鍵）並與其他按鍵組合來實現特殊指令。通常插件也會使用這些按鍵增加他們的功能，例如，UndoTree 會使用 `<Leader> U` 來打開撤銷樹。
+- 高階文本對象 - 文本對象例如檢索也可以使用 vim 指令規程。比如，`d/<pattern>` 會刪除下移除匹配 pattern 的字串，`cgn` 可以更改上次檢索的關鍵字。
 
-## What is 2FA and why should I use it?
+<!-- ## What is 2FA and why should I use it? -->
+## 雙重驗證（2FA）是什麼，我該如何使用它
 
-Two Factor Authentication (2FA) adds an extra layer of protection to your accounts on top of passwords. In order to login, you not only have to know some password, but you also have to "prove" in some way you have access to some hardware device. In the most simple case, this can be achieved by receiving an SMS on your phone, although there are [known issues](https://www.kaspersky.com/blog/2fa-practical-guide/24219/) with SMS 2FA. A better alternative we endorse is to use a [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) solution like [YubiKey](https://www.yubico.com/).
+<!-- Two Factor Authentication (2FA) adds an extra layer of protection to your accounts on top of passwords. In order to login, you not only have to know some password, but you also have to "prove" in some way you have access to some hardware device. In the most simple case, this can be achieved by receiving an SMS on your phone, although there are [known issues](https://www.kaspersky.com/blog/2fa-practical-guide/24219/) with SMS 2FA. A better alternative we endorse is to use a [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) solution like [YubiKey](https://www.yubico.com/). -->
+雙重驗證在密碼之上給予使用者賬戶額外的保護。登入時，你不僅需要密碼，還必須以某種方式“證明”你可以訪問某些硬體裝置。最簡單的情況是接收 SMS，儘管 SMS 已經被證明[有安全性問題](https://www.kaspersky.com/blog/2fa-practical-guide/24219/)。一個良好替代就是使用 [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) 方案，比如 [YubiKey](https://www.yubico.com/)。
 
-## Any comments on differences between web browsers?
+<!-- ## Any comments on differences between web browsers? -->
+## 對Web瀏覽器之間的差異有何評論
 
-The current landscape of browsers as of 2020 is that most of them are like Chrome because they use the same engine (Blink). This means that Microsoft Edge which is also based on Blink, and Safari, which is based on WebKit, a similar engine to Blink, are just worse versions of Chrome. Chrome is a reasonably good browser both in terms of performance and usability. Should you want an alternative, Firefox is our recommendation. It is comparable to Chrome in pretty much every regard and it excels for privacy reasons.
-Another browser called [Flow](https://www.ekioh.com/flow-browser/) is not user ready yet, but it is implementing a new rendering engine that promises to be faster than the current ones. 
+截至2020年，當前瀏覽器的格局是大多數瀏覽器都與 Chrome 很相像，因為它們使用相同的引擎（Blink）。這意味著同樣基於 Blink 的 Microsoft Edge 和基於 WebKit（與 Blink 類似的引擎）的 Safari 都是 Chrome 的較差版本。就性能和可用性而言，Chrome 是一款相當不錯的瀏覽器。如果你需要替代，建議使用Firefox。在幾乎所有方面，它都可以與 Chrome 媲美，並且它在隱私保護方面也十分出色。
+另一個名為 [Flow](https://www.ekioh.com/flow-browser/) 的瀏覽器尚未完成，但它正在實現一個新的渲染引擎，該引擎有望比當前的渲染引擎更快。

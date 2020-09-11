@@ -134,7 +134,7 @@ that has the code you want. -->
 如何快速尋找你需要的檔案，而非逐個開啟所有檔案直至找到你需要的程式碼。
 
 <!-- In the example below we quickly look for files with `fd` and for code snippets with `rg`. We also quickly `cd` and `vim` recent/frequent files/folder using `fasd`. -->
-在下面的示例中我們利用 `fd` 快速搜尋檔案，並透過 `rg` 找到程式碼片段。我萌也用到了 `fasd` 來迅速 `cd` 與 `vim` 最近/常用的檔案/檔案夾。
+在下面的示例中我們利用 `fd` 快速搜尋檔案，並透過 `rg` 找到程式碼片段。我們也用到了 `fasd` 來迅速 `cd` 與 `vim` 最近/常用的檔案/檔案夾。
 
 <video autoplay="autoplay" loop="loop" controls muted playsinline  oncontextmenu="return false;"  preload="auto"  class="demo">
   <source src="/static/media/demos/find.mp4" type="video/mp4">

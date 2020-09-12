@@ -8,68 +8,99 @@ video:
   id: tjwobAmnKTo
 ---
 
-Last year's [security and privacy lecture](/2019/security/) focused on how you
+<!-- Last year's [security and privacy lecture](/2019/security/) focused on how you
 can be more secure as a computer _user_. This year, we will focus on security
 and cryptography concepts that are relevant in understanding tools covered
 earlier in this class, such as the use of hash functions in Git or key
-derivation functions and symmetric/asymmetric cryptosystems in SSH.
+derivation functions and symmetric/asymmetric cryptosystems in SSH. -->
+去年的[安全和隱私講座](/2019/security/)重點討論瞭如何以電腦 _使用者_ 的身份提高安全性。
+今年，我們將重點關注與本課程前面介紹的工具有關的，在安全性和密碼學概念方面的知識。
+例如，在 Git 中使用 hash 函數或在 SSH 中使用密鑰派生函數和對稱/非對稱密碼系統。
 
-This lecture is not a substitute for a more rigorous and complete course on
+<!-- This lecture is not a substitute for a more rigorous and complete course on
 computer systems security ([6.858](https://css.csail.mit.edu/6.858/)) or
 cryptography ([6.857](https://courses.csail.mit.edu/6.857/) and 6.875). Don't
 do security work without formal training in security. Unless you're an expert,
 don't [roll your own
 crypto](https://www.schneier.com/blog/archives/2015/05/amateurs_produc.html).
-The same principle applies to systems security.
+The same principle applies to systems security. -->
+此課程不可作爲計算機系統安全([6.858](https://css.csail.mit.edu/6.858/)) 或
+密碼學 ([6.857](https://courses.csail.mit.edu/6.857/) 與 6.875)的替代。
+不要在沒有接受良好安全性教學的情況下從事相關工作。
+除非你是專家，不要[自創加密方法](https://www.schneier.com/blog/archives/2015/05/amateurs_produc.html)，
+這在系統安全方面是同樣的。
 
-This lecture has a very informal (but we think practical) treatment of basic
+<!-- This lecture has a very informal (but we think practical) treatment of basic
 cryptography concepts. This lecture won't be enough to teach you how to
 _design_ secure systems or cryptographic protocols, but we hope it will be
 enough to give you a general understanding of the programs and protocols you
-already use.
+already use. -->
+這節課對基本密碼學概念有着非常簡略（但我們認爲很實用）的介紹。
+若你想 _設計_ 安全系統或加密協議，僅僅學習本課是不夠的。
+但我們希望此課可以讓你大致瞭解已經廣泛使用的程式與協議。
 
-# Entropy
+<!-- # Entropy -->
+# 熵(Entropy)
 
-[Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) is a
+<!-- [Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) is a
 measure of randomness. This is useful, for example, when determining the
-strength of a password.
+strength of a password. -->
+[熵](https://en.wikipedia.org/wiki/Entropy_(information_theory))是對隨機性的一種度量。
+在例如測試密碼強度等環境下，熵有着重要作用。
 
-![XKCD 936: Password Strength](https://imgs.xkcd.com/comics/password_strength.png)
+<!-- ![XKCD 936: Password Strength](https://imgs.xkcd.com/comics/password_strength.png) -->
+![XKCD 936: 密碼安全性](https://xkcd.tw/strip/936.png)
 
-As the above [XKCD comic](https://xkcd.com/936/) illustrates, a password like
+<!-- As the above [XKCD comic](https://xkcd.com/936/) illustrates, a password like
 "correcthorsebatterystaple" is more secure than one like "Tr0ub4dor&3". But how
-do you quantify something like this?
+do you quantify something like this? -->
+如同上面 [XKCD 漫畫](https://xkcd.tw/936) 描繪的，
+"correcthorsebatterystaple" 比 "Tr0ub4dor&3" 更爲安全。
+我們該如何判斷安全性？
 
-Entropy is measured in _bits_, and when selecting uniformly at random from a
+<!-- Entropy is measured in _bits_, and when selecting uniformly at random from a
 set of possible outcomes, the entropy is equal to `log_2(# of possibilities)`.
 A fair coin flip gives 1 bit of entropy. A dice roll (of a 6-sided die) has
-\~2.58 bits of entropy.
+\~2.58 bits of entropy. -->
+熵以 _位元_ 度量，對於一個均勻分佈的隨機變數，熵等於 `log_2(可能性總數)`。
+擲一次硬幣的uhti 1 位元，擲一次（六面）骰子的熵約爲 2.58 位元。
 
-You should consider that the attacker knows the _model_ of the password, but
+<!-- You should consider that the attacker knows the _model_ of the password, but
 not the randomness (e.g. from [dice
 rolls](https://en.wikipedia.org/wiki/Diceware)) used to select a particular
-password.
+password. -->
+我們通常認爲攻擊者瞭解密碼的 _模型_， 但是不知道密碼的隨機性（例如 [擲骰子](https://en.wikipedia.org/wiki/Diceware)）。
 
-How many bits of entropy is enough? It depends on your threat model. For online
+<!-- How many bits of entropy is enough? It depends on your threat model. For online
 guessing, as the XKCD comic points out, \~40 bits of entropy is pretty good. To
 be resistant to offline guessing, a stronger password would be necessary (e.g.
-80 bits, or more).
+80 bits, or more). -->
+多少位元的熵是足夠安全的？這通常取決於威脅模型。
+上面的 XKCD 漫畫指出，對於線上密碼攻擊，大約 40 位元的熵即可。
+對於線下攻擊，需要 80 位元或更強的密碼。
 
-# Hash functions
+<!-- # Hash functions -->
+# 密碼雜湊函式(hash)
 
-A [cryptographic hash
+<!-- A [cryptographic hash
 function](https://en.wikipedia.org/wiki/Cryptographic_hash_function) maps data
 of arbitrary size to a fixed size, and has some special properties. A rough
-specification of a hash function is as follows:
+specification of a hash function is as follows: -->
+[密碼雜湊函式](https://en.wikipedia.org/wiki/Cryptographic_hash_function)
+會將任意大小的資料映射至指定大小。
+一個粗略的雜湊函式規範大概是這樣的：
 
 ```
-hash(value: array<byte>) -> vector<byte, N>  (for some fixed N)
+hash(value: array<byte>) -> vector<byte, N>  (N 是固定數目)
 ```
 
-An example of a hash function is [SHA1](https://en.wikipedia.org/wiki/SHA-1),
+<!-- An example of a hash function is [SHA1](https://en.wikipedia.org/wiki/SHA-1),
 which is used in Git. It maps arbitrary-sized inputs to 160-bit outputs (which
 can be represented as 40 hexadecimal characters). We can try out the SHA1 hash
-on an input using the `sha1sum` command:
+on an input using the `sha1sum` command: -->
+一個雜湊函式的例子是 Git 使用的 [SHA1](https://en.wikipedia.org/wiki/SHA-1)。
+它會將任意大小的輸入映射至 160 位元（即 40 個十六進位字元）中。
+我們可以使用 `sha1sum` 指令：
 
 ```console
 $ printf 'hello' | sha1sum
@@ -80,29 +111,39 @@ $ printf 'Hello' | sha1sum
 f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0
 ```
 
-At a high level, a hash function can be thought of as a hard-to-invert
+<!-- At a high level, a hash function can be thought of as a hard-to-invert
 random-looking (but deterministic) function (and this is the [ideal model of a
 hash function](https://en.wikipedia.org/wiki/Random_oracle)). A hash function
-has the following properties:
+has the following properties: -->
+更通用的解釋是，雜湊函式可以被認爲是不可逆且隨機（但是具有特定性）的函式（這是 [雜湊函式的理想模型](https://en.wikipedia.org/wiki/Random_oracle)）。
+一個雜湊函式將會有如下性質：
 
-- Deterministic: the same input always generates the same output.
+<!-- - Deterministic: the same input always generates the same output.
 - Non-invertible: it is hard to find an input `m` such that `hash(m) = h` for
 some desired output `h`.
 - Target collision resistant: given an input `m_1`, it's hard to find a
 different input `m_2` such that `hash(m_1) = hash(m_2)`.
 - Collision resistant: it's hard to find two inputs `m_1` and `m_2` such that
 `hash(m_1) = hash(m_2)` (note that this is a strictly stronger property than
-target collision resistance).
+target collision resistance). -->
+- 確定性: 對於相同輸入，輸出也是相同的
+- 不可逆: 對於函式 `hash(m) = h`，給出 `h` 幾乎不可能求得對應的 `m`。
+- 弱抵抗/低碰撞抗性: 給予輸入 `m_1`, 很難找到 `m_2` 使得 `hash(m_1) = hash(m_2)`。
+- 強抵抗/高碰撞抗性: 很難找到兩個輸入 `m_1` 和 `m_2` 使得 `hash(m_1) = hash(m_2)`。注意這比弱抵抗更爲嚴格。
 
-Note: while it may work for certain purposes, SHA-1 is [no
+<!-- Note: while it may work for certain purposes, SHA-1 is [no
 longer](https://shattered.io/) considered a strong cryptographic hash function.
 You might find this table of [lifetimes of cryptographic hash
 functions](https://valerieaurora.org/hash.html) interesting. However, note that
 recommending specific hash functions is beyond the scope of this lecture. If you
 are doing work where this matters, you need formal training in
-security/cryptography.
+security/cryptography. -->
+注意：雖然對於一般用途還有效，SHA-1 已經[不再](https://shattered.io/)被認爲是強密碼雜湊函式了。
+你也許會對[密碼雜湊函式的生命週期](https://valerieaurora.org/hash.html)感興趣。
+對於特定需求推薦指定雜湊函式不在此課程的涵蓋範圍內，如果你有這些需求，需要學習安全學或密碼學。
 
-## Applications
+<!-- ## Applications -->
+## 運用
 
 - Git, for content-addressed storage. The idea of a [hash
 function](https://en.wikipedia.org/wiki/Hash_function) is a more general

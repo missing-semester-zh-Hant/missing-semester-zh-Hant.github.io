@@ -80,7 +80,7 @@ be resistant to offline guessing, a stronger password would be necessary (e.g.
 對於線下攻擊，需要 80 位元或更強的密碼。
 
 <!-- # Hash functions -->
-# 密碼雜湊函式(hash)
+# 密碼雜湊函式
 
 <!-- A [cryptographic hash
 function](https://en.wikipedia.org/wiki/Cryptographic_hash_function) maps data
@@ -145,7 +145,7 @@ security/cryptography. -->
 <!-- ## Applications -->
 ## 運用
 
-- Git, for content-addressed storage. The idea of a [hash
+<!-- - Git, for content-addressed storage. The idea of a [hash
 function](https://en.wikipedia.org/wiki/Hash_function) is a more general
 concept (there are non-cryptographic hash functions). Why does Git use a
 cryptographic hash function?
@@ -161,51 +161,83 @@ trusted shared coin that two parties can see. I could choose a value `r =
 random()`, and then share `h = sha256(r)`. Then, you could call heads or tails
 (we'll agree that even `r` means heads, and odd `r` means tails). After you
 call, I can reveal my value `r`, and you can confirm that I haven't cheated by
-checking `sha256(r)` matches the hash I shared earlier.
+checking `sha256(r)` matches the hash I shared earlier. -->
+- Git，用於內容尋址存儲。[雜湊函式](https://en.wikipedia.org/wiki/Hash_function)
+是一個寬泛的概念（存在與密碼學無關的雜湊函式）。爲什麼 Git 要使用它？
+- 檔案資料摘要。例如 Linux ISO 這種軟體經常需要從（潛在不可信的）非官方鏡像下載，此時不信任它們比較好。
+官方站點通常會在鏡像站點旁邊列出 hash，這樣你可以在下載後檢驗得到的文件。
+- [承諾方案(Commitment scheme)](https://en.wikipedia.org/wiki/Commitment_scheme).
+假定你需要承諾一個值，但要之後揭示它。例如，我要“在想象中”擲一次硬幣，但是這個硬幣對你不可見也不受信任。
+我可以選擇一個值 `r = random()`，然後告訴你 `h = sha256(r)`。我們同意 `r` 爲偶數時代表正面，奇數時代表反面。
+之後，你可以選擇正面還是反面。判斷勝負後，我可以告訴你我的值 `r`，並且可以通過檢驗 `sha256(r)`
+ 來確認我沒有作弊。
 
-# Key derivation functions
+<!-- # Key derivation functions -->
+# 密鑰衍生函式
 
-A related concept to cryptographic hashes, [key derivation
+<!-- A related concept to cryptographic hashes, [key derivation
 functions](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) are
 used for a number of applications, including producing fixed-length output for
 use as keys in other cryptographic algorithms. Usually, KDFs are deliberately
-slow, in order to slow down offline brute-force attacks.
+slow, in order to slow down offline brute-force attacks. -->
+[密鑰衍生函式](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) 
+作爲密碼雜湊函式的相關概念，被運用於多個方面，包括生成可以在其他密碼算法中使用的固定長度密鑰等。
+爲了對抗線下窮舉攻擊，KDFs 通常故意被設計成緩慢運行。
 
-## Applications
+<!-- ## Applications -->
+## 運用
 
-- Producing keys from passphrases for use in other cryptographic algorithms
+<!-- - Producing keys from passphrases for use in other cryptographic algorithms
 (e.g. symmetric cryptography, see below).
 - Storing login credentials. Storing plaintext passwords is bad; the right
 approach is to generate and store a random
 [salt](https://en.wikipedia.org/wiki/Salt_(cryptography)) `salt = random()` for
 each user, store `KDF(password + salt)`, and verify login attempts by
-re-computing the KDF given the entered password and the stored salt.
+re-computing the KDF given the entered password and the stored salt. -->
+- 生成可以在其他加密算法中使用的密鑰。(例如對稱加密，下面會講解)。
+- 存儲登入憑據時，儲存明文密碼是不適宜的。正確的方法是對每個使用者生成並儲存
+[鹽](https://en.wikipedia.org/wiki/Salt_(cryptography)) `salt = random()`，
+以及 `KDF(password + salt)`，並在每次登入後檢驗它。
 
-# Symmetric cryptography
+# 對稱加密
 
-Hiding message contents is probably the first concept you think about when you
+<!-- Hiding message contents is probably the first concept you think about when you
 think about cryptography. Symmetric cryptography accomplishes this with the
-following set of functionality:
+following set of functionality: -->
+當你需要加密時，最先想到的是隱藏明文信息，對稱加密使用以下幾種方法來實現此功能：
 
-```
+<!-- ```
 keygen() -> key  (this function is randomized)
 
 encrypt(plaintext: array<byte>, key) -> array<byte>  (the ciphertext)
 decrypt(ciphertext: array<byte>, key) -> array<byte>  (the plaintext)
+``` -->
+```
+keygen() -> key  (t這是一個隨機方法)
+
+encrypt(plaintext: array<byte>, key) -> array<byte>  (獲得密文)
+decrypt(ciphertext: array<byte>, key) -> array<byte>  (獲得明文)
 ```
 
-The encrypt function has the property that given the output (ciphertext), it's
+<!-- The encrypt function has the property that given the output (ciphertext), it's
 hard to determine the input (plaintext) without the key. The decrypt function
-has the obvious correctness property, that `decrypt(encrypt(m, k), k) = m`.
+has the obvious correctness property, that `decrypt(encrypt(m, k), k) = m`. -->
+透過加密方法(encrypt())獲得的輸出(密文) 很難在不知道 key 的情況下解得其輸入(明文)。
+解密方法(decrypt())很明顯是一定正確的，即 `decrypt(encrypt(m, k), k) = m`。
 
-An example of a symmetric cryptosystem in wide use today is
-[AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
+<!-- An example of a symmetric cryptosystem in wide use today is
+[AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard). -->
+一個現在被廣泛使用的對稱加密例子是
+[AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)。
 
-## Applications
+<!-- ## Applications -->
+## 運用
 
-- Encrypting files for storage in an untrusted cloud service. This can be
+<!-- - Encrypting files for storage in an untrusted cloud service. This can be
 combined with KDFs, so you can encrypt a file with a passphrase. Generate `key
-= KDF(passphrase)`, and then store `encrypt(file, key)`.
+= KDF(passphrase)`, and then store `encrypt(file, key)`. -->
+- 在不信任的雲服務上加密文件。可以與密碼雜湊函式共同使用。
+透過 `key = KDF(passphrase)` 生成一個密鑰，然後在雲上儲存  `encrypt(file, key)`。
 
 # Asymmetric cryptography
 

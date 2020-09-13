@@ -182,7 +182,7 @@ use as keys in other cryptographic algorithms. Usually, KDFs are deliberately
 slow, in order to slow down offline brute-force attacks. -->
 [密鑰衍生函式](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) 
 作爲密碼雜湊函式的相關概念，被運用於多個方面，包括生成可以在其他密碼算法中使用的固定長度密鑰等。
-爲了對抗線下窮舉攻擊，KDFs 通常故意被設計成緩慢運行。
+爲了對抗線下的窮舉攻擊，KDFs 通常故意被設計成緩慢運行。
 
 <!-- ## Applications -->
 ## 運用
@@ -213,7 +213,7 @@ encrypt(plaintext: array<byte>, key) -> array<byte>  (the ciphertext)
 decrypt(ciphertext: array<byte>, key) -> array<byte>  (the plaintext)
 ``` -->
 ```
-keygen() -> key  (t這是一個隨機方法)
+keygen() -> key  (這是一個隨機方法)
 
 encrypt(plaintext: array<byte>, key) -> array<byte>  (獲得密文)
 decrypt(ciphertext: array<byte>, key) -> array<byte>  (獲得明文)
@@ -222,8 +222,8 @@ decrypt(ciphertext: array<byte>, key) -> array<byte>  (獲得明文)
 <!-- The encrypt function has the property that given the output (ciphertext), it's
 hard to determine the input (plaintext) without the key. The decrypt function
 has the obvious correctness property, that `decrypt(encrypt(m, k), k) = m`. -->
-透過加密方法(encrypt())獲得的輸出(密文) 很難在不知道 key 的情況下解得其輸入(明文)。
-解密方法(decrypt())很明顯是一定正確的，即 `decrypt(encrypt(m, k), k) = m`。
+透過加密方法獲得的輸出(密文)很難在不知道 key 的情況下解得其輸入(明文)。
+解密方法具有明顯的正確性，即 `decrypt(encrypt(m, k), k) = m` 在提供正確資料時一定成立。
 
 <!-- An example of a symmetric cryptosystem in wide use today is
 [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard). -->
@@ -239,15 +239,19 @@ combined with KDFs, so you can encrypt a file with a passphrase. Generate `key
 - 在不信任的雲服務上加密文件。可以與密碼雜湊函式共同使用。
 透過 `key = KDF(passphrase)` 生成一個密鑰，然後在雲上儲存  `encrypt(file, key)`。
 
-# Asymmetric cryptography
+<!-- # Asymmetric cryptography -->
+# 非對稱加密
 
-The term "asymmetric" refers to there being two keys, with two different roles.
+<!-- The term "asymmetric" refers to there being two keys, with two different roles.
 A private key, as its name implies, is meant to be kept private, while the
 public key can be publicly shared and it won't affect security (unlike sharing
 the key in a symmetric cryptosystem). Asymmetric cryptosystems provide the
-following set of functionality, to encrypt/decrypt and to sign/verify:
+following set of functionality, to encrypt/decrypt and to sign/verify: -->
+“非對稱”是指存在兩個持有不同職責的密鑰。 
+顧名思義，私鑰旨在保持私密，而公鑰可以公開共享，且不會影響安全性（與在對稱加密系統中共享密鑰不同）。
+非對稱密碼系統提供以下功能，以進行加密/解密和簽章/檢驗：
 
-```
+<!-- ```
 keygen() -> (public key, private key)  (this function is randomized)
 
 encrypt(plaintext: array<byte>, public key) -> array<byte>  (the ciphertext)
@@ -255,42 +259,71 @@ decrypt(ciphertext: array<byte>, private key) -> array<byte>  (the plaintext)
 
 sign(message: array<byte>, private key) -> array<byte>  (the signature)
 verify(message: array<byte>, signature: array<byte>, public key) -> bool  (whether or not the signature is valid)
+
+``` -->
+```
+keygen() -> (public key, private key)  (這是一個隨機方法)
+
+encrypt(plaintext: array<byte>, public key) -> array<byte>  (獲得密文)
+decrypt(ciphertext: array<byte>, private key) -> array<byte>  (獲得明文)
+
+sign(message: array<byte>, private key) -> array<byte>  (獲得簽章)
+verify(message: array<byte>, signature: array<byte>, public key) -> bool  (檢驗此簽章爲有效的)
 ```
 
-The encrypt/decrypt functions have properties similar to their analogs from
+<!-- The encrypt/decrypt functions have properties similar to their analogs from
 symmetric cryptosystems. A message can be encrypted using the _public_ key.
 Given the output (ciphertext), it's hard to determine the input (plaintext)
 without the _private_ key. The decrypt function has the obvious correctness
-property, that `decrypt(encrypt(m, public key), private key) = m`.
+property, that `decrypt(encrypt(m, public key), private key) = m`. -->
+加密/解密功能類似於對稱加密系統的性質。
+可以使用 _公共_ 密鑰對消息進行加密。
+給定輸出（密文），沒有 _私有_ 密鑰就很難確定輸入（明文）。
+解密函數具有明顯的正確性，即 `decrypt（encrypt（m，public key），private key）= m` 在提供正確資料時一定成立。
 
-Symmetric and asymmetric encryption can be compared to physical locks. A
+<!-- Symmetric and asymmetric encryption can be compared to physical locks. A
 symmetric cryptosystem is like a door lock: anyone with the key can lock and
 unlock it. Asymmetric encryption is like a padlock with a key. You could give
 the unlocked lock to someone (the public key), they could put a message in a
 box and then put the lock on, and after that, only you could open the lock
-because you kept the key (the private key).
+because you kept the key (the private key). -->
+對稱和非對稱加密與生活中的鎖類似。
+對稱加密系統就像門鎖：任何擁有鑰匙的人都可以鎖定和解鎖。
+非對稱加密就像帶鑰匙的掛鎖。 您可以將鎖本身（公鑰）提供給某人，他們可以在盒子內放入消息，然後鎖上它。
+只有你可以打開該鎖，因為你持有鎖的鑰匙（私鑰）。
 
-The sign/verify functions have the same properties that you would hope physical
+<!-- The sign/verify functions have the same properties that you would hope physical
 signatures would have, in that it's hard to forge a signature. No matter the
 message, without the _private_ key, it's hard to produce a signature such that
 `verify(message, signature, public key)` returns true. And of course, the
 verify function has the obvious correctness property that `verify(message,
-sign(message, private key), public key) = true`.
+sign(message, private key), public key) = true`. -->
+簽章/檢驗功能與書面簽名類似，即難以僞造。
+在不知道 _私鑰_ 的情況下，很難得出一個可以通過 `verify(message, signature, public key)` 檢驗的簽章。
+對於使用私鑰簽章的資料，`verify(message, sign(message, private key), public key) = true` 這種檢驗方式在提供正確資料時一定成立。
 
-## Applications
+<!-- ## Applications -->
+## 運用
 
-- [PGP email encryption](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
+<!-- - [PGP email encryption](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 People can have their public keys posted online (e.g. in a PGP keyserver, or on
 [Keybase](https://keybase.io/)). Anyone can send them encrypted email.
 - Private messaging. Apps like [Signal](https://signal.org/) and
 [Keybase](https://keybase.io/) use asymmetric keys to establish private
 communication channels.
 - Signing software. Git can have GPG-signed commits and tags. With a posted
-public key, anyone can verify the authenticity of downloaded software.
+public key, anyone can verify the authenticity of downloaded software. -->
+- [PGP 電郵加密](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
+使用者可以在網路上發佈公鑰 (例如一個 PGP 密鑰伺服器，或者
+[Keybase](https://keybase.io/))。任何人都可以向他們發送加密電郵。
+- 私密通訊。 類似 [Signal](https://signal.org/) 與
+[Keybase](https://keybase.io/) 這樣的程式使用非對稱加密系統來建立私密通訊。
+- 程式簽章。Git 支援帶有 GPG 簽章的提交。透過開發人員發佈的公鑰，任何人都可以驗證下載到的軟體。
 
-## Key distribution
+<!-- ## Key distribution -->
+## 密鑰分配
 
-Asymmetric-key cryptography is wonderful, but it has a big challenge of
+<!-- Asymmetric-key cryptography is wonderful, but it has a big challenge of
 distributing public keys / mapping public keys to real-world identities. There
 are many solutions to this problem. Signal has one simple solution: trust on
 first use, and support out-of-band public key exchange (you verify your
@@ -299,66 +332,98 @@ friends' "safety numbers" in person). PGP has a different solution, which is
 another solution of [social
 proof](https://keybase.io/blog/chat-apps-softer-than-tofu) (along with other
 neat ideas). Each model has its merits; we (the instructors) like Keybase's
-model.
+model. -->
+非對稱加密很棒，但是在分配公鑰/將公鑰對應至現實中的個體時面臨著很大的挑戰。 
+有許多解決此問題的方法。 
+Signal 提供了簡單地解決方案：使用者第一次使用時信任其身份，並支持線下的公鑰交換（你需要親自驗證朋友是否安全）。
+PGP有另一種解決方案，即[信任網](https://en.wikipedia.org/wiki/Web_of_trust)。 
+Keybase 主要使用[社交證明](https://keybase.io/blog/chat-apps-softer-than-tofu)，與一些其他精妙方法。
+每一種模型都有其優勢，我們（講師）喜愛 Keybase 的模型。
 
-# Case studies
+<!-- # Case studies -->
+# 案例
 
-## Password managers
+<!-- ## Password managers -->
+密碼管理器
 
-This is an essential tool that everyone should try to use (e.g.
+<!-- This is an essential tool that everyone should try to use (e.g.
 [KeePassXC](https://keepassxc.org/)). Password managers let you use unique,
 randomly generated high-entropy passwords for all your websites, and they save
 all your passwords in one place, encrypted with a symmetric cipher with a key
-produced from a passphrase using a KDF.
+produced from a passphrase using a KDF. -->
+任何人都應該試一試密碼管理器（例如[KeePassXC](https://keepassxc.org/)）。
+密碼管理器會幫助你對每個網站生成隨機且高熵的密碼。它會將你的所有密碼儲存至一處，且透過 KDF 利用你的主密碼生成的密鑰進行對稱加密。
 
-Using a password manager lets you avoid password reuse (so you're less impacted
+<!-- Using a password manager lets you avoid password reuse (so you're less impacted
 when websites get compromised), use high-entropy passwords (so you're less likely to
-get compromised), and only need to remember a single high-entropy password.
+get compromised), and only need to remember a single high-entropy password. -->
+密碼管理器會讓你避免復用密碼（所以當網站數據洩漏時你受到影響較少），且使用高熵密碼（使你自己更難以洩漏密碼）。
+密碼管理器只需要你記住一個高熵的主密碼。
 
-## Two-factor authentication
+<!-- ## Two-factor authentication -->
+## 雙重驗證
 
-[Two-factor
+<!-- [Two-factor
 authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication)
 (2FA) requires you to use a passphrase ("something you know") along with a 2FA
 authenticator (like a [YubiKey](https://www.yubico.com/), "something you have")
 in order to protect against stolen passwords and
-[phishing](https://en.wikipedia.org/wiki/Phishing) attacks.
+[phishing](https://en.wikipedia.org/wiki/Phishing) attacks. -->
+[雙重驗證](https://en.wikipedia.org/wiki/Multi-factor_authentication) (2FA)
+要求你同時使用密碼（“你知道的資料”）和一個 2FA 驗證器（比如[YubiKey](https://www.yubico.com/)，“你擁有的東西”）
+來對抗密碼洩漏與[釣魚攻擊](https://en.wikipedia.org/wiki/Phishing)。
 
-## Full disk encryption
+<!-- ## Full disk encryption -->
+## 全磁碟加密
 
-Keeping your laptop's entire disk encrypted is an easy way to protect your data
+<!-- Keeping your laptop's entire disk encrypted is an easy way to protect your data
 in the case that your laptop is stolen. You can use [cryptsetup +
 LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_a_non-root_file_system)
 on Linux,
 [BitLocker](https://fossbytes.com/enable-full-disk-encryption-windows-10/) on
 Windows, or [FileVault](https://support.apple.com/en-us/HT204837) on macOS.
 This encrypts the entire disk with a symmetric cipher, with a key protected by
-a passphrase.
+a passphrase. -->
+將筆電全磁碟加密是在其被盜時保護資料的簡單辦法。
+Linux 系統下使用 [cryptsetup + LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_a_non-root_file_system)，
+Windows 下使用 [BitLocker](https://fossbytes.com/enable-full-disk-encryption-windows-10/)，
+macOS 下使用 [FileVault](https://support.apple.com/en-us/HT204837)。
+它們會通過對稱加密來保護整個硬碟。
 
-## Private messaging
+<!-- ## Private messaging -->
+## 私密通訊
 
-Use [Signal](https://signal.org/) or [Keybase](https://keybase.io/). End-to-end
+<!-- Use [Signal](https://signal.org/) or [Keybase](https://keybase.io/). End-to-end
 security is bootstrapped from asymmetric-key encryption. Obtaining your
 contacts' public keys is the critical step here. If you want good security, you
 need to authenticate public keys out-of-band (with Signal or Keybase), or trust
-social proofs (with Keybase).
+social proofs (with Keybase). -->
+使用 [Signal](https://signal.org/) 或 [Keybase](https://keybase.io/)。 
+非對稱密鑰加密會提升端到端安全性。獲取聯繫人的公鑰是此處的關鍵步驟。
+如果想要良好的安全性，需要線下（通過 Signal 或 Keybase ）對公鑰進行身份驗證，或者信任社交證明（透過 Keybase）。
 
 ## SSH
 
-We've covered the use of SSH and SSH keys in an [earlier
+<!-- We've covered the use of SSH and SSH keys in an [earlier
 lecture](/2020/command-line/#remote-machines). Let's look at the cryptography
-aspects of this.
+aspects of this. -->
+[之前的講座](/2020/command-line/#remote-machines)涉及了 SSH 與 SSH 密鑰的使用
+讓我們從密碼學方面看看他們。
 
-When you run `ssh-keygen`, it generates an asymmetric keypair, `public_key,
+<!-- When you run `ssh-keygen`, it generates an asymmetric keypair, `public_key,
 private_key`. This is generated randomly, using entropy provided by the
 operating system (collected from hardware events, etc.). The public key is
 stored as-is (it's public, so keeping it a secret is not important), but at
 rest, the private key should be encrypted on disk. The `ssh-keygen` program
 prompts the user for a passphrase, and this is fed through a key derivation
 function to produce a key, which is then used to encrypt the private key with a
-symmetric cipher.
+symmetric cipher. -->
+當你執行 `ssh-keygen`時候，它會給出一組非對稱密鑰，即`public_key, private_key`。
+這使用作業系統（從硬體事件擷取的）熵隨機生成。
+公鑰會被明文存儲（它是公開的，所以保密性不重要），不過私鑰必須加密。
+`ssh-keygen` 程式會要求使用者輸入一個密碼，並透過密鑰生成函式來使用該密碼生成一個密鑰，`ssh-keygen` 會來利用此密鑰透過對稱加密加密私鑰。
 
-In use, once the server knows the client's public key (stored in the
+<!-- In use, once the server knows the client's public key (stored in the
 `.ssh/authorized_keys` file), a connecting client can prove its identity using
 asymmetric signatures. This is done through
 [challenge-response](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication).
@@ -367,7 +432,12 @@ The client then signs this message and sends the signature back to the server,
 which checks the signature against the public key on record. This effectively
 proves that the client is in possession of the private key corresponding to the
 public key that's in the server's `.ssh/authorized_keys` file, so the server
-can allow the client to log in.
+can allow the client to log in. -->
+在現實場景中，當伺服器已知用戶的公鑰（存儲在 `.ssh/authorized_keys`），與其鏈接的客戶端可以透過非對稱簽章證明其身份。
+這個過程由[質詢-應答機制](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication)完成。
+通常來說，伺服器選擇一個隨機數字，並將其傳送至客戶端。客戶端使用私鑰對此數字簽章後返回伺服器。
+伺服器隨後使用 `.ssh/authorized_keys` 中儲存的用戶公鑰來驗證此返回信息是否由對應的私鑰簽章。
+如果正確，伺服器便可放行客戶端登入。
 
 {% comment %}
 extra topics, if there's time
@@ -377,14 +447,19 @@ security concepts, tips
 - HTTPS
 {% endcomment %}
 
-# Resources
+<!-- # Resources -->
+# 資源
 
-- [Last year's notes](/2019/security/): from when this lecture was more focused on security and privacy as a computer user
-- [Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html): answers "what crypto should I use for X?" for many common X.
+<!-- - [Last year's notes](/2019/security/): from when this lecture was more focused on security and privacy as a computer user
+- [Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html): answers "what crypto should I use for X?" for many common X。-->
+- [去年的講座](/2019/security/): 更注重於使用者如何增強隱私保護並保證安全
+- [Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html): 解答了許多常見場景下的 “對於此場景，我該如何選擇加密方式” 的問題
 
-# Exercises
 
-1. **Entropy.**
+<!-- # Exercises -->
+# 課後練習
+
+<!-- 1. **Entropy.**
     1. Suppose a password is chosen as a concatenation of five lower-case
        dictionary words, where each word is selected uniformly at random from a
        dictionary of size 100,000. An example of such a password is
@@ -423,4 +498,28 @@ security concepts, tips
     1. Send Anish an encrypted email ([public key](https://keybase.io/anish)).
     1. Sign a Git commit with `git commit -S` or create a signed Git tag with
        `git tag -s`. Verify the signature on the commit with `git show
-       --show-signature` or on the tag with `git tag -v`.
+       --show-signature` or on the tag with `git tag -v`. -->
+1. **熵**
+    1. 假定一個密碼是由 5 個小寫的常規詞拼接組成，每個詞都是從含有 100,000 詞的字典內隨機選取，且每個詞選中概率相同，
+       例如 `correcthorsebatterystaple`。這個密碼的熵是多少位元？
+    1. 假定一個密碼由 8 個隨機字母數字組成（包括大小寫），例如 `rg8Ql34g`，它的熵是多少位元？
+    1. 以上兩個密碼誰更強？
+    1. 假定一個入侵者可以每秒嘗試 10,000 個密碼，平均來說，他需要多久來攻破上面兩個密碼？
+1. **密碼雜湊函式** 從
+   [Debian 鏡像站](https://www.debian.org/CD/http-ftp/)下載一個 Debian 映象
+   （比如[這個阿根廷鏡像站](http://debian.xfree.com.ar/debian-cd/current/amd64/iso-cd/)）。
+   檢查 hash 值（例如使用 `sha256sum` 指令），與域名爲 `debian.org` 的 Debian 官方站點提供的值（例如[這個
+   檔案](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS)）進行對比。
+1. **對稱加密** 透過 [OpenSSL](https://www.openssl.org/) 使用 AES 加密一個檔案：
+   `openssl aes-256-cbc -salt -in {input filename} -out {output filename}`。
+   使用 `cat` 或 `hexdump` 查看其內容。再使用 `openssl aes-256-cbc -d -in {input filename} 
+   -out {output filename}` 來解密，並且使用 `cmp` 驗證解密內容與元檔案相同。
+1. **非對稱加密**
+    1. 在你擁有的電腦上（不要使用 Athena，因爲 Kerberos 與 SSH 密鑰的交互十分詭異）設定一個
+     [SSH 密鑰](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
+     使用更安全的 [ED25519 密鑰](https://wiki.archlinux.org/index.php/SSH_keys#Ed25519)來替代 RSA 密鑰。
+     確保你使用了密碼來加密私鑰。
+    1. [設定 GPG](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages)。
+    1. 給 Anish 發送一封加密電郵 ([ Anish 的公鑰](https://keybase.io/anish))。
+    1. 使用 `git commit -S` 簽署一個提交，或使用 `git tag -s` 建立一個帶有簽章的 Git tag。
+    使用`git show --show-signature` 來檢查提交的簽章，或使用 `git tag -v` 檢查 tag。

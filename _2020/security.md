@@ -15,7 +15,7 @@ earlier in this class, such as the use of hash functions in Git or key
 derivation functions and symmetric/asymmetric cryptosystems in SSH. -->
 去年的[安全和隱私講座](/2019/security/)重點討論瞭如何以電腦 _使用者_ 的身份提高安全性。
 今年，我們將重點關注與本課程前面介紹的工具有關的，在安全性和密碼學概念方面的知識。
-例如，在 Git 中使用 hash 函數或在 SSH 中使用密鑰派生函數和對稱/非對稱密碼系統。
+例如，在 Git 中使用 hash 函式或在 SSH 中使用密鑰派生函式和對稱/非對稱密碼系統。
 
 <!-- This lecture is not a substitute for a more rigorous and complete course on
 computer systems security ([6.858](https://css.csail.mit.edu/6.858/)) or
@@ -24,7 +24,7 @@ do security work without formal training in security. Unless you're an expert,
 don't [roll your own
 crypto](https://www.schneier.com/blog/archives/2015/05/amateurs_produc.html).
 The same principle applies to systems security. -->
-此課程不可作爲計算機系統安全([6.858](https://css.csail.mit.edu/6.858/)) 或
+此課程不可作為計算機系統安全([6.858](https://css.csail.mit.edu/6.858/)) 或
 密碼學 ([6.857](https://courses.csail.mit.edu/6.857/) 與 6.875)的替代。
 不要在沒有接受良好安全性教學的情況下從事相關工作。
 除非你是專家，不要[自創加密方法](https://www.schneier.com/blog/archives/2015/05/amateurs_produc.html)，
@@ -35,7 +35,7 @@ cryptography concepts. This lecture won't be enough to teach you how to
 _design_ secure systems or cryptographic protocols, but we hope it will be
 enough to give you a general understanding of the programs and protocols you
 already use. -->
-這節課對基本密碼學概念有着非常簡略（但我們認爲很實用）的介紹。
+這節課對基本密碼學概念有著非常簡略（但我們認為很實用）的介紹。
 若你想 _設計_ 安全系統或加密協議，僅僅學習本課是不夠的。
 但我們希望此課可以讓你大致瞭解已經廣泛使用的程式與協議。
 
@@ -46,7 +46,7 @@ already use. -->
 measure of randomness. This is useful, for example, when determining the
 strength of a password. -->
 [熵](https://en.wikipedia.org/wiki/Entropy_(information_theory))是對隨機性的一種度量。
-在例如測試密碼強度等環境下，熵有着重要作用。
+在例如測試密碼強度等環境下，熵有著重要作用。
 
 <!-- ![XKCD 936: Password Strength](https://imgs.xkcd.com/comics/password_strength.png) -->
 ![XKCD 936: 密碼安全性](https://xkcd.tw/strip/936.png)
@@ -55,7 +55,7 @@ strength of a password. -->
 "correcthorsebatterystaple" is more secure than one like "Tr0ub4dor&3". But how
 do you quantify something like this? -->
 如同上面 [XKCD 漫畫](https://xkcd.tw/936) 描繪的，
-"correcthorsebatterystaple" 比 "Tr0ub4dor&3" 更爲安全。
+"correcthorsebatterystaple" 比 "Tr0ub4dor&3" 更為安全。
 我們該如何判斷安全性？
 
 <!-- Entropy is measured in _bits_, and when selecting uniformly at random from a
@@ -63,13 +63,13 @@ set of possible outcomes, the entropy is equal to `log_2(# of possibilities)`.
 A fair coin flip gives 1 bit of entropy. A dice roll (of a 6-sided die) has
 \~2.58 bits of entropy. -->
 熵以 _位元_ 度量，對於一個均勻分佈的隨機變數，熵等於 `log_2(可能性總數)`。
-擲一次硬幣的uhti 1 位元，擲一次（六面）骰子的熵約爲 2.58 位元。
+擲一次硬幣的uhti 1 位元，擲一次（六面）骰子的熵約為 2.58 位元。
 
 <!-- You should consider that the attacker knows the _model_ of the password, but
 not the randomness (e.g. from [dice
 rolls](https://en.wikipedia.org/wiki/Diceware)) used to select a particular
 password. -->
-我們通常認爲攻擊者瞭解密碼的 _模型_， 但是不知道密碼的隨機性（例如 [擲骰子](https://en.wikipedia.org/wiki/Diceware)）。
+我們通常認為攻擊者瞭解密碼的 _模型_， 但是不知道密碼的隨機性（例如 [擲骰子](https://en.wikipedia.org/wiki/Diceware)）。
 
 <!-- How many bits of entropy is enough? It depends on your threat model. For online
 guessing, as the XKCD comic points out, \~40 bits of entropy is pretty good. To
@@ -87,7 +87,7 @@ function](https://en.wikipedia.org/wiki/Cryptographic_hash_function) maps data
 of arbitrary size to a fixed size, and has some special properties. A rough
 specification of a hash function is as follows: -->
 [密碼雜湊函式](https://en.wikipedia.org/wiki/Cryptographic_hash_function)
-會將任意大小的資料映射至指定大小。
+會將任意大小的資料對映至指定大小。
 一個粗略的雜湊函式規範大概是這樣的：
 
 ```
@@ -99,7 +99,7 @@ which is used in Git. It maps arbitrary-sized inputs to 160-bit outputs (which
 can be represented as 40 hexadecimal characters). We can try out the SHA1 hash
 on an input using the `sha1sum` command: -->
 一個雜湊函式的例子是 Git 使用的 [SHA1](https://en.wikipedia.org/wiki/SHA-1)。
-它會將任意大小的輸入映射至 160 位元（即 40 個十六進位字元）中。
+它會將任意大小的輸入對映至 160 位元（即 40 個十六進位字元）中。
 我們可以使用 `sha1sum` 指令：
 
 ```console
@@ -115,7 +115,7 @@ f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0
 random-looking (but deterministic) function (and this is the [ideal model of a
 hash function](https://en.wikipedia.org/wiki/Random_oracle)). A hash function
 has the following properties: -->
-更通用的解釋是，雜湊函式可以被認爲是不可逆且隨機（但是具有特定性）的函式（這是 [雜湊函式的理想模型](https://en.wikipedia.org/wiki/Random_oracle)）。
+更通用的解釋是，雜湊函式可以被認為是不可逆且隨機（但是具有特定性）的函式（這是 [雜湊函式的理想模型](https://en.wikipedia.org/wiki/Random_oracle)）。
 一個雜湊函式將會有如下性質：
 
 <!-- - Deterministic: the same input always generates the same output.
@@ -129,7 +129,7 @@ target collision resistance). -->
 - 確定性: 對於相同輸入，輸出也是相同的
 - 不可逆: 對於函式 `hash(m) = h`，給出 `h` 幾乎不可能求得對應的 `m`。
 - 弱抵抗/低碰撞抗性: 給予輸入 `m_1`, 很難找到 `m_2` 使得 `hash(m_1) = hash(m_2)`。
-- 強抵抗/高碰撞抗性: 很難找到兩個輸入 `m_1` 和 `m_2` 使得 `hash(m_1) = hash(m_2)`。注意這比弱抵抗更爲嚴格。
+- 強抵抗/高碰撞抗性: 很難找到兩個輸入 `m_1` 和 `m_2` 使得 `hash(m_1) = hash(m_2)`。注意這比弱抵抗更為嚴格。
 
 <!-- Note: while it may work for certain purposes, SHA-1 is [no
 longer](https://shattered.io/) considered a strong cryptographic hash function.
@@ -138,7 +138,7 @@ functions](https://valerieaurora.org/hash.html) interesting. However, note that
 recommending specific hash functions is beyond the scope of this lecture. If you
 are doing work where this matters, you need formal training in
 security/cryptography. -->
-注意：雖然對於一般用途還有效，SHA-1 已經[不再](https://shattered.io/)被認爲是強密碼雜湊函式了。
+注意：雖然對於一般用途還有效，SHA-1 已經[不再](https://shattered.io/)被認為是強密碼雜湊函式了。
 你也許會對[密碼雜湊函式的生命週期](https://valerieaurora.org/hash.html)感興趣。
 對於特定需求推薦指定雜湊函式不在此課程的涵蓋範圍內，如果你有這些需求，需要學習安全學或密碼學。
 
@@ -162,13 +162,13 @@ random()`, and then share `h = sha256(r)`. Then, you could call heads or tails
 (we'll agree that even `r` means heads, and odd `r` means tails). After you
 call, I can reveal my value `r`, and you can confirm that I haven't cheated by
 checking `sha256(r)` matches the hash I shared earlier. -->
-- Git，用於內容尋址存儲。[雜湊函式](https://en.wikipedia.org/wiki/Hash_function)
-是一個寬泛的概念（存在與密碼學無關的雜湊函式）。爲什麼 Git 要使用它？
-- 檔案資料摘要。例如 Linux ISO 這種軟體經常需要從（潛在不可信的）非官方鏡像下載，此時不信任它們比較好。
-官方站點通常會在鏡像站點旁邊列出 hash，這樣你可以在下載後檢驗得到的文件。
+- Git，用於內容定址儲存。[雜湊函式](https://en.wikipedia.org/wiki/Hash_function)
+是一個寬泛的概念（存在與密碼學無關的雜湊函式）。為什麼 Git 要使用它？
+- 檔案資料摘要。例如 Linux ISO 這種軟體經常需要從（潛在不可信的）非官方映象下載，此時不信任它們比較好。
+官方站點通常會在映象站點旁邊列出 hash，這樣你可以在下載後檢驗得到的檔案。
 - [承諾方案(Commitment scheme)](https://en.wikipedia.org/wiki/Commitment_scheme).
 假定你需要承諾一個值，但要之後揭示它。例如，我要“在想象中”擲一次硬幣，但是這個硬幣對你不可見也不受信任。
-我可以選擇一個值 `r = random()`，然後告訴你 `h = sha256(r)`。我們同意 `r` 爲偶數時代表正面，奇數時代表反面。
+我可以選擇一個值 `r = random()`，然後告訴你 `h = sha256(r)`。我們同意 `r` 為偶數時代表正面，奇數時代表反面。
 之後，你可以選擇正面還是反面。判斷勝負後，我可以告訴你我的值 `r`，並且可以通過檢驗 `sha256(r)`
  來確認我沒有作弊。
 
@@ -181,8 +181,8 @@ used for a number of applications, including producing fixed-length output for
 use as keys in other cryptographic algorithms. Usually, KDFs are deliberately
 slow, in order to slow down offline brute-force attacks. -->
 [密鑰衍生函式](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) 
-作爲密碼雜湊函式的相關概念，被運用於多個方面，包括生成可以在其他密碼算法中使用的固定長度密鑰等。
-爲了對抗線下的窮舉攻擊，KDFs 通常故意被設計成緩慢運行。
+作為密碼雜湊函式的相關概念，被運用於多個方面，包括生成可以在其他密碼演算法中使用的固定長度密鑰等。
+為了對抗線下的窮舉攻擊，KDFs 通常故意被設計成緩慢執行。
 
 <!-- ## Applications -->
 ## 運用
@@ -194,8 +194,8 @@ approach is to generate and store a random
 [salt](https://en.wikipedia.org/wiki/Salt_(cryptography)) `salt = random()` for
 each user, store `KDF(password + salt)`, and verify login attempts by
 re-computing the KDF given the entered password and the stored salt. -->
-- 生成可以在其他加密算法中使用的密鑰。(例如對稱加密，下面會講解)。
-- 存儲登入憑據時，儲存明文密碼是不適宜的。正確的方法是對每個使用者生成並儲存
+- 生成可以在其他加密演算法中使用的密鑰。(例如對稱加密，下面會講解)。
+- 儲存登入憑據時，儲存明文密碼是不適宜的。正確的方法是對每個使用者生成並儲存
 [鹽](https://en.wikipedia.org/wiki/Salt_(cryptography)) `salt = random()`，
 以及 `KDF(password + salt)`，並在每次登入後檢驗它。
 
@@ -204,7 +204,7 @@ re-computing the KDF given the entered password and the stored salt. -->
 <!-- Hiding message contents is probably the first concept you think about when you
 think about cryptography. Symmetric cryptography accomplishes this with the
 following set of functionality: -->
-當你需要加密時，最先想到的是隱藏明文信息，對稱加密使用以下幾種方法來實現此功能：
+當你需要加密時，最先想到的是隱藏明文資訊，對稱加密使用以下幾種方法來實現此功能：
 
 <!-- ```
 keygen() -> key  (this function is randomized)
@@ -236,7 +236,7 @@ has the obvious correctness property, that `decrypt(encrypt(m, k), k) = m`. -->
 <!-- - Encrypting files for storage in an untrusted cloud service. This can be
 combined with KDFs, so you can encrypt a file with a passphrase. Generate `key
 = KDF(passphrase)`, and then store `encrypt(file, key)`. -->
-- 在不信任的雲服務上加密文件。可以與密碼雜湊函式共同使用。
+- 在不信任的雲服務上加密檔案。可以與密碼雜湊函式共同使用。
 透過 `key = KDF(passphrase)` 生成一個密鑰，然後在雲上儲存  `encrypt(file, key)`。
 
 <!-- # Asymmetric cryptography -->
@@ -268,7 +268,7 @@ encrypt(plaintext: array<byte>, public key) -> array<byte>  (獲得密文)
 decrypt(ciphertext: array<byte>, private key) -> array<byte>  (獲得明文)
 
 sign(message: array<byte>, private key) -> array<byte>  (獲得簽章)
-verify(message: array<byte>, signature: array<byte>, public key) -> bool  (檢驗此簽章爲有效的)
+verify(message: array<byte>, signature: array<byte>, public key) -> bool  (檢驗此簽章為有效的)
 ```
 
 <!-- The encrypt/decrypt functions have properties similar to their analogs from
@@ -277,9 +277,9 @@ Given the output (ciphertext), it's hard to determine the input (plaintext)
 without the _private_ key. The decrypt function has the obvious correctness
 property, that `decrypt(encrypt(m, public key), private key) = m`. -->
 加密/解密功能類似於對稱加密系統的性質。
-可以使用 _公共_ 密鑰對消息進行加密。
+可以使用 _公共_ 密鑰對訊息進行加密。
 給定輸出（密文），沒有 _私有_ 密鑰就很難確定輸入（明文）。
-解密函數具有明顯的正確性，即 `decrypt（encrypt（m，public key），private key）= m` 在提供正確資料時一定成立。
+解密函式具有明顯的正確性，即 `decrypt（encrypt（m，public key），private key）= m` 在提供正確資料時一定成立。
 
 <!-- Symmetric and asymmetric encryption can be compared to physical locks. A
 symmetric cryptosystem is like a door lock: anyone with the key can lock and
@@ -289,8 +289,8 @@ box and then put the lock on, and after that, only you could open the lock
 because you kept the key (the private key). -->
 對稱和非對稱加密與生活中的鎖類似。
 對稱加密系統就像門鎖：任何擁有鑰匙的人都可以鎖定和解鎖。
-非對稱加密就像帶鑰匙的掛鎖。 您可以將鎖本身（公鑰）提供給某人，他們可以在盒子內放入消息，然後鎖上它。
-只有你可以打開該鎖，因為你持有鎖的鑰匙（私鑰）。
+非對稱加密就像帶鑰匙的掛鎖。 您可以將鎖本身（公鑰）提供給某人，他們可以在盒子內放入訊息，然後鎖上它。
+只有你可以開啟該鎖，因為你持有鎖的鑰匙（私鑰）。
 
 <!-- The sign/verify functions have the same properties that you would hope physical
 signatures would have, in that it's hard to forge a signature. No matter the
@@ -298,7 +298,7 @@ message, without the _private_ key, it's hard to produce a signature such that
 `verify(message, signature, public key)` returns true. And of course, the
 verify function has the obvious correctness property that `verify(message,
 sign(message, private key), public key) = true`. -->
-簽章/檢驗功能與書面簽名類似，即難以僞造。
+簽章/檢驗功能與書面簽名類似，即難以偽造。
 在不知道 _私鑰_ 的情況下，很難得出一個可以通過 `verify(message, signature, public key)` 檢驗的簽章。
 對於使用私鑰簽章的資料，`verify(message, sign(message, private key), public key) = true` 這種檢驗方式在提供正確資料時一定成立。
 
@@ -314,11 +314,11 @@ communication channels.
 - Signing software. Git can have GPG-signed commits and tags. With a posted
 public key, anyone can verify the authenticity of downloaded software. -->
 - [PGP 電郵加密](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
-使用者可以在網路上發佈公鑰 (例如一個 PGP 密鑰伺服器，或者
-[Keybase](https://keybase.io/))。任何人都可以向他們發送加密電郵。
+使用者可以在網路上釋出公鑰 (例如一個 PGP 密鑰伺服器，或者
+[Keybase](https://keybase.io/))。任何人都可以向他們傳送加密電郵。
 - 私密通訊。 類似 [Signal](https://signal.org/) 與
 [Keybase](https://keybase.io/) 這樣的程式使用非對稱加密系統來建立私密通訊。
-- 程式簽章。Git 支援帶有 GPG 簽章的提交。透過開發人員發佈的公鑰，任何人都可以驗證下載到的軟體。
+- 程式簽章。Git 支援帶有 GPG 簽章的提交。透過開發人員釋出的公鑰，任何人都可以驗證下載到的軟體。
 
 <!-- ## Key distribution -->
 ## 密鑰分配
@@ -335,7 +335,7 @@ neat ideas). Each model has its merits; we (the instructors) like Keybase's
 model. -->
 非對稱加密很棒，但是在分配公鑰/將公鑰對應至現實中的個體時面臨著很大的挑戰。 
 有許多解決此問題的方法。 
-Signal 提供了簡單地解決方案：使用者第一次使用時信任其身份，並支持線下的公鑰交換（你需要親自驗證朋友是否安全）。
+Signal 提供了簡單地解決方案：使用者第一次使用時信任其身份，並支援線下的公鑰交換（你需要親自驗證朋友是否安全）。
 PGP有另一種解決方案，即[信任網](https://en.wikipedia.org/wiki/Web_of_trust)。 
 Keybase 主要使用[社交證明](https://keybase.io/blog/chat-apps-softer-than-tofu)，與一些其他精妙方法。
 每一種模型都有其優勢，我們（講師）喜愛 Keybase 的模型。
@@ -357,7 +357,7 @@ produced from a passphrase using a KDF. -->
 <!-- Using a password manager lets you avoid password reuse (so you're less impacted
 when websites get compromised), use high-entropy passwords (so you're less likely to
 get compromised), and only need to remember a single high-entropy password. -->
-密碼管理器會讓你避免復用密碼（所以當網站數據洩漏時你受到影響較少），且使用高熵密碼（使你自己更難以洩漏密碼）。
+密碼管理器會讓你避免復用密碼（所以當網站資料洩漏時你受到影響較少），且使用高熵密碼（使你自己更難以洩漏密碼）。
 密碼管理器只需要你記住一個高熵的主密碼。
 
 <!-- ## Two-factor authentication -->
@@ -399,7 +399,7 @@ contacts' public keys is the critical step here. If you want good security, you
 need to authenticate public keys out-of-band (with Signal or Keybase), or trust
 social proofs (with Keybase). -->
 使用 [Signal](https://signal.org/) 或 [Keybase](https://keybase.io/)。 
-非對稱密鑰加密會提升端到端安全性。獲取聯繫人的公鑰是此處的關鍵步驟。
+非對稱密鑰加密會提升端到端安全性。獲取聯絡人的公鑰是此處的關鍵步驟。
 如果想要良好的安全性，需要線下（通過 Signal 或 Keybase ）對公鑰進行身份驗證，或者信任社交證明（透過 Keybase）。
 
 ## SSH
@@ -420,7 +420,7 @@ function to produce a key, which is then used to encrypt the private key with a
 symmetric cipher. -->
 當你執行 `ssh-keygen`時候，它會給出一組非對稱密鑰，即`public_key, private_key`。
 這使用作業系統（從硬體事件擷取的）熵隨機生成。
-公鑰會被明文存儲（它是公開的，所以保密性不重要），不過私鑰必須加密。
+公鑰會被明文儲存（它是公開的，所以保密性不重要），不過私鑰必須加密。
 `ssh-keygen` 程式會要求使用者輸入一個密碼，並透過密鑰生成函式來使用該密碼生成一個密鑰，`ssh-keygen` 會來利用此密鑰透過對稱加密加密私鑰。
 
 <!-- In use, once the server knows the client's public key (stored in the
@@ -433,10 +433,10 @@ which checks the signature against the public key on record. This effectively
 proves that the client is in possession of the private key corresponding to the
 public key that's in the server's `.ssh/authorized_keys` file, so the server
 can allow the client to log in. -->
-在現實場景中，當伺服器已知用戶的公鑰（存儲在 `.ssh/authorized_keys`），與其鏈接的客戶端可以透過非對稱簽章證明其身份。
+在現實場景中，當伺服器已知使用者的公鑰（儲存在 `.ssh/authorized_keys`），與其連結的客戶端可以透過非對稱簽章證明其身份。
 這個過程由[質詢-應答機制](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication)完成。
 通常來說，伺服器選擇一個隨機數字，並將其傳送至客戶端。客戶端使用私鑰對此數字簽章後返回伺服器。
-伺服器隨後使用 `.ssh/authorized_keys` 中儲存的用戶公鑰來驗證此返回信息是否由對應的私鑰簽章。
+伺服器隨後使用 `.ssh/authorized_keys` 中儲存的使用者公鑰來驗證此返回資訊是否由對應的私鑰簽章。
 如果正確，伺服器便可放行客戶端登入。
 
 {% comment %}
@@ -506,20 +506,20 @@ security concepts, tips
     1. 以上兩個密碼誰更強？
     1. 假定一個入侵者可以每秒嘗試 10,000 個密碼，平均來說，他需要多久來攻破上面兩個密碼？
 1. **密碼雜湊函式** 從
-   [Debian 鏡像站](https://www.debian.org/CD/http-ftp/)下載一個 Debian 映象
-   （比如[這個阿根廷鏡像站](http://debian.xfree.com.ar/debian-cd/current/amd64/iso-cd/)）。
-   檢查 hash 值（例如使用 `sha256sum` 指令），與域名爲 `debian.org` 的 Debian 官方站點提供的值（例如[這個
+   [Debian 映象站](https://www.debian.org/CD/http-ftp/)下載一個 Debian 映象
+   （比如[這個阿根廷映象站](http://debian.xfree.com.ar/debian-cd/current/amd64/iso-cd/)）。
+   檢查 hash 值（例如使用 `sha256sum` 指令），與域名為 `debian.org` 的 Debian 官方站點提供的值（例如[這個
    檔案](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS)）進行對比。
 1. **對稱加密** 透過 [OpenSSL](https://www.openssl.org/) 使用 AES 加密一個檔案：
    `openssl aes-256-cbc -salt -in {input filename} -out {output filename}`。
-   使用 `cat` 或 `hexdump` 查看其內容。再使用 `openssl aes-256-cbc -d -in {input filename} 
+   使用 `cat` 或 `hexdump` 檢視其內容。再使用 `openssl aes-256-cbc -d -in {input filename} 
    -out {output filename}` 來解密，並且使用 `cmp` 驗證解密內容與元檔案相同。
 1. **非對稱加密**
-    1. 在你擁有的電腦上（不要使用 Athena，因爲 Kerberos 與 SSH 密鑰的交互十分詭異）設定一個
+    1. 在你擁有的電腦上（不要使用 Athena，因為 Kerberos 與 SSH 密鑰的互動十分詭異）設定一個
      [SSH 密鑰](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
      使用更安全的 [ED25519 密鑰](https://wiki.archlinux.org/index.php/SSH_keys#Ed25519)來替代 RSA 密鑰。
      確保你使用了密碼來加密私鑰。
     1. [設定 GPG](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages)。
-    1. 給 Anish 發送一封加密電郵 ([ Anish 的公鑰](https://keybase.io/anish))。
+    1. 給 Anish 傳送一封加密電郵 ([ Anish 的公鑰](https://keybase.io/anish))。
     1. 使用 `git commit -S` 簽署一個提交，或使用 `git tag -s` 建立一個帶有簽章的 Git tag。
     使用`git show --show-signature` 來檢查提交的簽章，或使用 `git tag -v` 檢查 tag。

@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Security and Cryptography （尚未翻譯）"
+title: "安全與密碼學"
 date: 2019-01-28
 ready: true
 video:

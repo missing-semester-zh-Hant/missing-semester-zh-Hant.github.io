@@ -1,4 +1,4 @@
-# The Missing Semester of Your CS Education [[![Build Status](https://travis-ci.com/missing-semester/missing-semester.svg?branch=master)](https://travis-ci.com/missing-semester/missing-semester)]
+# The Missing Semester of Your CS Education
 
 此處是[The Missing Semester of Your CS Education](https://github.com/missing-semester) 的簡單譯文。
 

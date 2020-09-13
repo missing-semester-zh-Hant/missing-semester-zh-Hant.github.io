@@ -115,7 +115,7 @@ f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0
 random-looking (but deterministic) function (and this is the [ideal model of a
 hash function](https://en.wikipedia.org/wiki/Random_oracle)). A hash function
 has the following properties: -->
-更通用的解釋是，雜湊函式可以被認為是不可逆且隨機（但是具有特定性）的函式（這是 [雜湊函式的理想模型](https://en.wikipedia.org/wiki/Random_oracle)）。
+更通用的解釋是，雜湊函式可以被認為是不可逆且隨機（但是具有確定性）的函式（這是 [雜湊函式的理想模型](https://en.wikipedia.org/wiki/Random_oracle)）。
 一個雜湊函式將會有如下性質：
 
 <!-- - Deterministic: the same input always generates the same output.

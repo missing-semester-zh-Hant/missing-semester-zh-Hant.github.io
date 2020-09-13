@@ -19,7 +19,7 @@ in inefficiencies and wasted time; in the worst case, it results in issues like
 data loss or inability to complete certain tasks. -->
 這些年，我們在MIT參與教授了許多課程，並且逐漸意識到許多學生對他們可使用的工具知之甚少。
 電腦善於執行自動化任務，但學生們常常自己親自做重複性任務，或者沒有完全發揮出版本控制，文字編輯器等工具的強大能力。
-好一些的情況下，他們只是效率降低並浪費了時間；更糟糕的情況下，這導致了資料損失或使學生無法完成指定任務。
+好一些的情況下，他們只是效率降低並浪費了時間；更糟糕的情況是，這導致了資料損失或使學生無法完成指定任務。
 
 <!-- These topics are not taught as part of the university curriculum: students are
 never shown how to use these tools, or at least not how to use them
@@ -179,8 +179,8 @@ wait for January, you can also take a look at the lectures from [Hacker
 Tools](https://hacker-tools.github.io/lectures/), which we ran during IAP last
 year. It is the precursor to this class, and covers many of the same topics. -->
 這 12 節課會包含以上或者更多的內容，同時每課都提供了能幫你熟練使用這些工具的試驗。
-如果你已經等不及到一月，也可以先瀏覽[Hacker Tools](https://hacker-tools.github.io/lectures/)上面的課程，這是我們去年所教授的。
-這是此課程的前身，含有許多相同的主題。
+如果你已經等不及到一月，也可以先瀏覽[Hacker Tools](https://hacker-tools.github.io/lectures/)上面的課程，這是我們去年所教授的，
+也是此課程的前身，含有許多相同的主題。
 
 <!-- We hope to see you in January, whether virtually or in person! -->
 希望能在一月與你相見，無論是線上還是親臨現場！

@@ -248,6 +248,20 @@ hr {
   background-color: #fff;
 }
 
+#top-nav-social {
+  float: right; 
+  padding-left:15px;
+}
+
+#top-nav-social a {
+  color: initial;
+  text-decoration: initial;
+}
+
+#top-nav-social a:hover {
+  background: initial;
+}
+
 a#logo {
   color: #f2deff;
 }

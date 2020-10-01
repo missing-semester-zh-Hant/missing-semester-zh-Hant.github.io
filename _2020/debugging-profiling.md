@@ -8,25 +8,37 @@ video:
   id: l812pUnKxME
 ---
 
-A golden rule in programming is that code does not do what you expect it to do, but what you tell it to do.
+<!-- A golden rule in programming is that code does not do what you expect it to do, but what you tell it to do.
 Bridging that gap can sometimes be a quite difficult feat.
-In this lecture we are going to cover useful techniques for dealing with buggy and resource hungry code: debugging and profiling.
+In this lecture we are going to cover useful techniques for dealing with buggy and resource hungry code: debugging and profiling. -->
+程式設計中的一條準則是，程式碼不會直接給出您期望的結果，而是執行您指定的動作。
+彌合這一差距有時是一項相當困難的。
+在本講座中，我們將介紹處理錯誤和應對資源匱乏的程式碼的有用技術：除錯和效能分析。
 
-# Debugging
+<!-- # Debugging -->
+# 偵錯
 
-## Printf debugging and Logging
+<!-- ## Printf debugging and Logging -->
+## Printf 偵錯法與使用日誌
 
-"The most effective debugging tool is still careful thought, coupled with judiciously placed print statements" — Brian Kernighan, _Unix for Beginners_.
+<!-- "The most effective debugging tool is still careful thought, coupled with judiciously placed print statements" — Brian Kernighan, _Unix for Beginners_. -->
+"最有效的除錯工具就是認真思考，加上放置得當的列印語句" — Brian Kernighan, _Unix for Beginners_.
 
-A first approach to debug a program is to add print statements around where you have detected the problem, and keep iterating until you have extracted enough information to understand what is responsible for the issue.
+<!-- A first approach to debug a program is to add print statements around where you have detected the problem, and keep iterating until you have extracted enough information to understand what is responsible for the issue. -->
+偵錯的第一次嘗試往往是在發現問題的地方新增一些列印語句，然後不斷重複直至你獲得了足夠的資訊並認識到了問題的原因。
 
-A second approach is to use logging in your program, instead of ad hoc print statements. Logging is better than regular print statements for several reasons:
+<!-- A second approach is to use logging in your program, instead of ad hoc print statements. Logging is better than regular print statements for several reasons: -->
+第二種方法是在程式中使用日誌記錄，而不是臨時印出語句。 由於以下幾個原因，使用日誌比常規的列印語句要好：
 
-- You can log to files, sockets or even remote servers instead of standard output.
+<!-- - You can log to files, sockets or even remote servers instead of standard output.
 - Logging supports severity levels (such as INFO, DEBUG, WARN, ERROR, &c), that allow you to filter the output accordingly.
-- For new issues, there's a fair chance that your logs will contain enough information to detect what is going wrong.
+- For new issues, there's a fair chance that your logs will contain enough information to detect what is going wrong. -->
+- 你可以將日誌寫入檔案，sockets 或者是伺服器而不僅僅是印出來。
+- 日誌支援重要等級（例如 INFO, DEBUG, WARN, ERROR 等），允許你過濾日誌。
+- 對於新問題，日誌常常已經包含了偵錯所需的足量訊息。
 
-[Here](/static/files/logger.py) is an example code that logs messages:
+<!-- [Here](/static/files/logger.py) is an example code that logs messages: -->
+[這裡](/static/files/logger.py) 有記錄日誌的示例程式碼:
 
 ```bash
 $ python logger.py
@@ -38,10 +50,13 @@ $ python logger.py log ERROR
 $ python logger.py color
 # Color formatted output
 ```
-
+<!-- 
 One of my favorite tips for making logs more readable is to color code them.
 By now you probably have realized that your terminal uses colors to make things more readable. But how does it do it?
-Programs like `ls` or `grep` are using [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code), which are special sequences of characters to indicate your shell to change the color of the output. For example, executing `echo -e "\e[38;2;255;0;0mThis is red\e[0m"` prints the message `This is red` in red on your terminal. The following script shows how to print many RGB colors into your terminal.
+Programs like `ls` or `grep` are using [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code), which are special sequences of characters to indicate your shell to change the color of the output. For example, executing `echo -e "\e[38;2;255;0;0mThis is red\e[0m"` prints the message `This is red` in red on your terminal. The following script shows how to print many RGB colors into your terminal. -->
+我最喜歡的加強日誌可讀性的技巧之一就是給它們塗上顏色。
+現在你可能已經意識到在終端使用顏色可以使它更具可讀性。這是如何做到的？
+像 `ls` 或 `grep` 這樣的程式正在使用 [ANSI 跳脫序列]（https://en.wikipedia.org/wiki/ANSI_escape_code），這種特殊字元序列用於指示你的 shell 更改輸出顏色。 例如，執行 `echo -e "\e[38;2;255;0;0mThis is red\e[0m"` 在終端上以紅色顯示 “ This is red”。 以下指令碼顯示瞭如何在終端中列印多種RGB顏色。
 
 ```bash
 #!/usr/bin/env bash
@@ -54,20 +69,31 @@ for R in $(seq 0 20 255); do
 done
 ```
 
-## Third party logs
+<!-- ## Third party logs -->
+## 第三方日誌
 
-As you start building larger software systems you will most probably run into dependencies that run as separate programs.
+<!-- As you start building larger software systems you will most probably run into dependencies that run as separate programs.
 Web servers, databases or message brokers are common examples of this kind of dependencies.
-When interacting with these systems it is often necessary to read their logs, since client side error messages might not suffice.
+When interacting with these systems it is often necessary to read their logs, since client side error messages might not suffice. -->
+當你開始構建更大的程式系統時，很可能會遇到依賴項，這些依賴項可以作為單獨的程式執行。
+Web 伺服器，資料庫或訊息代理是這種依賴關係的常見示例。
+與這些系統進行互動時常常需要讀取其日誌，因為客戶端錯誤訊息可能不足。
 
-Luckily, most programs write their own logs somewhere in your system.
+<!-- Luckily, most programs write their own logs somewhere in your system.
 In UNIX systems, it is commonplace for programs to write their logs under `/var/log`.
 For instance, the [NGINX](https://www.nginx.com/) webserver places its logs under `/var/log/nginx`.
 More recently, systems have started using a **system log**, which is increasingly where all of your log messages go.
 Most (but not all) Linux systems use `systemd`, a system daemon that controls many things in your system such as which services are enabled and running.
 `systemd` places the logs under `/var/log/journal` in a specialized format and you can use the [`journalctl`](https://www.man7.org/linux/man-pages/man1/journalctl.1.html) command to display the messages.
 Similarly, on macOS there is still `/var/log/system.log` but an increasing number of tools use the system log, that can be displayed with [`log show`](https://www.manpagez.com/man/1/log/).
-On most UNIX systems you can also use the [`dmesg`](https://www.man7.org/linux/man-pages/man1/dmesg.1.html) command to access the kernel log.
+On most UNIX systems you can also use the [`dmesg`](https://www.man7.org/linux/man-pages/man1/dmesg.1.html) command to access the kernel log. -->
+幸運地是，許多程式都會自己記錄日誌。
+在 UNIX 系統中，程式通常會將日誌寫入 `/var/log`。
+例如，[NGINX](https://www.nginx.com/) 伺服器會將日誌放入 `/var/log/nginx`。
+現在的系統自身也會使用 **系統日誌**，這裡會記錄所有日誌訊息。
+多數（但非全部） Linux 系統使用 `systemd`，它是一個可以控制系統內許多事情，例如有哪些服務被啟用的後臺駐留程式。
+`systemd` 將日誌以特殊格式置於 `/var/log/journal`，你可以使用 [`journalctl`](https://www.man7.org/linux/man-pages/man1/journalctl.1.html) 來顯示它們。
+在多數 UNIX 系統中你也可以使用 [`dmesg`](https://www.man7.org/linux/man-pages/man1/dmesg.1.html) 來存取核心日誌。
 
 For logging under the system logs you can use the [`logger`](https://www.man7.org/linux/man-pages/man1/logger.1.html) shell program.
 Here's an example of using `logger` and how to check that the entry made it to the system logs.

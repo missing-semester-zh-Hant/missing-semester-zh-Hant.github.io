@@ -4,7 +4,7 @@
 
 英文原文 [點此](https://missing.csail.mit.edu/)
 
-簡體中文譯文 [點此](https://missing-semester-cn.github.io/)
+簡化字譯文 [點此](https://missing-semester-cn.github.io/)
 
 正體中文譯文 [點此](https://missing-semester-zh-hant.github.io/)
 

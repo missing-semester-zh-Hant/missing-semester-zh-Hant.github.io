@@ -55,7 +55,7 @@ more stuff than we wanted though. And pretty hard to read. Let's do
 better: -->
 請注意我們在此處通過 `grep` 來使用管道，將 _遠端的_ 檔案傳送至本地端電腦! 
 `ssh` 非常神奇，我們會在下一課的命令列環境中詳細講授。
-此時返回的內容依然冗長，且不好閱讀。讓我們做點改善：
+此時傳回的內容依然冗長，且不好閱讀。讓我們做點改善：
 
 ```bash
 ssh myserver 'journalctl | grep sshd | grep "Disconnected from"' | less

@@ -81,7 +81,7 @@ Unlike other scripting languages, bash uses a variety of special variables to re
 - `$1` to `$9` - 腳本參數。 `$1` 是第一個參數，以此類推。
 - `$@` - 全部參數
 - `$#` - 參數數量
-- `$?` - 前一條指令的返回值
+- `$?` - 前一條指令的傳回值
 - `$$` - 目前腳本的行程ID (Process identification number, PID) 
 - `!!` - 完整的前一條指令，含有參數。一個常見情況是因爲權限錯誤導致指令失敗，此時可以使用 `sudo !!` 再嘗試一次。
 - `$_` - 前一條指令的最後一個參數。如果你使用的是互動式shell，按下 `Esc` 後輸入 `.` 可以獲取它。
@@ -89,16 +89,16 @@ Unlike other scripting languages, bash uses a variety of special variables to re
 <!-- Commands will often return output using `STDOUT`, errors through `STDERR`, and a Return Code to report errors in a more script-friendly manner.
 The return code or exit status is the way scripts/commands have to communicate how execution went.
 A value of 0 usually means everything went OK; anything different from 0 means an error occurred. -->
-指令通常會使用 `STDOUT` 來返回輸出, 使用 `STDERR` 返回錯誤, 與一個返回值(Return Code)來更加友好地表示錯誤訊息。
-腳本或單獨指令利用返回值與退出狀態(exit status)的形式互相溝通。
-通常，返回值爲 0 表示一切正常，非0的返回值表示發生了某種錯誤。
+指令通常會使用 `STDOUT` 來返回輸出, 使用 `STDERR` 返回錯誤, 與一個傳回值(Return Code)來更加友好地表示錯誤訊息。
+腳本或單獨指令利用傳回值與退出狀態(exit status)的形式互相溝通。
+通常，傳回值爲 0 表示一切正常，非0的傳回值表示發生了某種錯誤。
 
 <!-- Exit codes can be used to conditionally execute commands using `&&` (and operator) and `||` (or operator), both of which are [short-circuiting](https://en.wikipedia.org/wiki/Short-circuit_evaluation) operators. Commands can also be separated within the same line using a semicolon `;`.
 The `true` program will always have a 0 return code and the `false` command will always have a 1 return code.
 Let's see some examples -->
 退出碼可以與 `&&` (and operator) 與 `||` (or operator)共同使用，它們都是[短路求值](https://en.wikipedia.org/wiki/Short-circuit_evaluation) 運算子。
 同一行內的多個指令可以使用 `;` 分隔。
-程式 `true` 的返回值永遠是0，`false`的返回值永遠是1.
+程式 `true` 的傳回值永遠是0，`false`的傳回值永遠是1.
 以下是一些例子：
 
 ```bash
@@ -127,9 +127,9 @@ For example, if you do `for file in $(ls)`, the shell will first call `ls` and t
 A lesser known similar feature is _process substitution_, `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute the `<()` with that file's name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)` will show differences between files in dirs  `foo` and `bar`. -->
 另一種常見的模式是以變數的形式獲取一個指令的輸出。我們可以透過 _指令替換(command substitution)_ 來做這件事。
 當在腳本中使用 `$( CMD )` 時， `CMD` 會被執行，然後用它的執行結果替換掉 `$( CMD )` 。
-例如，如果你執行 `for file in $(ls)` ，shell會首先執行 `ls` 然後遍歷其返回值。
+例如，如果你執行 `for file in $(ls)` ，shell會首先執行 `ls` 然後遍歷其傳回值。
 另一個不太常見的特性是 _行程替代 (process substitution)_， `<( CMD )` 將會執行 `CMD` 並且將結果存入臨時檔案中，並將 `<()` 替換成臨時檔案名稱。
-這在我們希望返回值通過檔案而非 STDIN 傳送時非常有用。
+這在我們希望傳回值通過檔案而非 STDIN 傳送時非常有用。
 例如， `diff <(ls foo) <(ls bar)` 將會顯示文件夾 `foo` 與 `bar` 中的內容.
 
 <!-- Since that was a huge information dump, let's see an example that showcases some of these features. It will iterate through the arguments we provide, `grep` for the string `foobar`, and append it to the file as a comment if it's not found. -->
@@ -225,13 +225,13 @@ Some differences between shell functions and scripts that you should keep in min
 
 shell知道去用python直譯器而不是shell命令來運行這段腳本，是因為腳本的開頭第一行的[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))。
 
-在shebang行中使用[`env`](http://man7.org/linux/man-pages/man1/env.1.html) 命令是一種慣例，它會利用環境變量中的程式來解析該腳本，這樣就提高來您的腳本的可移植性。 `env` 會利用我們第一節講座中介紹過的`PATH` 環境變量來進行定位。 
+在shebang行中使用[`env`](http://man7.org/linux/man-pages/man1/env.1.html) 命令是一種慣例，它會利用環境變數中的程式來解析該腳本，這樣就提高來您的腳本的可移植性。 `env` 會利用我們第一節講座中介紹過的`PATH` 環境變數來進行定位。 
 例如，使用了`env`的shebang看上去時這樣的`#!/usr/bin/env python`。 
 
 我們應該注意shell函數和腳本有以下的差異： 
 - 函數只能用與shell使用相同的語言，腳本可以使用任意語言。因此在腳本中包含 `shebang` 是很重要的。 
 - 函數僅在定義時被載入，腳本會在每次被執行時載入。這讓函數的載入比腳本略快一些，但每次修改函數定義，都要重新載入一次。 
-- 函數會在當前的shell環境中執行，腳本會在獨立的行程中執行。因此，函數可以對環境變量進行更改，比如改變當前工作目錄，腳本則不行。腳本需要使用 [`export`](http://man7.org/linux/man-pages/man1/export.1p.html) 將環境變量導出，並將值傳遞給環境變量。 
+- 函數會在當前的shell環境中執行，腳本會在獨立的行程中執行。因此，函數可以對環境變數進行更改，比如改變當前工作目錄，腳本則不行。腳本需要使用 [`export`](http://man7.org/linux/man-pages/man1/export.1p.html) 將環境變數導出，並將值傳遞給環境變數。 
 - 與其他程式語言一樣，函數可以模組化程式碼、提高程式碼複用性與可讀性。 shell腳本中往往也會包含它們自己的函數定義。
 
 # Shell 工具

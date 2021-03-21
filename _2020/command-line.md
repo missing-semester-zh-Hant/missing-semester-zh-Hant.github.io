@@ -295,7 +295,7 @@ shell 的配置也是通過這類文件完成的。在啟動時， shell 程式�
 <!-- For `bash`, editing your `.bashrc` or `.bash_profile` will work in most systems.
 Here you can include commands that you want to run on startup, like the alias we just described or modifications to your `PATH` environment variable.
 In fact, many programs will ask you to include a line like `export PATH="$PATH:/path/to/program/bin"` in your shell configuration file so their binaries can be found. -->
-對於 `bash` 來說，在大多數系統下，我們可以透過編輯 `.bashrc` 或 `.bash_profile` 來進行配置。在文件中我們可以添加需要在啟動時執行的指令，例如上文我們講到過的別名，或者是我們的環境變量。 實際上，很多程序都要求我們在 shell 的配置文件中包含一行類似 `export PATH="$PATH:/path/to/program/bin"` 的命令，這樣才能確保這些程式能夠被 shell 找到。
+對於 `bash` 來說，在大多數系統下，我們可以透過編輯 `.bashrc` 或 `.bash_profile` 來進行配置。在文件中我們可以添加需要在啟動時執行的指令，例如上文我們講到過的別名，或者是我們的環境變數。 實際上，很多程序都要求我們在 shell 的配置文件中包含一行類似 `export PATH="$PATH:/path/to/program/bin"` 的命令，這樣才能確保這些程式能夠被 shell 找到。
 
 <!-- Some other examples of tools that can be configured through dotfiles are: -->
 還有一些其他工具可以透過點文件配置:

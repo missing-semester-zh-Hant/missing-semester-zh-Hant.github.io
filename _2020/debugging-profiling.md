@@ -1,6 +1,6 @@
 ---
 layout: lecture
-title: "Debugging and Profiling （尚未翻譯）"
+title: "除錯與分析 （尚未翻譯）"
 date: 2019-01-23
 ready: true
 video:
@@ -95,9 +95,12 @@ On most UNIX systems you can also use the [`dmesg`](https://www.man7.org/linux/m
 `systemd` 將日誌以特殊格式置於 `/var/log/journal`，你可以使用 [`journalctl`](https://www.man7.org/linux/man-pages/man1/journalctl.1.html) 來顯示它們。
 在多數 UNIX 系統中你也可以使用 [`dmesg`](https://www.man7.org/linux/man-pages/man1/dmesg.1.html) 來存取核心日誌。
 
-For logging under the system logs you can use the [`logger`](https://www.man7.org/linux/man-pages/man1/logger.1.html) shell program.
+<!-- For logging under the system logs you can use the [`logger`](https://www.man7.org/linux/man-pages/man1/logger.1.html) shell program.
 Here's an example of using `logger` and how to check that the entry made it to the system logs.
-Moreover, most programming languages have bindings logging to the system log.
+Moreover, most programming languages have bindings logging to the system log. -->
+要在系統日誌下進行記錄，可以使用 [`logger`](https://www.man7.org/linux/man-pages/man1/logger.1.html) 這個 shell 程式。
+下面是一個使用 `logger` 且檢查條目是否進入系統日誌的範例。
+大多數程式語言都有將自身日誌記錄到系統日誌中的功能。
 
 ```bash
 logger "Hello Logs"
@@ -107,35 +110,56 @@ log show --last 1m | grep Hello
 journalctl --since "1m ago" | grep Hello
 ```
 
-As we saw in the data wrangling lecture, logs can be quite verbose and they require some level of processing and filtering to get the information you want.
+<!-- As we saw in the data wrangling lecture, logs can be quite verbose and they require some level of processing and filtering to get the information you want.
 If you find yourself heavily filtering through `journalctl` and `log show` you can consider using their flags, which can perform a first pass of filtering of their output.
-There are also some tools like  [`lnav`](http://lnav.org/), that provide an improved presentation and navigation for log files.
+There are also some tools like  [`lnav`](http://lnav.org/), that provide an improved presentation and navigation for log files. -->
+如同我們在資料處理這堂課上看到的， 日誌可能非常冗長，致使我們需要經過處理和過濾才能得到所需的訊息。
+如果你經常使用 `journalctl` 和 `log show` 來處理日誌，你可以嘗試使用他們內建的 flag 進行初步過濾。
+也有類似 [`lnav`](http://lnav.org/) 這樣的工具， 可以更優質地顯示日誌，以及更簡易地導航操作。
 
-## Debuggers
+<!-- ## Debuggers -->
+## 除錯工具（偵錯程式）
 
-When printf debugging is not enough you should use a debugger.
-Debuggers are programs that let you interact with the execution of a program, allowing the following:
+<!-- When printf debugging is not enough you should use a debugger.
+Debuggers are programs that let you interact with the execution of a program, allowing the following: -->
+我們應該使用偵錯程式來完成 printf 無法勝任的除錯工作。
+偵錯程式是一種讓你可以和其他程式執行過程進行互動的程式，擁有以下能力：
 
-- Halt execution of the program when it reaches a certain line.
+<!-- - Halt execution of the program when it reaches a certain line.
 - Step through the program one instruction at a time.
 - Inspect values of variables after the program crashed.
 - Conditionally halt the execution when a given condition is met.
-- And many more advanced features
+- And many more advanced features -->
+- 當程式執行到某一列時， 中斷程式執行
+- 每次僅執行一條指令
+- 程式當機後檢查所有變數
+- 在滿足特定條件時中斷程式執行
+- 更多進階功能
 
-Many programming languages come with some form of debugger.
-In Python this is the Python Debugger [`pdb`](https://docs.python.org/3/library/pdb.html).
+<!-- Many programming languages come with some form of debugger.
+In Python this is the Python Debugger [`pdb`](https://docs.python.org/3/library/pdb.html). -->
+許多程式語言都帶有偵錯程式。Python 使用 [`pdb`](https://docs.python.org/3/library/pdb.html) 作為其偵錯程式。
 
-Here is a brief description of some of the commands `pdb` supports:
+<!-- Here is a brief description of some of the commands `pdb` supports: -->
+這裡是 `pdb` 支援的一部分指令的說明：
 
-- **l**(ist) - Displays 11 lines around the current line or continue the previous listing.
+<!-- - **l**(ist) - Displays 11 lines around the current line or continue the previous listing.
 - **s**(tep) - Execute the current line, stop at the first possible occasion.
 - **n**(ext) - Continue execution until the next line in the current function is reached or it returns.
 - **b**(reak) - Set a breakpoint (depending on the argument provided).
 - **p**(rint) - Evaluate the expression in the current context and print its value. There's also **pp** to display using [`pprint`](https://docs.python.org/3/library/pprint.html) instead.
 - **r**(eturn) - Continue execution until the current function returns.
-- **q**(uit) - Quit the debugger.
+- **q**(uit) - Quit the debugger. -->
+- **l**(ist) - 顯示當前列上下的 11 列內容，或者繼續顯示上一次的 list 指令結果。
+- **s**(tep) - 執行當前列，且在儘可能早地停止執行。
+- **n**(ext) - 繼續執行，直至當前函式的下一列或遇到 return。
+- **b**(reak) - （基於提供的引數）設定中斷點。
+- **p**(rint) - 在當前上下文對算是求值並印出結果。有一個類似的指令是 **pp**， 它使用 [`pprint`](https://docs.python.org/3/library/pprint.html) 來顯示結果。
+- **r**(eturn) -繼續執行，直至當前函式回傳。
+- **q**(uit) - 結束偵錯程式。
 
-Let's go through an example of using `pdb` to fix the following buggy python code. (See the lecture video).
+<!-- Let's go through an example of using `pdb` to fix the following buggy python code. (See the lecture video). -->
+讓我們看一個示例，使用 `pdb` 來修復錯誤的 Python 程式碼（請參考課程回放）
 
 ```python
 def bubble_sort(arr):
@@ -151,20 +175,28 @@ print(bubble_sort([4, 2, 1, 8, 7, 6]))
 ```
 
 
-Note that since Python is an interpreted language we can use the `pdb` shell to execute commands and to execute instructions.
-[`ipdb`](https://pypi.org/project/ipdb/) is an improved `pdb` that uses the [`IPython`](https://ipython.org) REPL enabling tab completion, syntax highlighting, better tracebacks, and better introspection while retaining the same interface as the `pdb` module.
+<!-- Note that since Python is an interpreted language we can use the `pdb` shell to execute commands and to execute instructions.
+[`ipdb`](https://pypi.org/project/ipdb/) is an improved `pdb` that uses the [`IPython`](https://ipython.org) REPL enabling tab completion, syntax highlighting, better tracebacks, and better introspection while retaining the same interface as the `pdb` module. -->
+Python 是一種直譯語言，所以我們可以透過 `pdb` shell 執行指令。
+[`ipdb`](https://pypi.org/project/ipdb/) 是改進後的 `pdb`，
+它使用 [`IPython`](https://ipython.org) 作為[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) 並啟用了製表符補全，語法突出顯示，更優秀的回溯和內省功能，同時提供與 `pdb` 相同的介面。
 
-For more low level programming you will probably want to look into [`gdb`](https://www.gnu.org/software/gdb/) (and its quality of life modification [`pwndbg`](https://github.com/pwndbg/pwndbg)) and [`lldb`](https://lldb.llvm.org/).
-They are optimized for C-like language debugging but will let you probe pretty much any process and get its current machine state: registers, stack, program counter, &c.
+<!-- For more low level programming you will probably want to look into [`gdb`](https://www.gnu.org/software/gdb/) (and its quality of life modification [`pwndbg`](https://github.com/pwndbg/pwndbg)) and [`lldb`](https://lldb.llvm.org/).
+They are optimized for C-like language debugging but will let you probe pretty much any process and get its current machine state: registers, stack, program counter, &c. -->
+對於更底層的程式語言，你可能會想要瞭解 [`gdb`](https://www.gnu.org/software/gdb/)（及它的易用版本 [`pwndbg`](https://github.com/pwndbg/pwndbg)）和 [`lldb`](https://lldb.llvm.org/)。他們都對類似 C 的語言進行了優化，使得我們可以探測幾乎所有行程與當前電腦狀態：包含暫存器，堆疊和程式計數器等。
 
 
-## Specialized Tools
+<!-- ## Specialized Tools -->
+## 專用工具
 
-Even if what you are trying to debug is a black box binary there are tools that can help you with that.
+<!-- Even if what you are trying to debug is a black box binary there are tools that can help you with that.
 Whenever programs need to perform actions that only the kernel can, they use [System Calls](https://en.wikipedia.org/wiki/System_call).
-There are commands that let you trace the syscalls your program makes. In Linux there's [`strace`](https://www.man7.org/linux/man-pages/man1/strace.1.html) and macOS and BSD have [`dtrace`](http://dtrace.org/blogs/about/). `dtrace` can be tricky to use because it uses its own `D` language, but there is a wrapper called [`dtruss`](https://www.manpagez.com/man/1/dtruss/) that provides an interface more similar to `strace` (more details [here](https://8thlight.com/blog/colin-jones/2015/11/06/dtrace-even-better-than-strace-for-osx.html)).
+There are commands that let you trace the syscalls your program makes. In Linux there's [`strace`](https://www.man7.org/linux/man-pages/man1/strace.1.html) and macOS and BSD have [`dtrace`](http://dtrace.org/blogs/about/). `dtrace` can be tricky to use because it uses its own `D` language, but there is a wrapper called [`dtruss`](https://www.manpagez.com/man/1/dtruss/) that provides an interface more similar to `strace` (more details [here](https://8thlight.com/blog/colin-jones/2015/11/06/dtrace-even-better-than-strace-for-osx.html)). -->
+即使我們要進行黑箱測試，仍然有一些工具可以使用。
+當程式需要執行一些僅有系統內核可以執行的動作時，它們會使用[系統呼叫](https://en.wikipedia.org/wiki/System_call)。有一些指令可以讓我們追蹤程式使用的系統呼叫。在 linux 中，我們可以使用 [`strace`](https://www.man7.org/linux/man-pages/man1/strace.1.html)，在 macOS 與 BSD 裡則有 [`dtrace`](http://dtrace.org/blogs/about/)。dtrace 可能很難使用，因為它使用了自己的 `D` 語言，但是名為 [`dtruss`](https://www.manpagez.com/man/1/dtruss/) 的程式為其提供了類似 `strace` 的介面（更多細節見[這裡](https://8thlight.com/blog/colin-jones/2015/11/06/dtrace-even-better-than-strace-for-osx.html)）。
 
-Below are some examples of using `strace` or `dtruss` to show [`stat`](https://www.man7.org/linux/man-pages/man2/stat.2.html) syscall traces for an execution of `ls`. For a deeper dive into `strace`, [this](https://blogs.oracle.com/linux/strace-the-sysadmins-microscope-v2) is a good read.
+<!-- Below are some examples of using `strace` or `dtruss` to show [`stat`](https://www.man7.org/linux/man-pages/man2/stat.2.html) syscall traces for an execution of `ls`. For a deeper dive into `strace`, [this](https://blogs.oracle.com/linux/strace-the-sysadmins-microscope-v2) is a good read. -->
+以下是一些使用 strace 或 dtruss 來展示 `ls` 指令執行時的 [`stat`](https://www.man7.org/linux/man-pages/man2/stat.2.html) 的示例。如果你想更深入瞭解 `strace`，可以閱讀[這裡](https://blogs.oracle.com/linux/strace-the-sysadmins-microscope-v2)。
 
 ```bash
 # On Linux
@@ -174,25 +206,38 @@ sudo strace -e lstat ls -l > /dev/null
 sudo dtruss -t lstat64_extended ls -l > /dev/null
 ```
 
-Under some circumstances, you may need to look at the network packets to figure out the issue in your program.
-Tools like [`tcpdump`](https://www.man7.org/linux/man-pages/man1/tcpdump.1.html) and [Wireshark](https://www.wireshark.org/) are network packet analyzers that let you read the contents of network packets and filter them based on different criteria.
+<!-- Under some circumstances, you may need to look at the network packets to figure out the issue in your program.
+Tools like [`tcpdump`](https://www.man7.org/linux/man-pages/man1/tcpdump.1.html) and [Wireshark](https://www.wireshark.org/) are network packet analyzers that let you read the contents of network packets and filter them based on different criteria. -->
+在某些情況下，我們需要檢視網路封包來找出問題。我們可以使用類似於 [`tcpdump`](https://www.man7.org/linux/man-pages/man1/tcpdump.1.html) 和 [Wireshark](https://www.wireshark.org/) 這樣的網路封包分析器來讀取封包內容，並且根據所需過濾內容。
 
-For web development, the Chrome/Firefox developer tools are quite handy. They feature a large number of tools, including:
+<!-- For web development, the Chrome/Firefox developer tools are quite handy. They feature a large number of tools, including:
 - Source code - Inspect the HTML/CSS/JS source code of any website.
 - Live HTML, CSS, JS modification - Change the website content, styles and behavior to test (you can see for yourself that website screenshots are not valid proofs).
 - Javascript shell - Execute commands in the JS REPL.
 - Network - Analyze the requests timeline.
-- Storage - Look into the Cookies and local application storage.
+- Storage - Look into the Cookies and local application storage. -->
+對於 web 開發，Chrome 和 Firefox 的開發人員工具非常好用。它們可以實現諸如：
+- 網頁原始碼 - 檢視任意頁面的 HTML/CSS/JS 原始碼
+- 實時修改 HTML, CSS, JS - 修改頁面內容，樣式與行為來進行測試（所以網頁截圖不能作為推理證據）
+- Javascript shell - 在 JS REPL 中執行指令
+- Network - 分析網路請求時間線
+- 儲存 - 檢視 Cookie 和本地程式儲存的內容
 
-## Static Analysis
+<!-- ## Static Analysis -->
+## 靜態分析
 
-For some issues you do not need to run any code.
+<!-- For some issues you do not need to run any code.
 For example, just by carefully looking at a piece of code you could realize that your loop variable is shadowing an already existing variable or function name; or that a program reads a variable before defining it.
 Here is where [static analysis](https://en.wikipedia.org/wiki/Static_program_analysis) tools come into play.
-Static analysis programs take source code as input and analyze it using coding rules to reason about its correctness.
+Static analysis programs take source code as input and analyze it using coding rules to reason about its correctness. -->
+對於一部分問題，無需執行程式碼即可解決。
+例如，僅透過檢視一段程式碼，我們就可以意識到迴圈變數正在覆蓋一個已經存在的變數。或程式在宣告變數前先讀取變數。
+這些就是 [靜態分析](https://en.wikipedia.org/wiki/Static_program_analysis) 工具大放異彩的地方。
+靜態分析程式將原始碼作為輸入，透過檢視編碼規則來判斷程式碼是否正確。
 
-In the following Python snippet there are several mistakes.
-First, our loop variable `foo` shadows the previous definition of the function `foo`. We also wrote `baz` instead of `bar` in the last line, so the program will crash after completing the `sleep` call (which will take one minute).
+<!-- In the following Python snippet there are several mistakes.
+First, our loop variable `foo` shadows the previous definition of the function `foo`. We also wrote `baz` instead of `bar` in the last line, so the program will crash after completing the `sleep` call (which will take one minute). -->
+在以下 Python 程式碼中存在一些錯誤。我們的迴圈變數 `foo` 覆蓋了函式 `foo` 的宣告，我們還在最後一列中寫入了 `baz`， 而非 `bar`，因此程式將在完成 `sleep` 後崩潰（需要大概一分鐘）。
 
 ```python
 import time
@@ -208,10 +253,13 @@ time.sleep(60)
 print(baz)
 ```
 
-Static analysis tools can identify this kind of issues. When we run [`pyflakes`](https://pypi.org/project/pyflakes) on the code we get the errors related to both bugs. [`mypy`](http://mypy-lang.org/) is another tool that can detect type checking issues. Here, `mypy` will warn us that `bar` is initially an `int` and is then casted to a `float`.
-Again, note that all these issues were detected without having to run the code.
+<!-- Static analysis tools can identify this kind of issues. When we run [`pyflakes`](https://pypi.org/project/pyflakes) on the code we get the errors related to both bugs. [`mypy`](http://mypy-lang.org/) is another tool that can detect type checking issues. Here, `mypy` will warn us that `bar` is initially an `int` and is then casted to a `float`.
+Again, note that all these issues were detected without having to run the code. -->
+靜態分析工具可以認出這些問題。 當我們執行 [`pyflakes`](https://pypi.org/project/pyflakes) 時候，它會提示與此兩個 bug 相關的錯誤。 [`mypy`](http://mypy-lang.org/) 是一個可以檢測型別的工具。在這裡，`mypy` 會提示 `bar` 之前是一個 `int`，之後被強制轉換成了 `float`。
+注意我們無需執行程式碼就可以檢測這類問題。
 
-In the shell tools lecture we covered [`shellcheck`](https://www.shellcheck.net/), which is a similar tool for shell scripts.
+<!-- In the shell tools lecture we covered [`shellcheck`](https://www.shellcheck.net/), which is a similar tool for shell scripts. -->
+在 shell 講座中，我們介紹了 [`shellcheck`](https://www.shellcheck.net/)，這是檢測 shell 指令碼的工具。
 
 ```bash
 $ pyflakes foobar.py
@@ -225,27 +273,41 @@ foobar.py:11: error: Name 'baz' is not defined
 Found 3 errors in 1 file (checked 1 source file)
 ```
 
-Most editors and IDEs support displaying the output of these tools within the editor itself, highlighting the locations of warnings and errors.
-This is often called **code linting** and it can also be used to display other types of issues such as stylistic violations or insecure constructs.
+<!-- Most editors and IDEs support displaying the output of these tools within the editor itself, highlighting the locations of warnings and errors.
+This is often called **code linting** and it can also be used to display other types of issues such as stylistic violations or insecure constructs. -->
+多數編輯器和 IDE 通常都支援這類程式直接將輸出顯示在程式碼編輯頁面上，來凸顯警告和錯誤提醒。
+我們將其叫做 **code linting**，它也常常被用來顯示其他種類的問題，例如風格違規或不安全的建構。
 
-In vim, the plugins [`ale`](https://vimawesome.com/plugin/ale) or [`syntastic`](https://vimawesome.com/plugin/syntastic) will let you do that.
+<!-- In vim, the plugins [`ale`](https://vimawesome.com/plugin/ale) or [`syntastic`](https://vimawesome.com/plugin/syntastic) will let you do that.
 For Python, [`pylint`](https://github.com/PyCQA/pylint) and [`pep8`](https://pypi.org/project/pep8/) are examples of stylistic linters and [`bandit`](https://pypi.org/project/bandit/) is a tool designed to find common security issues.
-For other languages people have compiled comprehensive lists of useful static analysis tools, such as [Awesome Static Analysis](https://github.com/mre/awesome-static-analysis) (you may want to take a look at the _Writing_ section) and for linters there is [Awesome Linters](https://github.com/caramelomartins/awesome-linters).
+For other languages people have compiled comprehensive lists of useful static analysis tools, such as [Awesome Static Analysis](https://github.com/mre/awesome-static-analysis) (you may want to take a look at the _Writing_ section) and for linters there is [Awesome Linters](https://github.com/caramelomartins/awesome-linters). -->
+在 Vim 中，可以使用外掛 [`ale`](https://vimawesome.com/plugin/ale) 或者 [`syntastic`](https://vimawesome.com/plugin/syntastic)。
+對於 Python, 使用[`pylint`](https://github.com/PyCQA/pylint) 和 [`pep8`](https://pypi.org/project/pep8/) 檢查編碼風格，使用 [`bandit`](https://pypi.org/project/bandit/) 檢查常見安全問題。
+人們同樣為其他語言編譯了許多有用的靜態分析工具，例如 [Awesome Static Analysis](https://github.com/mre/awesome-static-analysis) (如果想瞭解更多，檢視 _Writing_ 部分)，而 [Awesome Linters](https://github.com/caramelomartins/awesome-linters) 提供了 linting 功能.
 
-A complementary tool to stylistic linting are code formatters such as [`black`](https://github.com/psf/black) for Python, `gofmt` for Go, `rustfmt` for Rust or [`prettier`](https://prettier.io/) for JavaScript, HTML and CSS.
+<!-- A complementary tool to stylistic linting are code formatters such as [`black`](https://github.com/psf/black) for Python, `gofmt` for Go, `rustfmt` for Rust or [`prettier`](https://prettier.io/) for JavaScript, HTML and CSS.
 These tools autoformat your code so that it's consistent with common stylistic patterns for the given programming language.
-Although you might be unwilling to give stylistic control about your code, standardizing code format will help other people read your code and will make you better at reading other people's (stylistically standardized) code.
+Although you might be unwilling to give stylistic control about your code, standardizing code format will help other people read your code and will make you better at reading other people's (stylistically standardized) code. -->
+我們也可以使用程式碼格式化工具作為補充功能。例如 Python 中的 [`black`](https://github.com/psf/black)，Go 中的 `gofmt`，適用於 Rust 的 `rustfmt`，以及可用於 JS/HTML/CSS 的 [`prettier`](https://prettier.io/)。
+這些工具可以自動格式化程式碼，讓它們與這些程式語言的常見樣式保持一致。
+儘管我們有時候不願意更改程式碼樣式，但是標準化的格式有助於他人閱讀我們的程式，也讓我們更容易閱讀其他人寫出的（標準化）程式。
 
-# Profiling
+<!-- # Profiling -->
+# 分析
 
-Even if your code functionally behaves as you would expect, that might not be good enough if it takes all your CPU or memory in the process.
+<!-- Even if your code functionally behaves as you would expect, that might not be good enough if it takes all your CPU or memory in the process.
 Algorithms classes often teach big _O_ notation but not how to find hot spots in your programs.
-Since [premature optimization is the root of all evil](http://wiki.c2.com/?PrematureOptimization), you should learn about profilers and monitoring tools. They will help you understand which parts of your program are taking most of the time and/or resources so you can focus on optimizing those parts.
+Since [premature optimization is the root of all evil](http://wiki.c2.com/?PrematureOptimization), you should learn about profilers and monitoring tools. They will help you understand which parts of your program are taking most of the time and/or resources so you can focus on optimizing those parts. -->
+雖然你的程式可以正常執行，如果它佔據了過多的 CPU 或 記憶體資源，那它仍然不夠好。演算法課程通常講授大 _O_ 表示法，但往往不會教你如何在程式中找到哪部分在耗費資源。
+[過早最佳化是萬惡的根源](http://wiki.c2.com/?PrematureOptimization), 我們應該瞭解探查器和檢視工具，來檢測是哪些部分佔用了大部分時間和/或資源，讓我們可以專注優化這些部分。
 
-## Timing
+<!-- ## Timing -->
+## 計時
 
-Similarly to the debugging case, in many scenarios it can be enough to just print the time it took your code between two points.
-Here is an example in Python using the [`time`](https://docs.python.org/3/library/time.html) module.
+<!-- Similarly to the debugging case, in many scenarios it can be enough to just print the time it took your code between two points.
+Here is an example in Python using the [`time`](https://docs.python.org/3/library/time.html) module. -->
+與我們做除錯的情況類似，許多時候僅印出兩點之間的程式嗎使用了多少時長就夠了。
+這是 Python 中的 [`time`](https://docs.python.org/3/library/time.html) 模組的示例。
 
 ```python
 import time, random

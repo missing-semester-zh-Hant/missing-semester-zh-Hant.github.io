@@ -100,7 +100,7 @@ copying files back and forth. No more repetitive file editing. -->
 不要再來回拉取與複製檔案，也不要再重複編輯檔案。
 
 <!-- Vim macros are one of its best features, in the example below we quickly convert an html table to csv format using a nested vim macro. -->
-Vim的巨集功能是它最好的功能之一，在下面這個示例中，我們使用 Vim 內嵌的巨集功能來快速講html表格轉換成了csv格式。
+Vim的巨集功能是它最好的功能之一，在下面這個示例中，我們使用 Vim 內嵌的巨集功能來快速讓html表格轉換成了csv格式。
 
 <video autoplay="autoplay" loop="loop" controls muted playsinline  oncontextmenu="return false;"  preload="auto"  class="demo">
   <source src="/static/media/demos/vim.mp4" type="video/mp4">
